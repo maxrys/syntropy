@@ -10,6 +10,8 @@
 		503D1B2D2F31FCD6005B8A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */; };
 		503D1B2E2F31FCD6005B8A98 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B2A2F31FCD6005B8A98 /* App.swift */; };
 		503D1B2F2F31FCD6005B8A98 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B2C2F31FCD6005B8A98 /* MainView.swift */; };
+		503D1B362F31FDD3005B8A98 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 503D1B352F31FDD3005B8A98 /* ZIPFoundation */; };
+		503D1B392F31FEE6005B8A98 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 503D1B382F31FEE6005B8A98 /* Credits.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +19,8 @@
 		503D1B2A2F31FCD6005B8A98 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		503D1B2C2F31FCD6005B8A98 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		503D1B372F31FE25005B8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		503D1B382F31FEE6005B8A98 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				503D1B362F31FDD3005B8A98 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +60,8 @@
 				503D1B2A2F31FCD6005B8A98 /* App.swift */,
 				503D1B2C2F31FCD6005B8A98 /* MainView.swift */,
 				503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */,
+				503D1B382F31FEE6005B8A98 /* Credits.html */,
+				503D1B372F31FE25005B8A98 /* Info.plist */,
 			);
 			path = "main app";
 			sourceTree = "<group>";
@@ -97,6 +104,7 @@
 			);
 			name = Syntropy;
 			packageProductDependencies = (
+				503D1B352F31FDD3005B8A98 /* ZIPFoundation */,
 			);
 			productName = Syntropy;
 			productReference = 503D1B1C2F31FADE005B8A98 /* Syntropy.app */;
@@ -123,9 +131,13 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 503D1B132F31FADE005B8A98;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				503D1B342F31FDD3005B8A98 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 503D1B1D2F31FADE005B8A98 /* Products */;
 			projectDirPath = "";
@@ -142,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				503D1B2D2F31FCD6005B8A98 /* Assets.xcassets in Resources */,
+				503D1B392F31FEE6005B8A98 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +309,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "main app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Syntropy Archiver";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Maxim Rysevets. All rights reserved.";
@@ -331,6 +345,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "main app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Syntropy Archiver";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Maxim Rysevets. All rights reserved.";
@@ -374,6 +389,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		503D1B342F31FDD3005B8A98 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.20;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		503D1B352F31FDD3005B8A98 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 503D1B342F31FDD3005B8A98 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 503D1B142F31FADE005B8A98 /* Project object */;
 }
