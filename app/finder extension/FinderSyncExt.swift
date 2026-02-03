@@ -1,0 +1,50 @@
+
+/* ############################################################# */
+/* ### Copyright © 2026 Maxim Rysevets. All rights reserved. ### */
+/* ############################################################# */
+
+import Cocoa
+import FinderSync
+
+class FinderSyncExt: FIFinderSync {
+
+    override init() {
+        super.init()
+        FIFinderSyncController.default().directoryURLs = FINDER_EXT_DIRECTORY_URLS
+    }
+
+    override func menu(for menuKind: FIMenuKind) -> NSMenu {
+        let menu = NSMenu(title: FINDER_EXT_MENU_TITLE)
+        switch menuKind {
+            case .contextualMenuForItems, .contextualMenuForContainer:
+                for (index, item) in FINDER_EXT_MENU_ITEMS.enumerated() {
+                    let menuItem = NSMenuItem()
+                        menuItem.title = item.titleLocalized
+                        menuItem.image = NSImage(systemSymbolName: item.iconName, accessibilityDescription: "")!
+                        menuItem.action = #selector(onContextMenu(_:))
+                        menuItem.tag = index
+                        menuItem.target = self
+                    menu.addItem(menuItem)
+                }
+            default: break
+        }
+        return menu
+    }
+
+    @objc func onContextMenu(_ menuItem: NSMenuItem) {
+        for (index, _) in FINDER_EXT_MENU_ITEMS.enumerated() {
+            if (menuItem.tag == index) {
+                if let urls = FIFinderSyncController.default().selectedItemURLs() {
+                    for url in urls {
+                        NSWorkspace.shared.open(
+                            URL(string:
+                                URL_PREFIX_THIS_APP + url.absoluteString.trimPrefix(URL_PREFIX_FILE)
+                            )!
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+}

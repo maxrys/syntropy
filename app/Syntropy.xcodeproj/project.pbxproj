@@ -30,7 +30,36 @@
 		503D1B5F2F320193005B8A98 /* Archiving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5B2F32016E005B8A98 /* Archiving.swift */; };
 		503D1B602F320193005B8A98 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B592F32016E005B8A98 /* Settings.swift */; };
 		503D1B612F320193005B8A98 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5C2F32016E005B8A98 /* Presets.swift */; };
+		503D1B692F32022F005B8A98 /* FinderSyncExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B682F32022F005B8A98 /* FinderSyncExt.swift */; };
+		503D1B6D2F32022F005B8A98 /* Syntropy Finder Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		503D1B732F32027F005B8A98 /* const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B422F320014005B8A98 /* const.swift */; };
+		503D1B742F320297005B8A98 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3C2F31FF47005B8A98 /* String.swift */; };
+		503D1B762F32039D005B8A98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 503D1B752F32039D005B8A98 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		503D1B6B2F32022F005B8A98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 503D1B142F31FADE005B8A98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 503D1B652F32022F005B8A98;
+			remoteInfo = "Syntropy Finder Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		503D1B722F32022F005B8A98 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				503D1B6D2F32022F005B8A98 /* Syntropy Finder Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		503D1B1C2F31FADE005B8A98 /* Syntropy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syntropy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +86,10 @@
 		503D1B5A2F32016E005B8A98 /* Extraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extraction.swift; sourceTree = "<group>"; };
 		503D1B5B2F32016E005B8A98 /* Archiving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archiving.swift; sourceTree = "<group>"; };
 		503D1B5C2F32016E005B8A98 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
+		503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Syntropy Finder Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		503D1B682F32022F005B8A98 /* FinderSyncExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSyncExt.swift; sourceTree = "<group>"; };
+		503D1B6A2F32022F005B8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		503D1B752F32039D005B8A98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = "main app/Localizable.xcstrings"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +98,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				503D1B362F31FDD3005B8A98 /* ZIPFoundation in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		503D1B632F32022F005B8A98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				503D1B1C2F31FADE005B8A98 /* Syntropy.app */,
+				503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +139,7 @@
 				503D1B2A2F31FCD6005B8A98 /* App.swift */,
 				503D1B572F320128005B8A98 /* Toolbar.swift */,
 				503D1B2C2F31FCD6005B8A98 /* MainScene.swift */,
+				503D1B752F32039D005B8A98 /* Localizable.xcstrings */,
 				503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */,
 				503D1B382F31FEE6005B8A98 /* Credits.html */,
 				503D1B372F31FE25005B8A98 /* Info.plist */,
@@ -108,6 +150,8 @@
 		503D1B312F31FD00005B8A98 /* finder extension */ = {
 			isa = PBXGroup;
 			children = (
+				503D1B682F32022F005B8A98 /* FinderSyncExt.swift */,
+				503D1B6A2F32022F005B8A98 /* Info.plist */,
 			);
 			path = "finder extension";
 			sourceTree = "<group>";
@@ -183,10 +227,12 @@
 				503D1B182F31FADE005B8A98 /* Sources */,
 				503D1B192F31FADE005B8A98 /* Frameworks */,
 				503D1B1A2F31FADE005B8A98 /* Resources */,
+				503D1B722F32022F005B8A98 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				503D1B6C2F32022F005B8A98 /* PBXTargetDependency */,
 			);
 			name = Syntropy;
 			packageProductDependencies = (
@@ -195,6 +241,25 @@
 			productName = Syntropy;
 			productReference = 503D1B1C2F31FADE005B8A98 /* Syntropy.app */;
 			productType = "com.apple.product-type.application";
+		};
+		503D1B652F32022F005B8A98 /* Syntropy Finder Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 503D1B6F2F32022F005B8A98 /* Build configuration list for PBXNativeTarget "Syntropy Finder Extension" */;
+			buildPhases = (
+				503D1B622F32022F005B8A98 /* Sources */,
+				503D1B632F32022F005B8A98 /* Frameworks */,
+				503D1B642F32022F005B8A98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Syntropy Finder Extension";
+			packageProductDependencies = (
+			);
+			productName = "Syntropy Finder Extension";
+			productReference = 503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -207,6 +272,9 @@
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					503D1B1B2F31FADE005B8A98 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					503D1B652F32022F005B8A98 = {
 						CreatedOnToolsVersion = 26.0;
 					};
 				};
@@ -230,6 +298,7 @@
 			projectRoot = "";
 			targets = (
 				503D1B1B2F31FADE005B8A98 /* Syntropy */,
+				503D1B652F32022F005B8A98 /* Syntropy Finder Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -241,6 +310,14 @@
 			files = (
 				503D1B2D2F31FCD6005B8A98 /* Assets.xcassets in Resources */,
 				503D1B392F31FEE6005B8A98 /* Credits.html in Resources */,
+				503D1B762F32039D005B8A98 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		503D1B642F32022F005B8A98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +351,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		503D1B622F32022F005B8A98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				503D1B742F320297005B8A98 /* String.swift in Sources */,
+				503D1B692F32022F005B8A98 /* FinderSyncExt.swift in Sources */,
+				503D1B732F32027F005B8A98 /* const.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		503D1B6C2F32022F005B8A98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 503D1B652F32022F005B8A98 /* Syntropy Finder Extension */;
+			targetProxy = 503D1B6B2F32022F005B8A98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		503D1B252F31FAE1005B8A98 /* Debug */ = {
@@ -473,6 +568,70 @@
 			};
 			name = Release;
 		};
+		503D1B702F32022F005B8A98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 97CZR6J379;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "finder extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Syntropy Finder Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Maxim Rysevets. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "maxrys.syntropy.finder-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		503D1B712F32022F005B8A98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 97CZR6J379;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "finder extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Syntropy Finder Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Maxim Rysevets. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "maxrys.syntropy.finder-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -490,6 +649,15 @@
 			buildConfigurations = (
 				503D1B282F31FAE1005B8A98 /* Debug */,
 				503D1B292F31FAE1005B8A98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		503D1B6F2F32022F005B8A98 /* Build configuration list for PBXNativeTarget "Syntropy Finder Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503D1B702F32022F005B8A98 /* Debug */,
+				503D1B712F32022F005B8A98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
