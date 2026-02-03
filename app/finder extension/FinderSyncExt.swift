@@ -8,12 +8,22 @@ import FinderSync
 
 class FinderSyncExt: FIFinderSync {
 
+    var selectedURLs: [URL] {
+        if let urls = FIFinderSyncController.default().selectedItemURLs() {
+            return urls
+        }
+        return []
+    }
+
     override init() {
         super.init()
         FIFinderSyncController.default().directoryURLs = FINDER_EXT_DIRECTORY_URLS
     }
 
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
+        guard !self.selectedURLs.isEmpty else {
+            return NSMenu()
+        }
         let menu = NSMenu(title: FINDER_EXT_MENU_TITLE)
         switch menuKind {
             case .contextualMenuForItems, .contextualMenuForContainer:
@@ -34,14 +44,12 @@ class FinderSyncExt: FIFinderSync {
     @objc func onContextMenu(_ menuItem: NSMenuItem) {
         for (index, _) in FINDER_EXT_MENU_ITEMS.enumerated() {
             if (menuItem.tag == index) {
-                if let urls = FIFinderSyncController.default().selectedItemURLs() {
-                    for url in urls {
-                        NSWorkspace.shared.open(
-                            URL(string:
-                                URL_PREFIX_THIS_APP + url.absoluteString.trimPrefix(URL_PREFIX_FILE)
-                            )!
-                        )
-                    }
+                for url in self.selectedURLs {
+                    NSWorkspace.shared.open(
+                        URL(string:
+                            URL_PREFIX_THIS_APP + url.absoluteString.trimPrefix(URL_PREFIX_FILE)
+                        )!
+                    )
                 }
             }
         }
