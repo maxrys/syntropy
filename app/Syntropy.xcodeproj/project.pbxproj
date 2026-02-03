@@ -12,6 +12,10 @@
 		503D1B2F2F31FCD6005B8A98 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B2C2F31FCD6005B8A98 /* MainView.swift */; };
 		503D1B362F31FDD3005B8A98 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 503D1B352F31FDD3005B8A98 /* ZIPFoundation */; };
 		503D1B392F31FEE6005B8A98 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 503D1B382F31FEE6005B8A98 /* Credits.html */; };
+		503D1B3E2F31FF52005B8A98 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3A2F31FF47005B8A98 /* Array.swift */; };
+		503D1B3F2F31FF52005B8A98 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3C2F31FF47005B8A98 /* String.swift */; };
+		503D1B402F31FF52005B8A98 /* ResultBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */; };
+		503D1B412F31FF52005B8A98 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3D2F31FF47005B8A98 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		503D1B2C2F31FCD6005B8A98 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		503D1B372F31FE25005B8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503D1B382F31FEE6005B8A98 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		503D1B3A2F31FF47005B8A98 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBuilder.swift; sourceTree = "<group>"; };
+		503D1B3C2F31FF47005B8A98 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		503D1B3D2F31FF47005B8A98 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,10 @@
 		503D1B322F31FD0C005B8A98 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				503D1B3A2F31FF47005B8A98 /* Array.swift */,
+				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
+				503D1B3C2F31FF47005B8A98 /* String.swift */,
+				503D1B3D2F31FF47005B8A98 /* View.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -166,6 +178,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				503D1B2E2F31FCD6005B8A98 /* App.swift in Sources */,
+				503D1B3E2F31FF52005B8A98 /* Array.swift in Sources */,
+				503D1B3F2F31FF52005B8A98 /* String.swift in Sources */,
+				503D1B402F31FF52005B8A98 /* ResultBuilder.swift in Sources */,
+				503D1B412F31FF52005B8A98 /* View.swift in Sources */,
 				503D1B2F2F31FCD6005B8A98 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +327,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "main app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Syntropy Archiver";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Maxim Rysevets. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -347,6 +364,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "main app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Syntropy Archiver";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Maxim Rysevets. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
