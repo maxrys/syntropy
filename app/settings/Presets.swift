@@ -5,12 +5,11 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct Settings_Presets: View {
 
-    var body: some View {
-        VStack {
-            Text("Syntropy Archiver")
-        }
+    public var body: some View {
+        Text("Presets")
+            .padding(20)
     }
 
 }
@@ -22,5 +21,6 @@ struct MainView: View {
 /* ############################################################# */
 
 #Preview {
-    MainView()
+    Settings_Presets()
+        .frame(width: 300, height: 300)
 }
