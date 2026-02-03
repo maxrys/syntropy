@@ -21,7 +21,8 @@ class FinderSyncExt: FIFinderSync {
     }
 
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
-        guard !self.selectedURLs.isEmpty else {
+        let selectedURLs = self.selectedURLs
+        guard !selectedURLs.isEmpty else {
             return NSMenu()
         }
         let menu = NSMenu(title: FINDER_EXT_MENU_TITLE)
