@@ -35,6 +35,8 @@
 		503D1B732F32027F005B8A98 /* const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B422F320014005B8A98 /* const.swift */; };
 		503D1B742F320297005B8A98 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3C2F31FF47005B8A98 /* String.swift */; };
 		503D1B762F32039D005B8A98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 503D1B752F32039D005B8A98 /* Localizable.xcstrings */; };
+		50CEA0AF2F4C596B001006CF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 50CEA0AE2F4C596B001006CF /* InfoPlist.xcstrings */; };
+		50CEA0B12F4C59A7001006CF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 50CEA0B02F4C59A7001006CF /* InfoPlist.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		503D1B682F32022F005B8A98 /* FinderSyncExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSyncExt.swift; sourceTree = "<group>"; };
 		503D1B6A2F32022F005B8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503D1B752F32039D005B8A98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = "main app/Localizable.xcstrings"; sourceTree = SOURCE_ROOT; };
+		50CEA0AE2F4C596B001006CF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		50CEA0B02F4C59A7001006CF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				503D1B752F32039D005B8A98 /* Localizable.xcstrings */,
 				503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */,
 				503D1B382F31FEE6005B8A98 /* Credits.html */,
+				50CEA0AE2F4C596B001006CF /* InfoPlist.xcstrings */,
 				503D1B372F31FE25005B8A98 /* Info.plist */,
 			);
 			path = "main app";
@@ -151,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				503D1B682F32022F005B8A98 /* FinderSyncExt.swift */,
+				50CEA0B02F4C59A7001006CF /* InfoPlist.xcstrings */,
 				503D1B6A2F32022F005B8A98 /* Info.plist */,
 			);
 			path = "finder extension";
@@ -310,6 +316,7 @@
 			files = (
 				503D1B2D2F31FCD6005B8A98 /* Assets.xcassets in Resources */,
 				503D1B392F31FEE6005B8A98 /* Credits.html in Resources */,
+				50CEA0AF2F4C596B001006CF /* InfoPlist.xcstrings in Resources */,
 				503D1B762F32039D005B8A98 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50CEA0B12F4C59A7001006CF /* InfoPlist.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
