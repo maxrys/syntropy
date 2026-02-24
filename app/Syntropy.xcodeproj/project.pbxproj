@@ -30,7 +30,7 @@
 		503D1B5F2F320193005B8A98 /* Archiving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5B2F32016E005B8A98 /* Archiving.swift */; };
 		503D1B602F320193005B8A98 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B592F32016E005B8A98 /* Settings.swift */; };
 		503D1B612F320193005B8A98 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5C2F32016E005B8A98 /* Presets.swift */; };
-		503D1B692F32022F005B8A98 /* FinderSyncExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B682F32022F005B8A98 /* FinderSyncExt.swift */; };
+		503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B682F32022F005B8A98 /* FinderSync.swift */; };
 		503D1B6D2F32022F005B8A98 /* Syntropy Finder Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		503D1B732F32027F005B8A98 /* const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B422F320014005B8A98 /* const.swift */; };
 		503D1B742F320297005B8A98 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3C2F31FF47005B8A98 /* String.swift */; };
@@ -94,7 +94,7 @@
 		503D1B5B2F32016E005B8A98 /* Archiving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archiving.swift; sourceTree = "<group>"; };
 		503D1B5C2F32016E005B8A98 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Syntropy Finder Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		503D1B682F32022F005B8A98 /* FinderSyncExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSyncExt.swift; sourceTree = "<group>"; };
+		503D1B682F32022F005B8A98 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		503D1B6A2F32022F005B8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503D1B752F32039D005B8A98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = "main app/Localizable.xcstrings"; sourceTree = SOURCE_ROOT; };
 		50CEA0AE2F4C596B001006CF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		503D1B312F31FD00005B8A98 /* finder extension */ = {
 			isa = PBXGroup;
 			children = (
-				503D1B682F32022F005B8A98 /* FinderSyncExt.swift */,
+				503D1B682F32022F005B8A98 /* FinderSync.swift */,
 				50CEA0B02F4C59A7001006CF /* InfoPlist.xcstrings */,
 				503D1B6A2F32022F005B8A98 /* Info.plist */,
 			);
@@ -376,7 +376,7 @@
 				50CEA0B82F4E4CE5001006CF /* ResultBuilder.swift in Sources */,
 				50CEA0B92F4E4CE5001006CF /* View.swift in Sources */,
 				503D1B742F320297005B8A98 /* String.swift in Sources */,
-				503D1B692F32022F005B8A98 /* FinderSyncExt.swift in Sources */,
+				503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */,
 				503D1B732F32027F005B8A98 /* const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
