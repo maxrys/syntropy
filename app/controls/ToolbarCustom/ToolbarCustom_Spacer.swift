@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct ToolbarCustom_Spacer: ToolbarCustom_item_Protocol {
+struct ToolbarCustom_Spacer: ToolbarCustom_Item_Protocol {
 
     let flexibility: Flexibility
 

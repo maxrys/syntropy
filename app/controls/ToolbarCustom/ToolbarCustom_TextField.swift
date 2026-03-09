@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct ToolbarCustom_TextField: ToolbarCustom_item_Protocol {
+struct ToolbarCustom_TextField: ToolbarCustom_Item_Protocol {
 
     @Environment(\.colorScheme) private var colorScheme
 

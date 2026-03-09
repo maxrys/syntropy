@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct ToolbarCustom_Button: ToolbarCustom_item_Protocol {
+struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -30,14 +30,14 @@ struct ToolbarCustom_Button: ToolbarCustom_item_Protocol {
 
     public var body: some View {
         VStack(spacing: ToolbarCustom.BUTTON_AND_TITLE_SPACING) {
-            self.buttonView
+            self.ButtonView()
                 .keyboardShortcut(self.keyboardShortcut)
-            self.titleView
+            self.TitleView()
                 .frame(maxWidth: 35)
         }
     }
 
-    @ViewBuilder private var buttonView: some View {
+    @ViewBuilder private func ButtonView() -> some View {
         Button {
             self.action()
         } label: {
@@ -74,7 +74,7 @@ struct ToolbarCustom_Button: ToolbarCustom_item_Protocol {
         }
     }
 
-    @ViewBuilder private var titleView: some View {
+    @ViewBuilder private func TitleView() -> some View {
         Text(self.title)
             .lineLimit(1)
             .font(.system(size: ToolbarCustom.TITLE_FONT_SIZE))

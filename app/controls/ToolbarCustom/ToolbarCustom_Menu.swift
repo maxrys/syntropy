@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct ToolbarCustom_Menu: ToolbarCustom_item_Protocol {
+struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -33,14 +33,14 @@ struct ToolbarCustom_Menu: ToolbarCustom_item_Protocol {
 
     public var body: some View {
         VStack(spacing: ToolbarCustom.BUTTON_AND_TITLE_SPACING) {
-            self.buttonView
+            self.ButtonView()
                 .keyboardShortcut(self.keyboardShortcut)
-            self.titleView
+            self.TitleView()
                 .frame(maxWidth: 35)
         }
     }
 
-    @ViewBuilder private var buttonView: some View {
+    @ViewBuilder private func ButtonView() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: ToolbarCustom.BUTTON_CORNER_RADIUS)
                 .stroke(
@@ -65,7 +65,7 @@ struct ToolbarCustom_Menu: ToolbarCustom_item_Protocol {
 
                 }
                 Menu("") {
-                    ForEach(0 ..< self.contents.count, id: \.self) { index in
+                    ForEach(self.contents.indices, id: \.self) { index in
                         if let menuItem = self.contents[safe: index] {
                             AnyView(menuItem)
                         }
@@ -96,7 +96,7 @@ struct ToolbarCustom_Menu: ToolbarCustom_item_Protocol {
         }
     }
 
-    @ViewBuilder private var titleView: some View {
+    @ViewBuilder private func TitleView() -> some View {
         Text(self.title)
             .lineLimit(1)
             .font(.system(size: ToolbarCustom.TITLE_FONT_SIZE))

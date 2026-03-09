@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-protocol ToolbarCustom_item_Protocol: View {
+protocol ToolbarCustom_Item_Protocol: View {
 }
 
 struct ToolbarCustom: View {
@@ -26,12 +26,12 @@ struct ToolbarCustom: View {
 
     @Environment(\.colorScheme) private var colorScheme
 
-    private let contents: [any ToolbarCustom_item_Protocol]
+    private let contents: [any ToolbarCustom_Item_Protocol]
     private let padding: EdgeInsets
 
     init(
         padding: EdgeInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10),
-        @ViewBuilderArray<ToolbarCustom_item_Protocol> content: () -> [any ToolbarCustom_item_Protocol]
+        @ViewBuilderArray<ToolbarCustom_Item_Protocol> content: () -> [any ToolbarCustom_Item_Protocol]
     ) {
         self.contents = content()
         self.padding = padding
@@ -39,7 +39,7 @@ struct ToolbarCustom: View {
 
     public var body: some View {
         HStack(spacing: 5) {
-            ForEach(0 ..< self.contents.count, id: \.self) { index in
+            ForEach(self.contents.indices, id: \.self) { index in
                 if let toolbarElement = self.contents[safe: index] {
                     AnyView(toolbarElement)
                 }

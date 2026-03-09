@@ -26,7 +26,7 @@ struct TabCustom: View {
             /* MARK: Tab Header */
 
             HStack(spacing: 10) {
-                ForEach(0 ..< self.contents.count, id: \.self) { index in
+                ForEach(self.contents.indices, id: \.self) { index in
                     if let tatSpacer = self.contents[safe: index] as? TabCustom_Spacer { tatSpacer }
                     if let tabItem   = self.contents[safe: index] as? TabCustom_Item {
                         TabCustom_header(
