@@ -42,6 +42,7 @@
 		50D28F932F7A72CD006A7304 /* ToolbarCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */; };
 		50D28F952F7A9D4D006A7304 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F942F7A9D4D006A7304 /* Color.swift */; };
 		50D28F962F7A9D4D006A7304 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F942F7A9D4D006A7304 /* Color.swift */; };
+		50D28F9C2F7AB03D006A7304 /* TabCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F9B2F7AB03D006A7304 /* TabCustomColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		50CEA0B42F4E4CC7001006CF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarCustomColors.swift; sourceTree = "<group>"; };
 		50D28F942F7A9D4D006A7304 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		50D28F9B2F7AB03D006A7304 /* TabCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCustomColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				503D1B452F32009C005B8A98 /* TabCustom.swift */,
 				503D1B462F32009C005B8A98 /* TabCustom_Item.swift */,
 				503D1B472F32009C005B8A98 /* TabCustom_Spacer.swift */,
+				50D28F9B2F7AB03D006A7304 /* TabCustomColors.swift */,
 			);
 			path = TabCustom;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				503D1B3E2F31FF52005B8A98 /* Array.swift in Sources */,
 				50D28F952F7A9D4D006A7304 /* Color.swift in Sources */,
 				503D1B3F2F31FF52005B8A98 /* String.swift in Sources */,
+				50D28F9C2F7AB03D006A7304 /* TabCustomColors.swift in Sources */,
 				503D1B492F32009C005B8A98 /* TabCustom_Item.swift in Sources */,
 				50CEA0B52F4E4CC7001006CF /* Logger.swift in Sources */,
 				503D1B4A2F32009C005B8A98 /* TabCustom.swift in Sources */,
