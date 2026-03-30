@@ -84,7 +84,7 @@ struct ToolbarCustom_Preview: PreviewProvider {
                 }
                 ToolbarCustom_Spacer(flexibility: .infinity)
                 ToolbarCustom_TextField(
-                    hint: NSLocalizedString("􀊫 Search", comment: ""),
+                    hint: NSLocalizedString("Search", comment: ""),
                     text: Binding.constant(""),
                     minWidth: 100,
                     maxWidth: 200

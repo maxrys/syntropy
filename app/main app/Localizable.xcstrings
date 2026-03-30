@@ -154,6 +154,16 @@
         }
       }
     },
+    "Search" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск"
+          }
+        }
+      }
+    },
     "Settings" : {
       "localizations" : {
         "ru" : {
@@ -170,16 +180,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тест"
-          }
-        }
-      }
-    },
-    "􀊫 Search" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "􀊫 Поиск"
           }
         }
       }

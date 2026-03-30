@@ -92,14 +92,15 @@ struct Toolbar: View {
                 action: self.onClick_test
             )
 
-            ToolbarCustom_Spacer()
-            ToolbarCustom_Spacer(flexibility: .infinity)
+            ToolbarCustom_Spacer(
+                flexibility: .infinity
+            )
 
             ToolbarCustom_TextField(
-                hint: NSLocalizedString("􀊫 Search", comment: ""),
+                hint: NSLocalizedString("Search", comment: ""),
                 text: self.$searchText,
                 minWidth: 100,
-                maxWidth: 200
+                maxWidth: .infinity
             )
 
         }.onChange(of: self.searchText) { value in
