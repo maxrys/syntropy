@@ -119,7 +119,7 @@ fileprivate struct TabCustom_HeadTitle: View {
                     .fill(self.colorBackground)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(style: StrokeStyle(lineWidth: 1))
+                            .stroke(style: StrokeStyle(lineWidth: 4))
                             .foregroundStyle(self.colorBorder)
                     }.contentShape(RoundedRectangle(cornerRadius: 10))
             }

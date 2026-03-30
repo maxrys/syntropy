@@ -4,6 +4,16 @@
     "" : {
       "shouldTranslate" : false
     },
+    "About %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О приложении %@"
+          }
+        }
+      }
+    },
     "Add" : {
       "localizations" : {
         "ru" : {
@@ -124,6 +134,16 @@
         }
       }
     },
+    "Quit %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завершить %@"
+          }
+        }
+      }
+    },
     "Save" : {
       "localizations" : {
         "ru" : {
@@ -170,6 +190,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Syntropy Archiver" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntropy Архиватор"
           }
         }
       }

@@ -12,13 +12,11 @@ struct MainScene: View {
     public var body: some View {
         Group {
             if let url = self.url {
-                Text(url.absoluteString.trimPrefix(URL_PREFIX_THIS_APP))
+                Text(url.path.trimPrefix(URL_PREFIX_THIS_APP))
             } else {
                 Text("No URL")
             }
-        }.onOpenURL { url in
-            self.url = url
-        }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
 }

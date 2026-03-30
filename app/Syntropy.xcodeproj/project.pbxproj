@@ -33,7 +33,6 @@
 		503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B682F32022F005B8A98 /* FinderSync.swift */; };
 		503D1B6D2F32022F005B8A98 /* Syntropy Finder Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		503D1B732F32027F005B8A98 /* const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B422F320014005B8A98 /* const.swift */; };
-		503D1B742F320297005B8A98 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3C2F31FF47005B8A98 /* String.swift */; };
 		503D1B762F32039D005B8A98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 503D1B752F32039D005B8A98 /* Localizable.xcstrings */; };
 		50CEA0AF2F4C596B001006CF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 50CEA0AE2F4C596B001006CF /* InfoPlist.xcstrings */; };
 		50CEA0B12F4C59A7001006CF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 50CEA0B02F4C59A7001006CF /* InfoPlist.xcstrings */; };
@@ -41,8 +40,13 @@
 		50CEA0B72F4E4CE5001006CF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CEA0B42F4E4CC7001006CF /* Logger.swift */; };
 		50D28F932F7A72CD006A7304 /* ToolbarCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */; };
 		50D28F952F7A9D4D006A7304 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F942F7A9D4D006A7304 /* Color.swift */; };
-		50D28F962F7A9D4D006A7304 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F942F7A9D4D006A7304 /* Color.swift */; };
 		50D28F9C2F7AB03D006A7304 /* TabCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F9B2F7AB03D006A7304 /* TabCustomColors.swift */; };
+		50D28F9E2F7AC4BB006A7304 /* NSWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F9D2F7AC4BB006A7304 /* NSWindow.swift */; };
+		50D28FA42F7AC584006A7304 /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FA02F7AC584006A7304 /* NSApplication.swift */; };
+		50D28FA52F7AC584006A7304 /* NSApplicationMultiLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FA12F7AC584006A7304 /* NSApplicationMultiLaunch.swift */; };
+		50D28FA72F7AC6D1006A7304 /* NSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FA62F7AC6D1006A7304 /* NSMenu.swift */; };
+		50D28FAA2F7AC713006A7304 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FA92F7AC713006A7304 /* Timer.swift */; };
+		50D28FAC2F7ACDE2006A7304 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B3C2F31FF47005B8A98 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +108,11 @@
 		50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarCustomColors.swift; sourceTree = "<group>"; };
 		50D28F942F7A9D4D006A7304 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		50D28F9B2F7AB03D006A7304 /* TabCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCustomColors.swift; sourceTree = "<group>"; };
+		50D28F9D2F7AC4BB006A7304 /* NSWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSWindow.swift; sourceTree = "<group>"; };
+		50D28FA02F7AC584006A7304 /* NSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
+		50D28FA12F7AC584006A7304 /* NSApplicationMultiLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSApplicationMultiLaunch.swift; sourceTree = "<group>"; };
+		50D28FA62F7AC6D1006A7304 /* NSMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenu.swift; sourceTree = "<group>"; };
+		50D28FA92F7AC713006A7304 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,9 +162,9 @@
 				503D1B2A2F31FCD6005B8A98 /* App.swift */,
 				503D1B572F320128005B8A98 /* Toolbar.swift */,
 				503D1B2C2F31FCD6005B8A98 /* MainScene.swift */,
-				503D1B752F32039D005B8A98 /* Localizable.xcstrings */,
 				503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */,
 				503D1B382F31FEE6005B8A98 /* Credits.html */,
+				503D1B752F32039D005B8A98 /* Localizable.xcstrings */,
 				50CEA0AE2F4C596B001006CF /* InfoPlist.xcstrings */,
 				503D1B372F31FE25005B8A98 /* Info.plist */,
 			);
@@ -178,7 +187,12 @@
 				503D1B3A2F31FF47005B8A98 /* Array.swift */,
 				50D28F942F7A9D4D006A7304 /* Color.swift */,
 				50CEA0B42F4E4CC7001006CF /* Logger.swift */,
+				50D28FA02F7AC584006A7304 /* NSApplication.swift */,
+				50D28FA12F7AC584006A7304 /* NSApplicationMultiLaunch.swift */,
+				50D28FA62F7AC6D1006A7304 /* NSMenu.swift */,
+				50D28F9D2F7AC4BB006A7304 /* NSWindow.swift */,
 				503D1B3C2F31FF47005B8A98 /* String.swift */,
+				50D28FA92F7AC713006A7304 /* Timer.swift */,
 				503D1B3D2F31FF47005B8A98 /* View.swift */,
 			);
 			path = extensions;
@@ -350,6 +364,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D28F9E2F7AC4BB006A7304 /* NSWindow.swift in Sources */,
+				50D28FA72F7AC6D1006A7304 /* NSMenu.swift in Sources */,
 				503D1B2E2F31FCD6005B8A98 /* App.swift in Sources */,
 				503D1B3E2F31FF52005B8A98 /* Array.swift in Sources */,
 				50D28F952F7A9D4D006A7304 /* Color.swift in Sources */,
@@ -358,7 +374,10 @@
 				503D1B492F32009C005B8A98 /* TabCustom_Item.swift in Sources */,
 				50CEA0B52F4E4CC7001006CF /* Logger.swift in Sources */,
 				503D1B4A2F32009C005B8A98 /* TabCustom.swift in Sources */,
+				50D28FA42F7AC584006A7304 /* NSApplication.swift in Sources */,
+				50D28FA52F7AC584006A7304 /* NSApplicationMultiLaunch.swift in Sources */,
 				503D1B4B2F32009C005B8A98 /* TabCustom_Spacer.swift in Sources */,
+				50D28FAA2F7AC713006A7304 /* Timer.swift in Sources */,
 				503D1B522F3200C0005B8A98 /* ToolbarCustom_TextField.swift in Sources */,
 				503D1B5E2F320193005B8A98 /* Extraction.swift in Sources */,
 				503D1B5F2F320193005B8A98 /* Archiving.swift in Sources */,
@@ -382,9 +401,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				50CEA0B72F4E4CE5001006CF /* Logger.swift in Sources */,
-				503D1B742F320297005B8A98 /* String.swift in Sources */,
 				503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */,
-				50D28F962F7A9D4D006A7304 /* Color.swift in Sources */,
+				50D28FAC2F7ACDE2006A7304 /* String.swift in Sources */,
 				503D1B732F32027F005B8A98 /* const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
