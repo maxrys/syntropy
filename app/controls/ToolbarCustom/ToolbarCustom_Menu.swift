@@ -9,8 +9,6 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
 
     @Environment(\.colorScheme) private var colorScheme
 
-    @State private var isHovering = false
-
     let title: String
     let icon: Image
     let keyboardShortcut: KeyboardShortcut?
@@ -32,7 +30,7 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
     }
 
     public var body: some View {
-        VStack(spacing: ToolbarCustom.BUTTON_AND_TITLE_SPACING) {
+        VStack(spacing: 4) {
             self.ButtonView()
                 .keyboardShortcut(self.keyboardShortcut)
             self.TitleView()
@@ -42,7 +40,7 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
 
     @ViewBuilder private func ButtonView() -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: ToolbarCustom.BUTTON_CORNER_RADIUS)
+            RoundedRectangle(cornerRadius: 5)
                 .stroke(
                     self.colorScheme == .dark ?
                         Color.toolbar.iconBorderDark :
@@ -55,13 +53,13 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
                         action()
                     } label: {
                         self.icon
-                            .font(.system(size: ToolbarCustom.ICON_FONT_SIZE))
+                            .font(.system(size: 17))
                     }
                     .buttonStyle(.plain)
                     .pointerStyleLinkPolyfill()
                 } else {
                     self.icon
-                        .font(.system(size: ToolbarCustom.ICON_FONT_SIZE))
+                        .font(.system(size: 17))
 
                 }
                 Menu("") {
@@ -83,23 +81,18 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
             )
         }
         .frame(
-            width : ToolbarCustom.BUTTON_WIDTH + 21,
-            height: ToolbarCustom.BUTTON_HEIGHT
+            width : 28 + 21,
+            height: 27
         )
         .contentShape(RoundedRectangle(
-            cornerRadius: ToolbarCustom.BUTTON_CORNER_RADIUS)
+            cornerRadius: 5)
         )
-        .onHover { isHovering in
-            withAnimation(.easeInOut(duration: 0.3)) {
-                self.isHovering = isHovering
-            }
-        }
     }
 
     @ViewBuilder private func TitleView() -> some View {
         Text(self.title)
             .lineLimit(1)
-            .font(.system(size: ToolbarCustom.TITLE_FONT_SIZE))
+            .font(.system(size: 11))
             .foregroundStyle(
                 self.colorScheme == .dark ?
                     Color.toolbar.titleDark :

@@ -7,12 +7,9 @@ import SwiftUI
 
 struct ToolbarCustom_TextField: ToolbarCustom_Item_Protocol {
 
-    @Environment(\.colorScheme) private var colorScheme
-
     @Binding private var text: String
 
     let hint: String
-    let onChange: () -> Void
     let minWidth: CGFloat
     let maxWidth: CGFloat
 
@@ -20,14 +17,12 @@ struct ToolbarCustom_TextField: ToolbarCustom_Item_Protocol {
         hint: String,
         text: Binding<String>,
         minWidth: CGFloat,
-        maxWidth: CGFloat,
-        onChange: @escaping () -> Void
+        maxWidth: CGFloat
     ) {
         self.hint = hint
         self._text = text
         self.minWidth = minWidth
         self.maxWidth = maxWidth
-        self.onChange = onChange
     }
 
     public var body: some View {

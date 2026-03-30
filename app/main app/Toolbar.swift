@@ -99,11 +99,11 @@ struct Toolbar: View {
                 hint: NSLocalizedString("􀊫 Search", comment: ""),
                 text: self.$searchText,
                 minWidth: 100,
-                maxWidth: 200,
-                onChange: self.onChange_searchText
+                maxWidth: 200
             )
-         // .onChange(of: self.searchText, perform: self.onChange_searchText)
 
+        }.onChange(of: self.searchText) { value in
+            self.onChange_searchText()
         }
     }
 

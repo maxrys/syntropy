@@ -211,8 +211,8 @@
 			children = (
 				503D1B4C2F3200C0005B8A98 /* ToolbarCustom.swift */,
 				503D1B4D2F3200C0005B8A98 /* ToolbarCustom_Button.swift */,
-				503D1B4E2F3200C0005B8A98 /* ToolbarCustom_TextField.swift */,
 				503D1B4F2F3200C0005B8A98 /* ToolbarCustom_Menu.swift */,
+				503D1B4E2F3200C0005B8A98 /* ToolbarCustom_TextField.swift */,
 				503D1B502F3200C0005B8A98 /* ToolbarCustom_Spacer.swift */,
 				50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */,
 			);
@@ -535,7 +535,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = maxrys.syntropy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -572,7 +572,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = maxrys.syntropy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -605,7 +605,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "maxrys.syntropy.finder-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -637,7 +637,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "maxrys.syntropy.finder-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";

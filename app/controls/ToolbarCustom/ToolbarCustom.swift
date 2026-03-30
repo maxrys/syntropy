@@ -10,13 +10,6 @@ protocol ToolbarCustom_Item_Protocol: View {
 
 struct ToolbarCustom: View {
 
-    static let BUTTON_WIDTH: CGFloat = 28
-    static let BUTTON_HEIGHT: CGFloat = 27
-    static let BUTTON_CORNER_RADIUS: CGFloat = 5
-    static let BUTTON_AND_TITLE_SPACING: CGFloat = 4
-    static let ICON_FONT_SIZE: CGFloat = 17
-    static let TITLE_FONT_SIZE: CGFloat = 11
-
     @Environment(\.colorScheme) private var colorScheme
 
     private let contents: [any ToolbarCustom_Item_Protocol]
@@ -94,8 +87,7 @@ struct ToolbarCustom_Preview: PreviewProvider {
                     hint: NSLocalizedString("􀊫 Search", comment: ""),
                     text: Binding.constant(""),
                     minWidth: 100,
-                    maxWidth: 200,
-                    onChange: {}
+                    maxWidth: 200
                 )
             }
             Spacer()

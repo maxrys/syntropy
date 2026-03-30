@@ -26,7 +26,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }.ignoresSafeArea()
         }
         .windowStyle(.hiddenTitleBar)
-        .restorationBehavior(.disabled)
         .environment(\.layoutDirection, .leftToRight)
         .commands {
             CommandGroup(after: .appInfo) {
