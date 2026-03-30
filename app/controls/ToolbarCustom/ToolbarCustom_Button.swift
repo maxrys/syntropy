@@ -39,32 +39,32 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
         Button {
             self.action()
         } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 5)
-                    .stroke(
-                        self.colorScheme == .dark ?
-                            Color.toolbar.iconBorderDark :
-                            Color.toolbar.iconBorder,
-                        style: StrokeStyle(lineWidth: 1)
-                    )
-                self.icon
-                    .font(.system(size: 17))
-                    .foregroundStyle(
-                        self.colorScheme == .dark ?
-                            Color.toolbar.iconDark :
-                            Color.toolbar.icon
-                    )
-            }
-            .frame(
-                width : 28,
-                height: 27
-            )
-            .contentShape(RoundedRectangle(
-                cornerRadius: 5)
-            )
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(
+                    self.colorScheme == .dark ?
+                        Color.toolbar.iconBorderDark :
+                        Color.toolbar.iconBorder,
+                    style: StrokeStyle(lineWidth: 1)
+                )
+                .frame(width: 28, height: 27)
+                .contentShape(RoundedRectangle(cornerRadius: 5))
+                .overlayPolyfill {
+                    self.IconView()
+                }
         }
         .buttonStyle(.plain)
         .pointerStyleLinkPolyfill()
+    }
+
+    @ViewBuilder private func IconView() -> some View {
+        self.icon
+            .contentShape(RoundedRectangle(cornerRadius: 5))
+            .font(.system(size: 17))
+            .foregroundStyle(
+                self.colorScheme == .dark ?
+                    Color.toolbar.iconDark :
+                    Color.toolbar.icon
+            )
     }
 
     @ViewBuilder private func TitleView() -> some View {

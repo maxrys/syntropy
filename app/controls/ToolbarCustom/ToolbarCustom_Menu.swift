@@ -39,54 +39,55 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
     }
 
     @ViewBuilder private func ButtonView() -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .stroke(
-                    self.colorScheme == .dark ?
-                        Color.toolbar.iconBorderDark :
-                        Color.toolbar.iconBorder,
-                    style: StrokeStyle(lineWidth: 1)
-                )
-            HStack(spacing: 0) {
-                if let action = self.action {
-                    Button {
-                        action()
-                    } label: {
-                        self.icon
-                            .font(.system(size: 17))
-                    }
-                    .buttonStyle(.plain)
-                    .pointerStyleLinkPolyfill()
-                } else {
-                    self.icon
-                        .font(.system(size: 17))
-
-                }
-                Menu("") {
-                    ForEach(self.contents.indices, id: \.self) { index in
-                        if let menuItem = self.contents[safe: index] {
-                            AnyView(menuItem)
+        RoundedRectangle(cornerRadius: 5)
+            .stroke(
+                self.colorScheme == .dark ?
+                    Color.toolbar.iconBorderDark :
+                    Color.toolbar.iconBorder,
+                style: StrokeStyle(lineWidth: 1)
+            )
+            .frame(width: 49, height: 27)
+            .overlayPolyfill {
+                HStack(spacing: 0) {
+                    if let action = self.action {
+                        Button {
+                            action()
+                        } label: {
+                            self.IconView()
                         }
+                        .buttonStyle(.plain)
+                        .pointerStyleLinkPolyfill()
+                    } else {
+                        self.IconView()
                     }
+                    self.MenuStickerView()
+                        .padding(.horizontal, -2)
                 }
-                .menuStyle(.borderlessButton)
-                .pointerStyleLinkPolyfill()
-                .frame(width: 19, height: 20)
-                .padding(.horizontal, -2)
             }
+    }
+
+    @ViewBuilder private func IconView() -> some View {
+        self.icon
+            .contentShape(RoundedRectangle(cornerRadius: 5))
+            .font(.system(size: 17))
             .foregroundStyle(
                 self.colorScheme == .dark ?
                     Color.toolbar.iconDark :
                     Color.toolbar.icon
             )
+    }
+
+    @ViewBuilder private func MenuStickerView() -> some View {
+        Menu("") {
+            ForEach(self.contents.indices, id: \.self) { index in
+                if let menuItem = self.contents[safe: index] {
+                    AnyView(menuItem)
+                }
+            }
         }
-        .frame(
-            width : 28 + 21,
-            height: 27
-        )
-        .contentShape(RoundedRectangle(
-            cornerRadius: 5)
-        )
+        .menuStyle(.borderlessButton)
+        .frame(width: 19, height: 20)
+        .pointerStyleLinkPolyfill()
     }
 
     @ViewBuilder private func TitleView() -> some View {

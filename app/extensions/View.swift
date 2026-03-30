@@ -36,4 +36,14 @@ extension View {
         }
     }
 
+    @ViewBuilder func overlayPolyfill<Content: View>(
+        alignment: Alignment = .center,
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View {
+        ZStack(alignment: alignment) {
+            self
+            content()
+        }
+    }
+
 }
