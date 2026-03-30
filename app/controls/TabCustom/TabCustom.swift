@@ -5,9 +5,6 @@
 
 import SwiftUI
 
-protocol TabCustom_Item_Protocol: View {
-}
-
 struct TabCustom: View {
 
     @Environment(\.colorScheme) private var colorScheme
@@ -29,7 +26,7 @@ struct TabCustom: View {
                 ForEach(self.contents.indices, id: \.self) { index in
                     if let tatSpacer = self.contents[safe: index] as? TabCustom_Spacer { tatSpacer }
                     if let tabItem   = self.contents[safe: index] as? TabCustom_Item {
-                        TabCustom_header(
+                        TabCustom_HeadTitle(
                             title: tabItem.title,
                             icon: tabItem.icon,
                             index: index,
@@ -63,7 +60,7 @@ struct TabCustom: View {
 
 }
 
-fileprivate struct TabCustom_header: View {
+fileprivate struct TabCustom_HeadTitle: View {
 
     @Environment(\.colorScheme) fileprivate var colorScheme
 
@@ -86,9 +83,12 @@ fileprivate struct TabCustom_header: View {
                 }
                 if (!title.isEmpty) {
                     Text(title)
-                        .font(.system(size: 12))
+                        .font(.system(size: 13))
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
                 }
             }
+            .padding(10)
             .foregroundStyle(
                 self.isSelected ? Color.white :
                     (self.colorScheme == .dark ?
@@ -96,7 +96,6 @@ fileprivate struct TabCustom_header: View {
                         Color.black
                     )
             )
-            .padding(10)
             .background {
                 if (self.isSelected) {
                     RoundedRectangle(cornerRadius: 10)
@@ -115,14 +114,11 @@ fileprivate struct TabCustom_header: View {
                         }())
                 }
             }
-            .contentShape(.focusEffect, RoundedRectangle(cornerRadius: 10))
         }
         .buttonStyle(.plain)
         .pointerStyleLinkPolyfill()
         .onHover { isHovering in
-            withAnimation(.easeInOut(duration: 0.3)) {
-                self.isHovering = isHovering
-            }
+            self.isHovering = isHovering
         }
     }
 

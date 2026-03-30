@@ -12,15 +12,15 @@ struct Settings: View {
             TabCustom_Item(
                 title: NSLocalizedString("Extraction", comment: ""),
                 icon: Image(systemName: "tray.and.arrow.up"),
-                view: { Settings_Extraction() })
+                content: { Settings_Extraction() })
             TabCustom_Item(
                 title: NSLocalizedString("Archiving", comment: ""),
                 icon: Image(systemName: "tray.and.arrow.down"),
-                view: { Settings_Archiving() })
+                content: { Settings_Archiving() })
             TabCustom_Item(
                 title: NSLocalizedString("Presets", comment: ""),
                 icon: Image(systemName: "rectangle.grid.3x1"),
-                view: { Settings_Presets() }
+                content: { Settings_Presets() }
             )
         }
         .frame(
