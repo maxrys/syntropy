@@ -17,13 +17,6 @@ struct ToolbarCustom: View {
     static let ICON_FONT_SIZE: CGFloat = 17
     static let TITLE_FONT_SIZE: CGFloat = 11
 
-    static let ICON_COLOR            : Color = .black.opacity(0.5)
-    static let ICON_COLOR_DARK       : Color = .white.opacity(0.6)
-    static let ICON_BORDER_COLOR     : Color = .black.opacity(0.05)
-    static let ICON_BORDER_COLOR_DARK: Color = .white.opacity(0.05)
-    static let TITLE_COLOR           : Color = .black.opacity(0.5)
-    static let TITLE_COLOR_DARK      : Color = .white.opacity(0.6)
-
     @Environment(\.colorScheme) private var colorScheme
 
     private let contents: [any ToolbarCustom_Item_Protocol]

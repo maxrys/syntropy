@@ -45,16 +45,16 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
                 RoundedRectangle(cornerRadius: ToolbarCustom.BUTTON_CORNER_RADIUS)
                     .stroke(
                         self.colorScheme == .dark ?
-                            ToolbarCustom.ICON_BORDER_COLOR_DARK :
-                            ToolbarCustom.ICON_BORDER_COLOR,
+                            Color.toolbar.iconBorderDark :
+                            Color.toolbar.iconBorder,
                         style: StrokeStyle(lineWidth: 1)
                     )
                 self.icon
                     .font(.system(size: ToolbarCustom.ICON_FONT_SIZE))
                     .foregroundStyle(
                         self.colorScheme == .dark ?
-                            ToolbarCustom.ICON_COLOR_DARK :
-                            ToolbarCustom.ICON_COLOR
+                            Color.toolbar.iconDark :
+                            Color.toolbar.icon
                     )
             }
             .frame(
@@ -80,8 +80,8 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
             .font(.system(size: ToolbarCustom.TITLE_FONT_SIZE))
             .foregroundStyle(
                 self.colorScheme == .dark ?
-                    ToolbarCustom.TITLE_COLOR_DARK :
-                    ToolbarCustom.TITLE_COLOR
+                    Color.toolbar.titleDark :
+                    Color.toolbar.title
             )
     }
 

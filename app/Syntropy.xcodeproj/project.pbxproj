@@ -39,6 +39,7 @@
 		50CEA0B12F4C59A7001006CF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 50CEA0B02F4C59A7001006CF /* InfoPlist.xcstrings */; };
 		50CEA0B52F4E4CC7001006CF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CEA0B42F4E4CC7001006CF /* Logger.swift */; };
 		50CEA0B72F4E4CE5001006CF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CEA0B42F4E4CC7001006CF /* Logger.swift */; };
+		50D28F932F7A72CD006A7304 /* ToolbarCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		50CEA0AE2F4C596B001006CF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		50CEA0B02F4C59A7001006CF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		50CEA0B42F4E4CC7001006CF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarCustomColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +172,6 @@
 			children = (
 				503D1B3A2F31FF47005B8A98 /* Array.swift */,
 				50CEA0B42F4E4CC7001006CF /* Logger.swift */,
-				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
 				503D1B3C2F31FF47005B8A98 /* String.swift */,
 				503D1B3D2F31FF47005B8A98 /* View.swift */,
 			);
@@ -181,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				503D1B422F320014005B8A98 /* const.swift */,
+				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -212,6 +214,7 @@
 				503D1B4E2F3200C0005B8A98 /* ToolbarCustom_TextField.swift */,
 				503D1B4F2F3200C0005B8A98 /* ToolbarCustom_Menu.swift */,
 				503D1B502F3200C0005B8A98 /* ToolbarCustom_Spacer.swift */,
+				50D28F922F7A72CD006A7304 /* ToolbarCustomColors.swift */,
 			);
 			path = ToolbarCustom;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				503D1B552F3200C0005B8A98 /* ToolbarCustom_Spacer.swift in Sources */,
 				503D1B562F3200C0005B8A98 /* ToolbarCustom.swift in Sources */,
 				503D1B582F320128005B8A98 /* Toolbar.swift in Sources */,
+				50D28F932F7A72CD006A7304 /* ToolbarCustomColors.swift in Sources */,
 				503D1B402F31FF52005B8A98 /* ResultBuilder.swift in Sources */,
 				503D1B432F32001F005B8A98 /* const.swift in Sources */,
 				503D1B412F31FF52005B8A98 /* View.swift in Sources */,
