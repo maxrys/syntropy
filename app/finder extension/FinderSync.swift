@@ -7,6 +7,20 @@ import os
 import Cocoa
 import FinderSync
 
+let FINDER_EXT_MENU_TITLE = "Syntropy Archiver"
+let FINDER_EXT_MENU_ITEMS = [
+    (
+        eventName: "SyntropyFinderContextMenuCompress",
+        titleLocalized: NSLocalizedString("Archivate Using Syntropy", comment: ""),
+        iconName: "icon-archiving"
+    ),
+    (
+        eventName: "SyntropyFinderContextMenuExtract",
+        titleLocalized: NSLocalizedString("Extract Using Syntropy", comment: ""),
+        iconName: "icon-extraction"
+    )
+]
+
 class FinderSync: FIFinderSync {
 
     var selectedURLs: [URL] {
@@ -18,8 +32,22 @@ class FinderSync: FIFinderSync {
 
     override init() {
         super.init()
-        FIFinderSyncController.default().directoryURLs = FINDER_EXT_DIRECTORY_URLS
+        self.updateWatchedVolumes()
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(self.updateWatchedVolumes), name: NSWorkspace.didMountNotification  , object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(self.updateWatchedVolumes), name: NSWorkspace.didUnmountNotification, object: nil)
         Logger.customLog("FinderSync Extension launched from: \(Bundle.main.bundlePath)")
+    }
+
+    @objc func updateWatchedVolumes() {
+        var urls = Set<URL>()
+        urls.insert(URL(fileURLWithPath: "/"))
+        if let volumes = FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil, options: []) {
+            for volume in volumes {
+                urls.insert(volume)
+            }
+        }
+        FIFinderSyncController.default().directoryURLs = urls
+        Logger.customLog("FinderSync Extension Update volumes: \(urls.map { $0.path })")
     }
 
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
@@ -33,7 +61,7 @@ class FinderSync: FIFinderSync {
                 for (index, item) in FINDER_EXT_MENU_ITEMS.enumerated() {
                     let menuItem = NSMenuItem()
                         menuItem.title = item.titleLocalized
-                        menuItem.image = NSImage(systemSymbolName: item.iconName, accessibilityDescription: "")!
+                        menuItem.image = NSImage(named: item.iconName)!
                         menuItem.action = #selector(onContextMenu(_:))
                         menuItem.tag = index
                         menuItem.target = self
@@ -48,7 +76,7 @@ class FinderSync: FIFinderSync {
         for (index, _) in FINDER_EXT_MENU_ITEMS.enumerated() {
             if (menuItem.tag == index) {
                 for url in self.selectedURLs {
-                    if let resultURL = URL(string: URL_PREFIX_THIS_APP + url.absoluteString.trimPrefix(URL_PREFIX_FILE)) {
+                    if let resultURL = URL(string: URL.PREFIX_THIS_APP + url.absoluteString.trimPrefix(URL.PREFIX_FILE)) {
                         NSWorkspace.shared.open(
                             resultURL
                         )

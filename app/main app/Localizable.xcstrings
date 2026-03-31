@@ -35,6 +35,7 @@
       }
     },
     "Compress Using Syntropy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -75,6 +76,7 @@
       }
     },
     "Extract Using Syntropy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
