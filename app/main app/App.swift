@@ -86,17 +86,28 @@ import SwiftUI
     }
 
     func windowWillClose(_ notification: Notification) {
-        if let window = notification.object as? NSWindow {
-            if let ID = window.ID {
-                if (ID == WINDOW_MAIN_ID) {
+        if let window = notification.object as? NSWindow, let ID = window.ID {
+            switch ID {
+                case WINDOW_MAIN_ID:
                     Logger.customLog("Main Window will hide")
                     NSApplication.hideAppsDock()
                     NSApp.mainMenu = nil
+                    /* close settings */
+                    NSWindow.get(WINDOW_SETTINGS_ID)?.hide()
                     /* bring the popup window to the foreground */
                     if (!NSWindow.customWindows.isEmpty) {
                         NSApplication.show()
                     }
-                }
+                case WINDOW_SETTINGS_ID:
+                    Logger.customLog("Settings Window will hide")
+                    window.contentView = nil
+                    window.delegate = nil
+                    NSWindow.customWindows[ID] = nil
+                default:
+                    Logger.customLog("Popup Window will hide | ID = \(ID)")
+                    window.contentView = nil
+                    window.delegate = nil
+                    NSWindow.customWindows[ID] = nil
             }
         }
     }
