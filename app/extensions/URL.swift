@@ -11,9 +11,9 @@ extension URL {
     static let PREFIX_FILE = "file://"
     static let SUFFIX_DIRRECTORY = "/"
 
-    public func trimmed(isTrimSuffix: Bool = true) -> String {
-        if (isTrimSuffix) { return self.absoluteString.trimPrefix(URL.PREFIX_THIS_APP).trimPrefix(URL.PREFIX_FILE).trimSuffix(URL.SUFFIX_DIRRECTORY) }
-        else              { return self.absoluteString.trimPrefix(URL.PREFIX_THIS_APP).trimPrefix(URL.PREFIX_FILE) }
+    public func pathTrimmed(isTrimSuffix: Bool = true) -> String {
+        if (isTrimSuffix) { return self.path.trimPrefix(URL.PREFIX_THIS_APP).trimPrefix(URL.PREFIX_FILE).trimSuffix(URL.SUFFIX_DIRRECTORY) }
+        else              { return self.path.trimPrefix(URL.PREFIX_THIS_APP).trimPrefix(URL.PREFIX_FILE) }
     }
 
 }

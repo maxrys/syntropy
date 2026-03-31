@@ -76,7 +76,7 @@ class FinderSync: FIFinderSync {
         for (index, _) in FINDER_EXT_MENU_ITEMS.enumerated() {
             if (menuItem.tag == index) {
                 for url in self.selectedURLs {
-                    if let resultURL = URL(string: URL.PREFIX_THIS_APP + url.absoluteString.trimPrefix(URL.PREFIX_FILE)) {
+                    if let resultURL = URL(string: URL.PREFIX_THIS_APP + url.path.trimPrefix(URL.PREFIX_FILE)) {
                         NSWorkspace.shared.open(
                             resultURL
                         )
