@@ -34,16 +34,81 @@
       <stop offset="0" style="stop-color: rgb(234, 153, 55);"/>
       <stop offset="1" style="stop-color: rgb(166, 77, 2);"/>
     </radialGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="1541.042" y1="664.072" x2="1541.042" y2="759.688" id="gradient-4" gradientTransform="matrix(0.99958, 0.028953, -0.02529, 0.873118, -1077.628166, 79.971363)">
+      <stop offset="0" style="stop-color: rgb(226, 218, 206);"/>
+      <stop offset="0.453" style="stop-color: rgb(223, 216, 206);"/>
+      <stop offset="0.622" style="stop-color: rgb(189, 186, 178);"/>
+      <stop offset="1" style="stop-color: rgb(172, 172, 164);"/>
+    </linearGradient>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="1544.848" cy="665.401" r="25.251" id="gradient-5" gradientTransform="matrix(0.994311, -0.009472, 0.006826, 0.716497, -1094.006066, 235.87579)">
+      <stop offset="0" style="stop-color: rgb(178, 168, 157);"/>
+      <stop offset="0.794" style="stop-color: rgb(186, 177, 166);"/>
+      <stop offset="1" style="stop-color: rgb(248, 246, 232);"/>
+    </radialGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="1545.055" y1="646.207" x2="1545.055" y2="683.316" id="gradient-6" gradientTransform="matrix(1, 0, 0, 1, -0.00037, 0.000007)">
+      <stop offset="0" style="stop-color: rgb(237, 231, 225);"/>
+      <stop offset="0.232" style="stop-color: rgb(182, 169, 154);"/>
+      <stop offset="1" style="stop-color: rgb(203, 193, 181);"/>
+    </linearGradient>
+    <filter id="drop-shadow-filter-0" bx:preset="drop-shadow 1 0 5 7 1 #2d070095" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7"/>
+      <feOffset dx="0" dy="5"/>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA id="spread-ctrl" type="linear" slope="2"/>
+      </feComponentTransfer>
+      <feFlood flood-color="#2d070095"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="filter-1" bx:preset="drop-shadow 1 0 5 7 1 #2d070095" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7"/>
+      <feOffset dx="0" dy="5"/>
+      <feComponentTransfer result="offsetblur">
+        <feFuncA id="feFuncA-1" type="linear" slope="2"/>
+      </feComponentTransfer>
+      <feFlood flood-color="#2d070095"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="1544.848" cy="665.401" r="25.251" id="gradient-7" gradientTransform="matrix(0.994311, -0.009472, 0.006826, 0.716497, -1094.006066, 235.87579)">
+      <stop offset="0" style="stop-color: rgb(178, 168, 157);"/>
+      <stop offset="0.794" style="stop-color: rgb(186, 177, 166);"/>
+      <stop offset="1" style="stop-color: rgb(248, 246, 232);"/>
+    </radialGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="1541.042" y1="664.072" x2="1541.042" y2="759.688" id="gradient-8" gradientTransform="matrix(0.99958, 0.028953, -0.02529, 0.873118, -1077.628166, 79.971363)">
+      <stop offset="0" style="stop-color: rgb(226, 218, 206);"/>
+      <stop offset="0.453" style="stop-color: rgb(223, 216, 206);"/>
+      <stop offset="0.622" style="stop-color: rgb(189, 186, 178);"/>
+      <stop offset="1" style="stop-color: rgb(172, 172, 164);"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="1545.055" y1="646.207" x2="1545.055" y2="683.316" id="gradient-9" gradientTransform="matrix(1, 0, 0, 1, -0.00037, 0.000007)">
+      <stop offset="0" style="stop-color: rgb(237, 231, 225);"/>
+      <stop offset="0.232" style="stop-color: rgb(182, 169, 154);"/>
+      <stop offset="1" style="stop-color: rgb(203, 193, 181);"/>
+    </linearGradient>
   </defs>
-  <path id="path3" stroke="#2d0700" stroke-width="6px" d="M 247.116 544.191 C 193.008 523.785 159.703 513.379 133.995 478.638 C 124.436 410.262 136.791 177.108 312.619 124.318 C 478.824 74.416 665.694 107.181 734.768 169.522 C 831.543 256.864 843.597 417.166 840.915 488.815 L 818.472 489.79 C 826.508 368.563 782.255 119.327 550.791 147.424 C 364.326 170.06 246.034 283.717 247.116 544.191 Z" style="fill: url(&quot;#gradient-0&quot;); stroke-linecap: round; stroke-linejoin: round; stroke-width: 6.968;"/>
   <path id="path4" d="M 133.33 476.182 L 133.186 532.721 L 124.419 627.715 L 122.855 742.063 C 129.196 781.408 145.608 807.423 174.445 830.944 C 219.812 867.947 357.32 906.714 391.301 909.161 C 385.492 898.737 356.083 891.803 353.814 848.282 C 351.545 804.762 348.46 650.429 361.472 629.556 C 335.717 595.267 282.623 561.776 246.964 544.243 C 209.15 529.426 153.351 513.21 133.33 476.182 Z" style="stroke-linecap: round; stroke-linejoin: round; stroke-width: 6.968; stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-1&quot;);"/>
   <g>
-    <path id="path-1" d="M 818.472 475.164 C 826.508 353.937 782.255 119.327 550.791 147.424 C 364.326 170.06 246.034 283.717 247.116 544.191" style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 23px; stroke: rgb(45, 7, 0);"/>
-    <path id="path-2" d="M 818.472 475.164 C 826.508 353.937 782.255 119.327 550.791 147.424 C 364.326 170.06 246.034 283.717 247.116 544.191" style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 5, 20; stroke-width: 14px; stroke: rgb(227, 227, 227);"/>
+    <path id="path3" stroke="#2d0700" stroke-width="6px" d="M 247.116 544.191 C 193.008 523.785 159.703 513.379 133.995 478.638 C 124.436 410.262 136.791 177.108 312.619 124.318 C 478.824 74.416 665.694 107.181 734.768 169.522 C 831.543 256.864 843.597 417.166 840.915 488.815 L 818.472 489.79 C 826.508 368.563 782.255 119.327 550.791 147.424 C 364.326 170.06 246.034 283.717 247.116 544.191 Z" style="fill: url(&quot;#gradient-0&quot;); stroke-linecap: round; stroke-linejoin: round; stroke-width: 6.968;"/>
+    <g>
+      <path id="path-1" d="M 818.472 475.164 C 826.508 353.937 782.255 119.327 550.791 147.424 C 364.326 170.06 246.034 283.717 247.116 544.191" style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 23px; stroke: rgb(45, 7, 0);"/>
+      <path id="path-2" d="M 818.472 475.164 C 826.508 353.937 782.255 119.327 550.791 147.424 C 364.326 170.06 246.034 283.717 247.116 544.191" style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 5, 20; stroke-width: 14px; stroke: rgb(227, 227, 227);"/>
+      <g style="filter: url(&quot;#filter-1&quot;);" transform="matrix(1, 0, 0, 1, -201.767151, -148.157959)">
+        <ellipse style="stroke-width: 2; stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-7&quot;);" cx="446.654" cy="697.875" rx="25.251" ry="20.003"/>
+        <path style="stroke-width: 2; stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-8&quot;);" d="M 419.864 771.864 C 420.584 753.818 433.714 706.601 433.764 706.622 C 436.754 694.228 459.984 697.163 459.584 708.283 L 468.504 770.958 C 470.514 798.147 420.954 805.103 419.864 771.864 Z M 444.234 757.949 C 436.594 757.949 430.404 763.546 430.404 770.45 C 430.404 777.354 436.594 782.951 444.234 782.951 C 451.864 782.951 458.054 777.354 458.054 770.45 C 458.054 763.546 451.864 757.949 444.234 757.949 Z M 446.264 704.117 C 441.514 704.117 437.674 707.592 437.674 711.879 C 437.674 716.166 441.514 719.641 446.264 719.641 C 451.004 719.641 454.844 716.166 454.844 711.879 C 454.844 707.592 451.004 704.117 446.264 704.117 Z"/>
+        <path style="stroke: rgb(45, 7, 0); stroke-width: 1; transform-box: fill-box; transform-origin: 50% 50%; fill: url(&quot;#gradient-9&quot;);" transform="matrix(0.999455, 0.033025, -0.033025, 0.999455, -1098.259189, 31.335691)" d="M 1542.08 646.207 H 1548.03 A 3 3 0 0 1 1551.03 649.207 V 678.365 A 4.951 4.951 0 0 1 1546.079 683.316 H 1544.031 A 4.951 4.951 0 0 1 1539.08 678.365 V 649.207 A 3 3 0 0 1 1542.08 646.207 Z" bx:shape="rect 1539.08 646.207 11.95 37.109 0 3 3 0 3 3 0 4.951 4.951 0 4.951 4.951 2@1322c693"/>
+      </g>
+    </g>
   </g>
   <g>
     <g>
-      <path style="stroke-width: 6.968; stroke-linejoin: round; stroke-linecap: round; stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-3&quot;);" d="M 354.625 657.858 C 356.11 632.09 368.423 613.836 376.006 606.226 C 397.493 580.326 430.812 569.714 458.764 559.12 C 488.919 547.69 665.237 494.836 837.972 487.374 C 875.26 485.764 895.585 507.895 896.205 532.513 C 896.636 549.642 895.367 557.62 891.161 592.513 C 883.29 657.811 889.266 762.344 881.775 785.706 C 872.069 824.132 839.485 844.32 812.869 852.981 C 789.964 863.976 569.766 914.648 501.678 919.111 C 469.174 922.09 412.473 917.073 396.303 911.566 C 368.754 901.786 354.935 870.127 354.321 852.429 C 353.63 832.528 348.74 759.966 354.625 657.858 Z"/>
+      <path style="stroke-width: 6.968; stroke-linejoin: round; stroke-linecap: round; stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-3&quot;);" d="M 354.625 657.858 C 356.11 632.09 368.423 613.836 376.006 606.226 C 397.493 580.326 430.812 569.714 458.764 559.12 C 488.919 547.69 665.237 494.836 837.972 487.374 C 875.26 485.764 890.481 530.482 891.161 592.513 C 883.29 657.811 889.266 762.344 881.775 785.706 C 872.069 824.132 839.485 844.32 812.869 852.981 C 789.964 863.976 569.766 914.648 501.678 919.111 C 469.174 922.09 412.473 917.073 396.303 911.566 C 368.754 901.786 354.935 870.127 354.321 852.429 C 353.63 832.528 348.74 759.966 354.625 657.858 Z"/>
       <g>
         <path style="stroke-linejoin: round; stroke-linecap: round; fill: none; stroke-width: 23px; stroke: rgb(45, 7, 0);" d="M 362.625 626.083 C 366.919 616.916 372.093 610.153 376.006 606.226 C 397.493 580.326 430.812 569.714 458.764 559.12 C 488.919 547.69 665.237 494.836 837.972 487.374"/>
         <path style="stroke-linejoin: round; stroke-linecap: round; fill: none; stroke-width: 14px; stroke-dasharray: 5, 20; stroke: rgb(227, 227, 227);" d="M 362.625 626.083 C 366.919 616.916 372.093 610.153 376.006 606.226 C 397.493 580.326 430.812 569.714 458.764 559.12 C 488.919 547.69 665.237 494.836 837.972 487.374"/>
@@ -52,9 +117,16 @@
     <g>
       <path style="stroke-linecap: round; stroke-linejoin: round; stroke: rgb(45, 7, 0); stroke-width: 6.968; fill: url(&quot;#gradient-2&quot;);" d="M 396.999 854.914 C 401.347 828.611 402.853 737.664 400.693 703.694 C 400.76 674.989 417.804 651.32 442.114 643.106 C 489.536 624.324 753.294 597.744 829.599 578.803 C 850.349 573.653 878.572 569.592 890.817 597.446 C 894.099 604.013 896.431 611.081 894.969 618.725 C 897.551 622.723 898.253 628.126 896.056 632.225 C 898.761 673.955 896.027 739.817 893.503 763.068 C 892.17 775.346 892.992 823.893 838.881 854.17 C 768.54 885.612 610.588 918.588 471.442 919.254 C 425.623 916.86 397.064 889.666 396.999 854.914 Z"/>
       <g>
-        <path style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 22.064; stroke: rgb(45, 7, 0);" d="M 411.076 693.419 L 445.496 696.566 C 535.825 697.748 757.004 672.202 861.177 639.371 C 874.784 635.758 878.815 633.69 887.703 626.578"/>
-        <path style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 7px; stroke-dasharray: 3, 14; stroke: rgb(227, 227, 227);" d="M 411.076 689.935 L 445.496 693.082 C 535.825 694.264 757.004 668.718 861.177 635.887 C 874.784 632.274 878.815 630.206 887.703 623.095"/>
-        <path style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 7px; stroke-dasharray: 3, 14; stroke-dashoffset: -9px; stroke: rgb(227, 227, 227);" d="M 411.076 698.064 L 445.496 701.211 C 535.825 702.393 757.004 676.847 861.177 644.016 C 874.784 640.403 878.815 638.335 887.703 631.223"/>
+        <g>
+          <path style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 22.064; stroke: rgb(45, 7, 0);" d="M 411.076 693.419 L 445.496 696.566 C 535.825 697.748 757.004 672.202 861.177 639.371 C 874.784 635.758 878.815 633.69 887.703 626.578"/>
+          <path style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 7px; stroke-dasharray: 3, 14; stroke: rgb(227, 227, 227);" d="M 411.076 689.935 L 445.496 693.082 C 535.825 694.264 757.004 668.718 861.177 635.887 C 874.784 632.274 878.815 630.206 887.703 623.095"/>
+          <path style="fill: none; stroke-linejoin: round; stroke-linecap: round; stroke-width: 7px; stroke-dasharray: 3, 14; stroke-dashoffset: -9px; stroke: rgb(227, 227, 227);" d="M 411.076 698.064 L 445.496 701.211 C 535.825 702.393 757.004 676.847 861.177 644.016 C 874.784 640.403 878.815 638.335 887.703 631.223"/>
+        </g>
+        <g style="filter: url(&quot;#drop-shadow-filter-0&quot;);">
+          <ellipse style="stroke-width: 2; stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-5&quot;);" cx="446.654" cy="697.875" rx="25.251" ry="20.003"/>
+          <path style="stroke-width: 2; stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-4&quot;);" d="M 419.864 771.864 C 420.584 753.818 433.714 706.601 433.764 706.622 C 436.754 694.228 459.984 697.163 459.584 708.283 L 468.504 770.958 C 470.514 798.147 420.954 805.103 419.864 771.864 Z M 444.234 757.949 C 436.594 757.949 430.404 763.546 430.404 770.45 C 430.404 777.354 436.594 782.951 444.234 782.951 C 451.864 782.951 458.054 777.354 458.054 770.45 C 458.054 763.546 451.864 757.949 444.234 757.949 Z M 446.264 704.117 C 441.514 704.117 437.674 707.592 437.674 711.879 C 437.674 716.166 441.514 719.641 446.264 719.641 C 451.004 719.641 454.844 716.166 454.844 711.879 C 454.844 707.592 451.004 704.117 446.264 704.117 Z"/>
+          <path style="stroke: rgb(45, 7, 0); fill: url(&quot;#gradient-6&quot;); stroke-width: 1; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(0.999455, 0.033025, -0.033025, 0.999455, -1098.259189, 31.335691)" d="M 1542.08 646.207 H 1548.03 A 3 3 0 0 1 1551.03 649.207 V 678.365 A 4.951 4.951 0 0 1 1546.079 683.316 H 1544.031 A 4.951 4.951 0 0 1 1539.08 678.365 V 649.207 A 3 3 0 0 1 1542.08 646.207 Z" bx:shape="rect 1539.08 646.207 11.95 37.109 0 3 3 0 3 3 0 4.951 4.951 0 4.951 4.951 2@1322c693"/>
+        </g>
       </g>
     </g>
   </g>
