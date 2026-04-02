@@ -12,7 +12,7 @@ struct MainScene: View {
     public var body: some View {
         Group {
             if let url = self.url {
-                Text(url.path.trimPrefix(URL.PREFIX_THIS_APP))
+                Text(url.path)
             } else {
                 Text("No URL")
             }

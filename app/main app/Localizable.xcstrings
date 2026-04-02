@@ -24,23 +24,12 @@
         }
       }
     },
-    "Archiving" : {
+    "Compression" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Архивация"
-          }
-        }
-      }
-    },
-    "Compress Using Syntropy" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сжать с помощью Syntropy"
+            "value" : "Сжатие"
           }
         }
       }
@@ -71,17 +60,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Извлечь"
-          }
-        }
-      }
-    },
-    "Extract Using Syntropy" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Извлечь с помощью Syntropy"
           }
         }
       }

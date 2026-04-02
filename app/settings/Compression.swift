@@ -5,10 +5,10 @@
 
 import SwiftUI
 
-struct Settings_Archiving: View {
+struct Settings_Compression: View {
 
     public var body: some View {
-        Text("Archiving")
+        Text("Compression")
             .padding(20)
     }
 
@@ -21,6 +21,6 @@ struct Settings_Archiving: View {
 /* ############################################################# */
 
 #Preview {
-    Settings_Archiving()
+    Settings_Compression()
         .frame(width: 300, height: 300)
 }

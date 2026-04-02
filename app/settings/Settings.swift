@@ -14,9 +14,9 @@ struct Settings: View {
                 icon: Image(systemName: "tray.and.arrow.up"),
                 content: { Settings_Extraction() })
             TabCustom_Item(
-                title: NSLocalizedString("Archiving", comment: ""),
+                title: NSLocalizedString("Compression", comment: ""),
                 icon: Image(systemName: "tray.and.arrow.down"),
-                content: { Settings_Archiving() })
+                content: { Settings_Compression() })
             TabCustom_Item(
                 title: NSLocalizedString("Presets", comment: ""),
                 icon: Image(systemName: "rectangle.grid.3x1"),

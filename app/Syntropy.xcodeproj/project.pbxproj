@@ -27,7 +27,7 @@
 		503D1B562F3200C0005B8A98 /* ToolbarCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B4C2F3200C0005B8A98 /* ToolbarCustom.swift */; };
 		503D1B582F320128005B8A98 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B572F320128005B8A98 /* Toolbar.swift */; };
 		503D1B5E2F320193005B8A98 /* Extraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5A2F32016E005B8A98 /* Extraction.swift */; };
-		503D1B5F2F320193005B8A98 /* Archiving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5B2F32016E005B8A98 /* Archiving.swift */; };
+		503D1B5F2F320193005B8A98 /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5B2F32016E005B8A98 /* Compression.swift */; };
 		503D1B602F320193005B8A98 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B592F32016E005B8A98 /* Settings.swift */; };
 		503D1B612F320193005B8A98 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B5C2F32016E005B8A98 /* Presets.swift */; };
 		503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B682F32022F005B8A98 /* FinderSync.swift */; };
@@ -50,6 +50,8 @@
 		50D28FAE2F7BA759006A7304 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FAD2F7BA759006A7304 /* URL.swift */; };
 		50D28FB12F7BA7D6006A7304 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FAD2F7BA759006A7304 /* URL.swift */; };
 		50D28FB32F7BA80D006A7304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D28FB22F7BA80D006A7304 /* Assets.xcassets */; };
+		50D28FB52F7D7870006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB42F7D7870006A7304 /* Numeric.swift */; };
+		50D28FB62F7D78AF006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB42F7D7870006A7304 /* Numeric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +101,7 @@
 		503D1B572F320128005B8A98 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		503D1B592F32016E005B8A98 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		503D1B5A2F32016E005B8A98 /* Extraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extraction.swift; sourceTree = "<group>"; };
-		503D1B5B2F32016E005B8A98 /* Archiving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archiving.swift; sourceTree = "<group>"; };
+		503D1B5B2F32016E005B8A98 /* Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compression.swift; sourceTree = "<group>"; };
 		503D1B5C2F32016E005B8A98 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		503D1B662F32022F005B8A98 /* Syntropy Finder Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Syntropy Finder Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		503D1B682F32022F005B8A98 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		50D28FA92F7AC713006A7304 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		50D28FAD2F7BA759006A7304 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		50D28FB22F7BA80D006A7304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50D28FB42F7D7870006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +200,7 @@
 				50D28FA12F7AC584006A7304 /* NSApplicationMultiLaunch.swift */,
 				50D28FA62F7AC6D1006A7304 /* NSMenu.swift */,
 				50D28F9D2F7AC4BB006A7304 /* NSWindow.swift */,
+				50D28FB42F7D7870006A7304 /* Numeric.swift */,
 				503D1B3C2F31FF47005B8A98 /* String.swift */,
 				50D28FA92F7AC713006A7304 /* Timer.swift */,
 				50D28FAD2F7BA759006A7304 /* URL.swift */,
@@ -252,7 +256,7 @@
 			children = (
 				503D1B592F32016E005B8A98 /* Settings.swift */,
 				503D1B5A2F32016E005B8A98 /* Extraction.swift */,
-				503D1B5B2F32016E005B8A98 /* Archiving.swift */,
+				503D1B5B2F32016E005B8A98 /* Compression.swift */,
 				503D1B5C2F32016E005B8A98 /* Presets.swift */,
 			);
 			path = settings;
@@ -389,7 +393,7 @@
 				50D28FAA2F7AC713006A7304 /* Timer.swift in Sources */,
 				503D1B522F3200C0005B8A98 /* ToolbarCustom_TextField.swift in Sources */,
 				503D1B5E2F320193005B8A98 /* Extraction.swift in Sources */,
-				503D1B5F2F320193005B8A98 /* Archiving.swift in Sources */,
+				503D1B5F2F320193005B8A98 /* Compression.swift in Sources */,
 				503D1B602F320193005B8A98 /* Settings.swift in Sources */,
 				503D1B612F320193005B8A98 /* Presets.swift in Sources */,
 				503D1B532F3200C0005B8A98 /* ToolbarCustom_Menu.swift in Sources */,
@@ -398,6 +402,7 @@
 				503D1B562F3200C0005B8A98 /* ToolbarCustom.swift in Sources */,
 				503D1B582F320128005B8A98 /* Toolbar.swift in Sources */,
 				50D28F932F7A72CD006A7304 /* ToolbarCustomColors.swift in Sources */,
+				50D28FB52F7D7870006A7304 /* Numeric.swift in Sources */,
 				503D1B402F31FF52005B8A98 /* ResultBuilder.swift in Sources */,
 				503D1B432F32001F005B8A98 /* const.swift in Sources */,
 				503D1B412F31FF52005B8A98 /* View.swift in Sources */,
@@ -410,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D28FB12F7BA7D6006A7304 /* URL.swift in Sources */,
+				50D28FB62F7D78AF006A7304 /* Numeric.swift in Sources */,
 				50CEA0B72F4E4CE5001006CF /* Logger.swift in Sources */,
 				503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */,
 				50D28FAC2F7ACDE2006A7304 /* String.swift in Sources */,
