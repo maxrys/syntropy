@@ -7,18 +7,15 @@ import Foundation
 
 extension URL {
 
-    static let PREFIX_THIS_APP_COMPRESS = "syntropyArchiverCompress://"
-    static let PREFIX_THIS_APP_EXTRACT = "syntropyArchiverExtract://"
-    static let PREFIX_FILE = "file://"
-    static let SUFFIX_DIRRECTORY = "/"
+    static public let SCHEME_FOR_COMPRESS = "syntropyArchiverCompress"
+    static public let SCHEME_FOR_EXTRACT = "syntropyArchiverExtract"
 
-    public func pathTrimmed(isTrimSuffix: Bool = true) -> String {
-        var result = self.path
-            result = result.trimPrefix(URL.PREFIX_THIS_APP_COMPRESS)
-            result = result.trimPrefix(URL.PREFIX_THIS_APP_EXTRACT)
-            result = result.trimPrefix(URL.PREFIX_FILE)
-        if (isTrimSuffix) { result = result.trimSuffix(URL.SUFFIX_DIRRECTORY) }
-        return result
+    public var isCompressURL: Bool {
+        self.scheme == Self.SCHEME_FOR_COMPRESS
+    }
+
+    public var isExtractURL: Bool {
+        self.scheme == Self.SCHEME_FOR_EXTRACT
     }
 
     public enum ObjectType {
