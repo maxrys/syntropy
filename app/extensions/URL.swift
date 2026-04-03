@@ -19,8 +19,8 @@ extension URL {
     }
 
     public enum ObjectType {
-        case archiveFile
-        case nonArchiveFile
+        case fileArchive
+        case fileNonArchive
         case dirrectory
         case notSupported
     }
@@ -31,8 +31,11 @@ extension URL {
         }
         if let attribute = attributes[.type] as? FileAttributeType {
             switch attribute {
+                case .typeRegular:
+                    if (FORMATS.contains(self.pathExtension))
+                         { return .fileArchive }
+                    else { return .fileNonArchive }
                 case .typeDirectory: return .dirrectory
-                case .typeRegular  : return FORMATS.contains(self.pathExtension) ? .archiveFile : .nonArchiveFile
                 default: return .notSupported
             }
         } else {

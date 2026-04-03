@@ -27,8 +27,8 @@ enum ContextType {
             ] += 1
         }
         switch (
-            objectTypesStatistics[.archiveFile   , default: 0].fixBounds(max: 2),
-            objectTypesStatistics[.nonArchiveFile, default: 0].fixBounds(max: 2),
+            objectTypesStatistics[.fileArchive   , default: 0].fixBounds(max: 2),
+            objectTypesStatistics[.fileNonArchive, default: 0].fixBounds(max: 2),
             objectTypesStatistics[.dirrectory    , default: 0].fixBounds(max: 2),
         ) {
             case (0, 0, 1): self = .compress; Logger.customLog("ContextType: ___ + ___ + ___ + ___ + dir + ___")
