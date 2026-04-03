@@ -7,16 +7,11 @@ import Foundation
 
 extension URL {
 
-    static public let SCHEME_FOR_COMPRESS = "syntropyArchiverCompress"
+    static public let SCHEME_FOR_COMPRES = "syntropyArchiverCompres"
     static public let SCHEME_FOR_EXTRACT = "syntropyArchiverExtract"
 
-    public var isCompressURL: Bool {
-        self.scheme == Self.SCHEME_FOR_COMPRESS
-    }
-
-    public var isExtractURL: Bool {
-        self.scheme == Self.SCHEME_FOR_EXTRACT
-    }
+    public var isCompresURL: Bool { self.scheme == Self.SCHEME_FOR_COMPRES }
+    public var isExtractURL: Bool { self.scheme == Self.SCHEME_FOR_EXTRACT }
 
     public enum ObjectType {
         case fileArchive

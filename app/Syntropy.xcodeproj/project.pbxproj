@@ -54,6 +54,8 @@
 		50D28FB62F7D78AF006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB42F7D7870006A7304 /* Numeric.swift */; };
 		50D28FB82F7E60BC006A7304 /* ContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB72F7E60BA006A7304 /* ContextType.swift */; };
 		50D28FB92F7E60BC006A7304 /* ContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB72F7E60BA006A7304 /* ContextType.swift */; };
+		50D28FBC2F7FA07E006A7304 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBB2F7FA07E006A7304 /* OperationType.swift */; };
+		50D28FBD2F7FA07E006A7304 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBB2F7FA07E006A7304 /* OperationType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +126,7 @@
 		50D28FB22F7BA80D006A7304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50D28FB42F7D7870006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		50D28FB72F7E60BA006A7304 /* ContextType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextType.swift; sourceTree = "<group>"; };
+		50D28FBB2F7FA07E006A7304 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +221,7 @@
 			children = (
 				503D1B422F320014005B8A98 /* const.swift */,
 				50D28FB72F7E60BA006A7304 /* ContextType.swift */,
+				50D28FBB2F7FA07E006A7304 /* OperationType.swift */,
 				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
 			);
 			path = shared;
@@ -398,6 +402,7 @@
 				50D28F9C2F7AB03D006A7304 /* TabCustomColors.swift in Sources */,
 				503D1B492F32009C005B8A98 /* TabCustom_Item.swift in Sources */,
 				50CEA0B52F4E4CC7001006CF /* Logger.swift in Sources */,
+				50D28FBC2F7FA07E006A7304 /* OperationType.swift in Sources */,
 				503D1B4A2F32009C005B8A98 /* TabCustom.swift in Sources */,
 				50D28FA42F7AC584006A7304 /* NSApplication.swift in Sources */,
 				50D28FA52F7AC584006A7304 /* NSApplicationMultiLaunch.swift in Sources */,
@@ -434,6 +439,7 @@
 				503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */,
 				50D28FAC2F7ACDE2006A7304 /* String.swift in Sources */,
 				503D1B732F32027F005B8A98 /* const.swift in Sources */,
+				50D28FBD2F7FA07E006A7304 /* OperationType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

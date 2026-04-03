@@ -17,10 +17,10 @@ class FinderSync: FIFinderSync {
         return []
     }
 
-    var menuItemForCompress: NSMenuItem {
+    var menuItemForCompres: NSMenuItem {
         let menuItem = NSMenuItem()
             menuItem.title = NSLocalizedString("Compress Using Syntropy", comment: "")
-            menuItem.image = NSImage(named: "icon-compression")!
+            menuItem.image = NSImage(named: "icon-compres")!
             menuItem.action = #selector(onContextMenu(_:))
             menuItem.tag = 0
             menuItem.target = self
@@ -30,7 +30,7 @@ class FinderSync: FIFinderSync {
     var menuItemForExtract: NSMenuItem {
         let menuItem = NSMenuItem()
             menuItem.title = NSLocalizedString("Extract Using Syntropy", comment: "")
-            menuItem.image = NSImage(named: "icon-extraction")!
+            menuItem.image = NSImage(named: "icon-extract")!
             menuItem.action = #selector(onContextMenu(_:))
             menuItem.tag = 1
             menuItem.target = self
@@ -64,12 +64,13 @@ class FinderSync: FIFinderSync {
         }
         let menu = NSMenu(title: FINDER_EXT_MENU_TITLE)
         if (menuKind == .contextualMenuForItems || menuKind == .contextualMenuForContainer) {
-            switch ContextType(finder: self.selectedURLs) {
-                case .notSupported: break
-                case .compress: menu.addItem(self.menuItemForCompress)
-                case .extract : menu.addItem(self.menuItemForExtract)
-                case .both    : menu.addItem(self.menuItemForCompress)
-                                menu.addItem(self.menuItemForExtract)
+            if let contextType = ContextType(self.selectedURLs) {
+                switch contextType {
+                    case .compres: menu.addItem(self.menuItemForCompres)
+                    case .extract: menu.addItem(self.menuItemForExtract)
+                    case .both   : menu.addItem(self.menuItemForCompres)
+                                   menu.addItem(self.menuItemForExtract)
+                }
             }
         }
         return menu
@@ -82,7 +83,7 @@ class FinderSync: FIFinderSync {
         }.joined(separator: "+")
 
         if (menuItem.tag == 0) {
-            if let resultURL = URL(string: URL.SCHEME_FOR_COMPRESS + "://" + combinedPaths) {
+            if let resultURL = URL(string: URL.SCHEME_FOR_COMPRES + "://" + combinedPaths) {
                 NSWorkspace.shared.open(
                     resultURL
                 )

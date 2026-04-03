@@ -8,18 +8,11 @@ import Foundation
 
 enum ContextType {
 
-    case compress
+    case compres
     case extract
     case both
-    case notSupported
 
-    init(incoming appUrl: URL) {
-        if (appUrl.isCompressURL)     { self = .compress }
-        else if (appUrl.isExtractURL) { self = .extract }
-        else                          { self = .notSupported }
-    }
-
-    init(finder urls: [URL]) {
+    init?(_ urls: [URL]) {
         var objectTypesStatistics: [URL.ObjectType: UInt] = [:]
         for url in urls {
             objectTypesStatistics[
@@ -31,33 +24,33 @@ enum ContextType {
             objectTypesStatistics[.fileNonArchive, default: 0].fixBounds(max: 2),
             objectTypesStatistics[.dirrectory    , default: 0].fixBounds(max: 2),
         ) {
-            case (0, 0, 1): self = .compress; Logger.customLog("ContextType: ___ + ___ + ___ + ___ + dir + ___")
-            case (0, 0, 2): self = .compress; Logger.customLog("ContextType: ___ + ___ + ___ + ___ + dir + dir")
-            case (0, 1, 0): self = .compress; Logger.customLog("ContextType: ___ + ___ + txt + ___ + ___ + ___")
-            case (0, 1, 1): self = .compress; Logger.customLog("ContextType: ___ + ___ + txt + ___ + dir + ___")
-            case (0, 1, 2): self = .compress; Logger.customLog("ContextType: ___ + ___ + txt + ___ + dir + dir")
-            case (0, 2, 0): self = .compress; Logger.customLog("ContextType: ___ + ___ + txt + txt + ___ + ___")
-            case (0, 2, 1): self = .compress; Logger.customLog("ContextType: ___ + ___ + txt + txt + dir + ___")
-            case (0, 2, 2): self = .compress; Logger.customLog("ContextType: ___ + ___ + txt + txt + dir + dir")
-            case (1, 0, 0): self = .extract ; Logger.customLog("ContextType: zip + ___ + ___ + ___ + ___ + ___")
-            case (1, 0, 1): self = .compress; Logger.customLog("ContextType: zip + ___ + ___ + ___ + dir + ___")
-            case (1, 0, 2): self = .compress; Logger.customLog("ContextType: zip + ___ + ___ + ___ + dir + dir")
-            case (1, 1, 0): self = .compress; Logger.customLog("ContextType: zip + ___ + txt + ___ + ___ + ___")
-            case (1, 1, 1): self = .compress; Logger.customLog("ContextType: zip + ___ + txt + ___ + dir + ___")
-            case (1, 1, 2): self = .compress; Logger.customLog("ContextType: zip + ___ + txt + ___ + dir + dir")
-            case (1, 2, 0): self = .compress; Logger.customLog("ContextType: zip + ___ + txt + txt + ___ + ___")
-            case (1, 2, 1): self = .compress; Logger.customLog("ContextType: zip + ___ + txt + txt + dir + ___")
-            case (1, 2, 2): self = .compress; Logger.customLog("ContextType: zip + ___ + txt + txt + dir + dir")
-            case (2, 0, 0): self = .both    ; Logger.customLog("ContextType: zip + zip + ___ + ___ + ___ + ___")
-            case (2, 0, 1): self = .compress; Logger.customLog("ContextType: zip + zip + ___ + ___ + dir + ___")
-            case (2, 0, 2): self = .compress; Logger.customLog("ContextType: zip + zip + ___ + ___ + dir + dir")
-            case (2, 1, 0): self = .compress; Logger.customLog("ContextType: zip + zip + txt + ___ + ___ + ___")
-            case (2, 1, 1): self = .compress; Logger.customLog("ContextType: zip + zip + txt + ___ + dir + ___")
-            case (2, 1, 2): self = .compress; Logger.customLog("ContextType: zip + zip + txt + ___ + dir + dir")
-            case (2, 2, 0): self = .compress; Logger.customLog("ContextType: zip + zip + txt + txt + ___ + ___")
-            case (2, 2, 1): self = .compress; Logger.customLog("ContextType: zip + zip + txt + txt + dir + ___")
-            case (2, 2, 2): self = .compress; Logger.customLog("ContextType: zip + zip + txt + txt + dir + dir")
-            default: self = .notSupported
+            case (0, 0, 1): self = .compres; Logger.customLog("ContextType: ___ + ___ + ___ + ___ + dir + ___")
+            case (0, 0, 2): self = .compres; Logger.customLog("ContextType: ___ + ___ + ___ + ___ + dir + dir")
+            case (0, 1, 0): self = .compres; Logger.customLog("ContextType: ___ + ___ + txt + ___ + ___ + ___")
+            case (0, 1, 1): self = .compres; Logger.customLog("ContextType: ___ + ___ + txt + ___ + dir + ___")
+            case (0, 1, 2): self = .compres; Logger.customLog("ContextType: ___ + ___ + txt + ___ + dir + dir")
+            case (0, 2, 0): self = .compres; Logger.customLog("ContextType: ___ + ___ + txt + txt + ___ + ___")
+            case (0, 2, 1): self = .compres; Logger.customLog("ContextType: ___ + ___ + txt + txt + dir + ___")
+            case (0, 2, 2): self = .compres; Logger.customLog("ContextType: ___ + ___ + txt + txt + dir + dir")
+            case (1, 0, 0): self = .extract; Logger.customLog("ContextType: zip + ___ + ___ + ___ + ___ + ___")
+            case (1, 0, 1): self = .compres; Logger.customLog("ContextType: zip + ___ + ___ + ___ + dir + ___")
+            case (1, 0, 2): self = .compres; Logger.customLog("ContextType: zip + ___ + ___ + ___ + dir + dir")
+            case (1, 1, 0): self = .compres; Logger.customLog("ContextType: zip + ___ + txt + ___ + ___ + ___")
+            case (1, 1, 1): self = .compres; Logger.customLog("ContextType: zip + ___ + txt + ___ + dir + ___")
+            case (1, 1, 2): self = .compres; Logger.customLog("ContextType: zip + ___ + txt + ___ + dir + dir")
+            case (1, 2, 0): self = .compres; Logger.customLog("ContextType: zip + ___ + txt + txt + ___ + ___")
+            case (1, 2, 1): self = .compres; Logger.customLog("ContextType: zip + ___ + txt + txt + dir + ___")
+            case (1, 2, 2): self = .compres; Logger.customLog("ContextType: zip + ___ + txt + txt + dir + dir")
+            case (2, 0, 0): self = .both   ; Logger.customLog("ContextType: zip + zip + ___ + ___ + ___ + ___")
+            case (2, 0, 1): self = .compres; Logger.customLog("ContextType: zip + zip + ___ + ___ + dir + ___")
+            case (2, 0, 2): self = .compres; Logger.customLog("ContextType: zip + zip + ___ + ___ + dir + dir")
+            case (2, 1, 0): self = .compres; Logger.customLog("ContextType: zip + zip + txt + ___ + ___ + ___")
+            case (2, 1, 1): self = .compres; Logger.customLog("ContextType: zip + zip + txt + ___ + dir + ___")
+            case (2, 1, 2): self = .compres; Logger.customLog("ContextType: zip + zip + txt + ___ + dir + dir")
+            case (2, 2, 0): self = .compres; Logger.customLog("ContextType: zip + zip + txt + txt + ___ + ___")
+            case (2, 2, 1): self = .compres; Logger.customLog("ContextType: zip + zip + txt + txt + dir + ___")
+            case (2, 2, 2): self = .compres; Logger.customLog("ContextType: zip + zip + txt + txt + dir + dir")
+            default: return nil
         }
     }
 
