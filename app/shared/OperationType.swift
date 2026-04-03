@@ -8,12 +8,12 @@ import Foundation
 
 enum OperationType {
 
-    case compres // (paths: [String])
-    case extract // (paths: [String])
+    case compres(paths: [String])
+    case extract(paths: [String])
 
-    init?(incoming appUrl: URL) {
-        if      (appUrl.isCompresURL) { self = .compres }
-        else if (appUrl.isExtractURL) { self = .extract }
+    init?(_ appUrl: URL) {
+        if      (appUrl.isCompresURL) { self = .compres(paths: appUrl.path.components(separatedBy: "+")) }
+        else if (appUrl.isExtractURL) { self = .extract(paths: appUrl.path.components(separatedBy: "+")) }
         else { return nil }
     }
 
