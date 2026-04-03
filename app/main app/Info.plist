@@ -24,15 +24,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>syntropyArchiverCompres</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>syntropyArchiverExtract</string>
+				<string>syntropyArchiver</string>
 			</array>
 		</dict>
 	</array>

@@ -80,20 +80,24 @@ class FinderSync: FIFinderSync {
 
         let combinedPaths = self.selectedURLs.reduce(into: [String]()) { result, url in
             result.append(url.path)
-        }.joined(separator: "+")
+        }
 
         if (menuItem.tag == 0) {
-            if let resultURL = URL(string: URL.SCHEME_FOR_COMPRES + "://" + combinedPaths) {
-                NSWorkspace.shared.open(
-                    resultURL
-                )
+            if let appURLdata = AppURL(operationType: .compres, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                if let resultURL = URL(string: URL.SCHEME_FOR_PROCESS + "://json?data=" + appURLdata) {
+                    NSWorkspace.shared.open(
+                        resultURL
+                    )
+                }
             }
         }
         if (menuItem.tag == 1) {
-            if let resultURL = URL(string: URL.SCHEME_FOR_EXTRACT + "://" + combinedPaths) {
-                NSWorkspace.shared.open(
-                    resultURL
-                )
+            if let appURLdata = AppURL(operationType: .extract, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                if let resultURL = URL(string: URL.SCHEME_FOR_PROCESS + "://json?data=" + appURLdata) {
+                    NSWorkspace.shared.open(
+                        resultURL
+                    )
+                }
             }
         }
     }

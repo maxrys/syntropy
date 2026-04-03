@@ -30,8 +30,9 @@ import SwiftUI
 
     override func onLaunchViaReceivedURLs(urls: [URL]) {
         for url in urls {
-            let operationType = OperationType(url)
-            dump(operationType)
+            if let appURL = AppURL(decode: url) {
+                dump(appURL)
+            }
         }
     }
 
