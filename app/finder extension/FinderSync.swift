@@ -4,7 +4,6 @@
 /* ############################################################# */
 
 import os
-import Cocoa
 import FinderSync
 
 let FINDER_EXT_MENU_TITLE = "Syntropy Archiver"
@@ -64,13 +63,14 @@ class FinderSync: FIFinderSync {
             return NSMenu()
         }
         let menu = NSMenu(title: FINDER_EXT_MENU_TITLE)
-        switch menuKind {
-            case .contextualMenuForItems, .contextualMenuForContainer:
-                let contextType: ContextType = .init(self.selectedURLs)
-                if (contextType == .compress) { menu.addItem(self.menuItemForCompress) }
-                if (contextType == .extract ) { menu.addItem(self.menuItemForExtract) }
-                if (contextType == .both    ) { menu.addItem(self.menuItemForCompress); menu.addItem(self.menuItemForExtract) }
-            default: break
+        if (menuKind == .contextualMenuForItems || menuKind == .contextualMenuForContainer) {
+            switch ContextType(finder: self.selectedURLs) {
+                case .notSupported: break
+                case .compress: menu.addItem(self.menuItemForCompress)
+                case .extract : menu.addItem(self.menuItemForExtract)
+                case .both    : menu.addItem(self.menuItemForCompress)
+                                menu.addItem(self.menuItemForExtract)
+            }
         }
         return menu
     }

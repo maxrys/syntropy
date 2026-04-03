@@ -153,6 +153,7 @@
 				503D1B442F320085005B8A98 /* controls */,
 				503D1B302F31FCE5005B8A98 /* main app */,
 				503D1B5D2F32016E005B8A98 /* settings */,
+				50D28FBA2F7F967B006A7304 /* process */,
 				503D1B312F31FD00005B8A98 /* finder extension */,
 				503D1B1D2F31FADE005B8A98 /* Products */,
 			);
@@ -264,6 +265,13 @@
 				503D1B5C2F32016E005B8A98 /* Presets.swift */,
 			);
 			path = settings;
+			sourceTree = "<group>";
+		};
+		50D28FBA2F7F967B006A7304 /* process */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = process;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

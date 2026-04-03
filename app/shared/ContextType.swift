@@ -13,13 +13,13 @@ enum ContextType {
     case both
     case notSupported
 
-    init(incoming url: URL) {
-        if (url.isCompressURL)     { self = .compress }
-        else if (url.isExtractURL) { self = .extract }
-        else                       { self = .notSupported }
+    init(incoming appUrl: URL) {
+        if (appUrl.isCompressURL)     { self = .compress }
+        else if (appUrl.isExtractURL) { self = .extract }
+        else                          { self = .notSupported }
     }
 
-    init(_ urls: [URL]) {
+    init(finder urls: [URL]) {
         var objectTypesStatistics: [URL.ObjectType: UInt] = [:]
         for url in urls {
             objectTypesStatistics[
