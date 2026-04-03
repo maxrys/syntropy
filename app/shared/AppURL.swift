@@ -17,6 +17,7 @@ struct AppURL: Codable {
 
     init?(decode url: URL) {
         do {
+            guard url.host() == "json" else { return nil }
             guard let urlComponents = URLComponents(string: url.absoluteString)                                else { return nil }
             guard let urlQueryDataValue = urlComponents.queryItems?.first(where: { $0.name == "data" })?.value else { return nil }
             guard let jsonData = urlQueryDataValue.data(using: .utf8)                                          else { return nil }
