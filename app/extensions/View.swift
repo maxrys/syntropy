@@ -41,6 +41,14 @@ extension View {
         }
     }
 
+    @ViewBuilder func keyboardShortcutPolyfill(_ shortcut: KeyboardShortcut? = nil) -> some View {
+        if let shortcut {
+            self.keyboardShortcut(shortcut)
+        } else {
+            self
+        }
+    }
+
     @ViewBuilder func overlayPolyfill<Content: View>(
         alignment: Alignment = .center,
         @ViewBuilder content: @escaping () -> Content

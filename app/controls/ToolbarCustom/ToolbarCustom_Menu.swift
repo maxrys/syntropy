@@ -32,7 +32,7 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
     public var body: some View {
         VStack(spacing: 4) {
             self.ButtonView()
-             // .keyboardShortcut(self.keyboardShortcut)
+                .keyboardShortcutPolyfill(self.keyboardShortcut)
             self.TitleView()
                 .frame(maxWidth: 35)
         }
