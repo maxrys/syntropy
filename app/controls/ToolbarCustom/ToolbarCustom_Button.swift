@@ -60,7 +60,7 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
         self.icon
             .contentShape(RoundedRectangle(cornerRadius: 5))
             .font(.system(size: 17))
-            .foregroundStyle(
+            .foregroundPolyfill(
                 self.colorScheme == .dark ?
                     Color.toolbar.iconDark :
                     Color.toolbar.icon
@@ -71,7 +71,7 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
         Text(self.title)
             .lineLimit(1)
             .font(.system(size: 11))
-            .foregroundStyle(
+            .foregroundPolyfill(
                 self.colorScheme == .dark ?
                     Color.toolbar.titleDark :
                     Color.toolbar.title

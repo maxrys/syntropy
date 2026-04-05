@@ -35,8 +35,8 @@ struct ToolbarCustom: View {
         .frame(maxWidth: .infinity)
         .background(
             self.colorScheme == .dark ?
-                .black.opacity(0.4) :
-                .white.opacity(0.4)
+                Color.black.opacity(0.4) :
+                Color.white.opacity(0.4)
         )
     }
 

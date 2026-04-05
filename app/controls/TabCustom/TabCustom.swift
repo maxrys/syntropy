@@ -114,15 +114,15 @@ fileprivate struct TabCustom_HeadTitle: View {
             }
             .padding(10)
             .foregroundPolyfill(self.colorForeground)
-            .background {
+            .background(
                 RoundedRectangle(cornerRadius: 10)
                     .fill(self.colorBackground)
-                    .overlay {
+                    .overlayPolyfill {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(style: StrokeStyle(lineWidth: 4))
-                            .foregroundStyle(self.colorBorder)
+                            .foregroundPolyfill(self.colorBorder)
                     }.contentShape(RoundedRectangle(cornerRadius: 10))
-            }
+            )
         }
         .buttonStyle(.plain)
         .pointerStyleLinkPolyfill()
