@@ -37,14 +37,13 @@ import SwiftUI
     }
 
     func showWindowMain() {
-        Logger.customLog("Main Window will show")
+        Logger.customLog("Window \"Main\" will show")
         if let windowMain = NSWindow.customWindows[WINDOW_MAIN_ID] {
             windowMain.show()
         } else {
             _ = NSWindow.makeAndShowFromSwiftUIView(
                 ID   : WINDOW_MAIN_ID,
-                title: WINDOW_MAIN_TITLE,
-                isVisible: true,
+                title: WINDOW_MAIN_TITLE_LOCALIZED,
                 size: CGSize(width: 600, height: 300),
                 delegate: self,
                 view:
@@ -72,14 +71,13 @@ import SwiftUI
     }
 
     @objc func showWindowSettings() {
-        Logger.customLog("Settings Window will show")
+        Logger.customLog("Window \"Settings\" will show")
         if let windowSettings = NSWindow.customWindows[WINDOW_SETTINGS_ID] {
             windowSettings.show()
         } else {
             _ = NSWindow.makeAndShowFromSwiftUIView(
                 ID   : WINDOW_SETTINGS_ID,
-                title: WINDOW_SETTINGS_TITLE,
-                isVisible: true,
+                title: WINDOW_SETTINGS_TITLE_LOCALIZED,
                 size: CGSize(width: 600, height: 300),
                 delegate: self,
                 view: Settings()
@@ -87,11 +85,15 @@ import SwiftUI
         }
     }
 
+    func showWindowProcess() {
+        Logger.customLog("Window \"Process\" will show")
+    }
+
     func windowWillClose(_ notification: Notification) {
         if let window = notification.object as? NSWindow, let ID = window.ID {
             switch ID {
                 case WINDOW_MAIN_ID:
-                    Logger.customLog("Main Window will hide")
+                    Logger.customLog("Window \"Main\" will hide")
                     NSApplication.hideAppsDock()
                     NSApp.mainMenu = nil
                     /* close settings */
@@ -101,12 +103,12 @@ import SwiftUI
                         NSApplication.show()
                     }
                 case WINDOW_SETTINGS_ID:
-                    Logger.customLog("Settings Window will hide")
+                    Logger.customLog("Window \"Settings\" will hide")
                     window.contentView = nil
                     window.delegate = nil
                     NSWindow.customWindows[ID] = nil
                 default:
-                    Logger.customLog("Popup Window will hide | ID = \(ID)")
+                    Logger.customLog("Window \"Popup\" will hide | ID = \(ID)")
                     window.contentView = nil
                     window.delegate = nil
                     NSWindow.customWindows[ID] = nil

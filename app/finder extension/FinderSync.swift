@@ -6,9 +6,9 @@
 import os
 import FinderSync
 
-let FINDER_EXT_MENU_TITLE = "Syntropy Archiver"
-
 class FinderSync: FIFinderSync {
+
+    static let MENU_TITLE_LOCALIZED = NSLocalizedString("Syntropy Archiver", comment: "")
 
     var selectedURLs: [URL] {
         if let urls = FIFinderSyncController.default().selectedItemURLs() {
@@ -46,7 +46,7 @@ class FinderSync: FIFinderSync {
     }
 
     @objc func updateWatchedVolumes() {
-        var urls = Set<URL>()
+        var urls: Set<URL> = []
         urls.insert(URL(fileURLWithPath: "/"))
         if let volumes = FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil, options: []) {
             for volume in volumes {
@@ -62,7 +62,7 @@ class FinderSync: FIFinderSync {
         guard !selectedURLs.isEmpty else {
             return NSMenu()
         }
-        let menu = NSMenu(title: FINDER_EXT_MENU_TITLE)
+        let menu = NSMenu(title: Self.MENU_TITLE_LOCALIZED)
         if (menuKind == .contextualMenuForItems || menuKind == .contextualMenuForContainer) {
             if let contextType = ContextType(self.selectedURLs) {
                 switch contextType {

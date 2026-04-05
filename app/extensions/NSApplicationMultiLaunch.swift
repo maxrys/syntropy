@@ -18,9 +18,9 @@ class NSApplicationMultiLaunch: NSObject, NSApplicationDelegate {
 
     private func showLaunchType() {
         switch self.launchType {
-            case .none: Logger.customLog("LaunchType = none")
-            case .icon: Logger.customLog("LaunchType = icon")
-            case .urls: Logger.customLog("LaunchType = urls")
+            case .none: Logger.customLog("LaunchType: none")
+            case .icon: Logger.customLog("LaunchType: icon")
+            case .urls: Logger.customLog("LaunchType: urls")
         }
     }
 
