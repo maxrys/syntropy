@@ -86,17 +86,16 @@ import SwiftUI
     }
 
     func showWindowProcess(_ appURL: AppURL) {
-        Logger.customLog("Window \"Process\" will show")
         let windowID = "process:\(appURL.hashValue)"
-        let windowTitle = appURL.operationType == .extract ?
-            WINDOW_PROCESS_EXTRACT_TITLE_LOCALIZED :
-            WINDOW_PROCESS_COMPRES_TITLE_LOCALIZED
+        Logger.customLog("Window \"Process\" will show | ID: \(windowID)")
         if let windowProcess = NSWindow.customWindows[windowID] {
             windowProcess.show()
         } else {
             _ = NSWindow.makeAndShowFromSwiftUIView(
                 ID: windowID,
-                title: windowTitle,
+                title: appURL.operationType == .extract ?
+                    WINDOW_PROCESS_EXTRACT_TITLE_LOCALIZED :
+                    WINDOW_PROCESS_COMPRES_TITLE_LOCALIZED,
                 styleMask: [.titled, .closable],
                 level: .floating,
                 size: CGSize(width: 600, height: 100),
@@ -127,10 +126,12 @@ import SwiftUI
                     window.delegate = nil
                     NSWindow.customWindows[ID] = nil
                 default:
-                    Logger.customLog("Window \"Process\" will hide | ID: \(ID)")
-                    window.contentView = nil
-                    window.delegate = nil
-                    NSWindow.customWindows[ID] = nil
+                    if ID.hasPrefix("process:") {
+                        Logger.customLog("Window \"Process\" will hide | ID: \(ID)")
+                        window.contentView = nil
+                        window.delegate = nil
+                        NSWindow.customWindows[ID] = nil
+                    }
             }
         }
     }
