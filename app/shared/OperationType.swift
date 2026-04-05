@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum OperationType: Codable {
+enum OperationType: String, Codable {
 
     case compres
     case extract

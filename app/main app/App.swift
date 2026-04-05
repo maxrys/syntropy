@@ -31,7 +31,7 @@ import SwiftUI
     override func onLaunchViaReceivedURLs(urls: [URL]) {
         for url in urls {
             if let appURL = AppURL(decode: url) {
-                dump(appURL)
+                self.showWindowProcess(appURL)
             }
         }
     }
@@ -85,8 +85,27 @@ import SwiftUI
         }
     }
 
-    func showWindowProcess() {
+    func showWindowProcess(_ appURL: AppURL) {
         Logger.customLog("Window \"Process\" will show")
+        let windowID = "process:\(appURL.hashValue)"
+        let windowTitle = appURL.operationType == .extract ?
+            WINDOW_PROCESS_EXTRACT_TITLE_LOCALIZED :
+            WINDOW_PROCESS_COMPRES_TITLE_LOCALIZED
+        if let windowProcess = NSWindow.customWindows[windowID] {
+            windowProcess.show()
+        } else {
+            _ = NSWindow.makeAndShowFromSwiftUIView(
+                ID: windowID,
+                title: windowTitle,
+                styleMask: [.titled, .closable],
+                level: .floating,
+                size: CGSize(width: 600, height: 100),
+                delegate: self,
+                view: Process(
+                    appURL: appURL
+                )
+            )
+        }
     }
 
     func windowWillClose(_ notification: Notification) {
@@ -108,7 +127,7 @@ import SwiftUI
                     window.delegate = nil
                     NSWindow.customWindows[ID] = nil
                 default:
-                    Logger.customLog("Window \"Popup\" will hide | ID = \(ID)")
+                    Logger.customLog("Window \"Process\" will hide | ID: \(ID)")
                     window.contentView = nil
                     window.delegate = nil
                     NSWindow.customWindows[ID] = nil

@@ -184,6 +184,36 @@
         }
       }
     },
+    "Syntropy Archiver | Extraction" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntropy Архиватор | Извлечение"
+          }
+        }
+      }
+    },
+    "Syntropy Archiver | Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntropy Архиватор | Установки"
+          }
+        }
+      }
+    },
+    "Syntropy Archiver | Сompression" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntropy Архиватор | Сжатие"
+          }
+        }
+      }
+    },
     "Test" : {
       "localizations" : {
         "ru" : {

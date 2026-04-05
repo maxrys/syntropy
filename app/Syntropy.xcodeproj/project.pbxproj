@@ -58,6 +58,7 @@
 		50D28FBD2F7FA07E006A7304 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBB2F7FA07E006A7304 /* OperationType.swift */; };
 		50D28FBF2F7FF8AC006A7304 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppURL.swift */; };
 		50D28FC02F7FF8AC006A7304 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppURL.swift */; };
+		50D28FC22F82771A006A7304 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FC12F82767F006A7304 /* Process.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		50D28FB72F7E60BA006A7304 /* ContextType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextType.swift; sourceTree = "<group>"; };
 		50D28FBB2F7FA07E006A7304 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
 		50D28FBE2F7FF89F006A7304 /* AppURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURL.swift; sourceTree = "<group>"; };
+		50D28FC12F82767F006A7304 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +280,7 @@
 		50D28FBA2F7F967B006A7304 /* process */ = {
 			isa = PBXGroup;
 			children = (
+				50D28FC12F82767F006A7304 /* Process.swift */,
 			);
 			path = process;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				503D1B3E2F31FF52005B8A98 /* Array.swift in Sources */,
 				50D28F952F7A9D4D006A7304 /* Color.swift in Sources */,
 				50D28FAE2F7BA759006A7304 /* URL.swift in Sources */,
+				50D28FC22F82771A006A7304 /* Process.swift in Sources */,
 				503D1B3F2F31FF52005B8A98 /* String.swift in Sources */,
 				50D28F9C2F7AB03D006A7304 /* TabCustomColors.swift in Sources */,
 				503D1B492F32009C005B8A98 /* TabCustom_Item.swift in Sources */,
