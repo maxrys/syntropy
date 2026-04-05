@@ -59,6 +59,9 @@
 		50D28FBF2F7FF8AC006A7304 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppURL.swift */; };
 		50D28FC02F7FF8AC006A7304 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppURL.swift */; };
 		50D28FC22F82771A006A7304 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FC12F82767F006A7304 /* Process.swift */; };
+		50D28FCC2F82DA0D006A7304 /* ProgressCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */; };
+		50D28FCE2F82DA55006A7304 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCD2F82DA55006A7304 /* Date.swift */; };
+		50D28FD02F82DB0C006A7304 /* TimelineViewPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +135,9 @@
 		50D28FBB2F7FA07E006A7304 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
 		50D28FBE2F7FF89F006A7304 /* AppURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURL.swift; sourceTree = "<group>"; };
 		50D28FC12F82767F006A7304 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
+		50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustom.swift; sourceTree = "<group>"; };
+		50D28FCD2F82DA55006A7304 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewPolyfill.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +213,7 @@
 			children = (
 				503D1B3A2F31FF47005B8A98 /* Array.swift */,
 				50D28F942F7A9D4D006A7304 /* Color.swift */,
+				50D28FCD2F82DA55006A7304 /* Date.swift */,
 				50CEA0B42F4E4CC7001006CF /* Logger.swift */,
 				50D28FA02F7AC584006A7304 /* NSApplication.swift */,
 				50D28FA12F7AC584006A7304 /* NSApplicationMultiLaunch.swift */,
@@ -229,6 +236,7 @@
 				50D28FB72F7E60BA006A7304 /* ContextType.swift */,
 				50D28FBB2F7FA07E006A7304 /* OperationType.swift */,
 				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
+				50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -236,8 +244,9 @@
 		503D1B442F320085005B8A98 /* controls */ = {
 			isa = PBXGroup;
 			children = (
-				503D1B512F3200C0005B8A98 /* ToolbarCustom */,
+				50D28FCB2F82DA0D006A7304 /* ProgressCustom */,
 				503D1B482F32009C005B8A98 /* TabCustom */,
+				503D1B512F3200C0005B8A98 /* ToolbarCustom */,
 			);
 			path = controls;
 			sourceTree = "<group>";
@@ -283,6 +292,14 @@
 				50D28FC12F82767F006A7304 /* Process.swift */,
 			);
 			path = process;
+			sourceTree = "<group>";
+		};
+		50D28FCB2F82DA0D006A7304 /* ProgressCustom */ = {
+			isa = PBXGroup;
+			children = (
+				50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */,
+			);
+			path = ProgressCustom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +435,7 @@
 				503D1B4B2F32009C005B8A98 /* TabCustom_Spacer.swift in Sources */,
 				50D28FAA2F7AC713006A7304 /* Timer.swift in Sources */,
 				503D1B522F3200C0005B8A98 /* ToolbarCustom_TextField.swift in Sources */,
+				50D28FCC2F82DA0D006A7304 /* ProgressCustom.swift in Sources */,
 				503D1B5E2F320193005B8A98 /* Extraction.swift in Sources */,
 				503D1B5F2F320193005B8A98 /* Compression.swift in Sources */,
 				50D28FB82F7E60BC006A7304 /* ContextType.swift in Sources */,
@@ -428,7 +446,9 @@
 				503D1B552F3200C0005B8A98 /* ToolbarCustom_Spacer.swift in Sources */,
 				503D1B562F3200C0005B8A98 /* ToolbarCustom.swift in Sources */,
 				503D1B582F320128005B8A98 /* Toolbar.swift in Sources */,
+				50D28FD02F82DB0C006A7304 /* TimelineViewPolyfill.swift in Sources */,
 				50D28F932F7A72CD006A7304 /* ToolbarCustomColors.swift in Sources */,
+				50D28FCE2F82DA55006A7304 /* Date.swift in Sources */,
 				50D28FB52F7D7870006A7304 /* Numeric.swift in Sources */,
 				503D1B402F31FF52005B8A98 /* ResultBuilder.swift in Sources */,
 				503D1B432F32001F005B8A98 /* const.swift in Sources */,
