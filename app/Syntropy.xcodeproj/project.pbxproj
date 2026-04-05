@@ -62,6 +62,8 @@
 		50D28FCC2F82DA0D006A7304 /* ProgressCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */; };
 		50D28FCE2F82DA55006A7304 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCD2F82DA55006A7304 /* Date.swift */; };
 		50D28FD02F82DB0C006A7304 /* TimelineViewPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */; };
+		50D28FD22F82E916006A7304 /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FD12F82E915006A7304 /* ValueState.swift */; };
+		50D28FD32F82E916006A7304 /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FD12F82E915006A7304 /* ValueState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,7 @@
 		50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustom.swift; sourceTree = "<group>"; };
 		50D28FCD2F82DA55006A7304 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewPolyfill.swift; sourceTree = "<group>"; };
+		50D28FD12F82E915006A7304 /* ValueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +240,7 @@
 				50D28FBB2F7FA07E006A7304 /* OperationType.swift */,
 				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
 				50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */,
+				50D28FD12F82E915006A7304 /* ValueState.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -428,6 +432,7 @@
 				503D1B492F32009C005B8A98 /* TabCustom_Item.swift in Sources */,
 				50CEA0B52F4E4CC7001006CF /* Logger.swift in Sources */,
 				50D28FBC2F7FA07E006A7304 /* OperationType.swift in Sources */,
+				50D28FD22F82E916006A7304 /* ValueState.swift in Sources */,
 				50D28FBF2F7FF8AC006A7304 /* AppURL.swift in Sources */,
 				503D1B4A2F32009C005B8A98 /* TabCustom.swift in Sources */,
 				50D28FA42F7AC584006A7304 /* NSApplication.swift in Sources */,
@@ -470,6 +475,7 @@
 				50D28FAC2F7ACDE2006A7304 /* String.swift in Sources */,
 				503D1B732F32027F005B8A98 /* const.swift in Sources */,
 				50D28FBD2F7FA07E006A7304 /* OperationType.swift in Sources */,
+				50D28FD32F82E916006A7304 /* ValueState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
