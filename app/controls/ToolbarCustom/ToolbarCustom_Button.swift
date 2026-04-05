@@ -29,7 +29,7 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
     public var body: some View {
         VStack(spacing: 4) {
             self.ButtonView()
-                .keyboardShortcut(self.keyboardShortcut)
+             // .keyboardShortcut(self.keyboardShortcut)
             self.TitleView()
                 .frame(maxWidth: 35)
         }

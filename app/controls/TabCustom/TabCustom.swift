@@ -113,7 +113,7 @@ fileprivate struct TabCustom_HeadTitle: View {
                 }
             }
             .padding(10)
-            .foregroundStyle(self.colorForeground)
+            .foregroundPolyfill(self.colorForeground)
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(self.colorBackground)
