@@ -33,11 +33,13 @@ struct ProgressCustom: View {
     }
 
     public var body: some View {
-        Color(self.colorScheme == .dark ? .black : .white)
-            .frame(height: self.height)
-            .overlayPolyfill(alignment: .leading) { self.IndicatorView() }
-            .overlayPolyfill(alignment: .center ) { self.ValueView() }
-            .clipShape(RoundedRectangle(cornerRadius: 7))
+        Group {
+            Color(self.colorScheme == .dark ? .black : .white)
+                .overlayPolyfill(alignment: .leading) { self.IndicatorView() }
+                .overlayPolyfill(alignment: .center ) { self.ValueView() }
+        }
+        .frame(height: self.height)
+        .clipShape(RoundedRectangle(cornerRadius: 7))
     }
 
     @ViewBuilder private func IndicatorView() -> some View {
@@ -60,6 +62,7 @@ struct ProgressCustom: View {
                     Rectangle()
                         .fill(Color.white.opacity(0.1))
                         .mask(self.ZebraView(width))
+                        .frame(width: width)
                         .clipShape(Rectangle())
                 }
         }
@@ -77,7 +80,7 @@ struct ProgressCustom: View {
 
     @ViewBuilder private func ZebraView(_ width: CGFloat) -> some View {
         if (self.isAnimatable) {
-            TimelineViewPolyfill(from: .nowPolyfill, by: Date.defaultFPS) {
+            TimelineViewPolyfill(by: Date.defaultFPS) {
                 self.ZebraPathView(width)
                     .offset(x: Date.spin(max: UInt(self.zebraSize), speed: self.zebraSpeed))
             }
