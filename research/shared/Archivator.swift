@@ -64,7 +64,7 @@ final class Archivator {
         return nil
     }
 
-    static public func compress(
+    static public func compres(
         from sourcePaths: [String],
         to destinationPath: String,
         isTrimPrefix: Bool = true
