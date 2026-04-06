@@ -24,9 +24,6 @@ struct Process: View {
         let archiveURL = URL(fileURLWithPath: "/path/to/newArchive.zip")
 
         do {
-            if fileManager.fileExists(atPath: archiveURL.path) {
-                try fileManager.removeItem(at: archiveURL)
-            }
             guard let archive = Archive(url: archiveURL, accessMode: .create) else { throw NSError(domain: "ZIP", code: 2) }
 
             let resourceKeys: [URLResourceKey] = [.isDirectoryKey]
@@ -44,9 +41,6 @@ struct Process: View {
             print("Ошибка упаковки: \(error)")
         }
         */
-        /*
-
-         */
     }
 
     func processExtract() {
