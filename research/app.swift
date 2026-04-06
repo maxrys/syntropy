@@ -9,6 +9,8 @@ import ZIPFoundation
 
 @main struct ThisApp: App {
 
+    @State private var isTrimPrefix: Bool = false
+
     var body: some Scene {
         WindowGroup {
             VStack(spacing: 10) {
@@ -30,11 +32,11 @@ import ZIPFoundation
 
                 Button("Archivator.trimSharedPathPrefix()") {
                     dump(
-                        Archivator.pathsTrimSharedPrefix(
-                            Archivator.pathScanRecursuve(
-                                "/Volumes/dev/xcode/syntropy/test/by_structure"
-                            )
-                        )
+                        Archivator.pathsTrimSharedPrefix([
+                            "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 1/nested file 1.txt",
+                            "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 2/nested file 5.txt",
+                            "/Volumes/dev/xcode/syntropy/test/by_structure/file 1.txt",
+                        ])
                     )
                 }
 
@@ -45,8 +47,13 @@ import ZIPFoundation
                         ),
                         to: Archivator.pathToSafePath(
                             "/Volumes/dev/xcode/syntropy/test/result/file.zip"
-                        )
+                        ),
+                        isTrimPrefix: self.isTrimPrefix
                     )
+                }
+
+                Toggle(isOn: self.$isTrimPrefix) {
+                    Text("Trim prefix")
                 }
 
             }

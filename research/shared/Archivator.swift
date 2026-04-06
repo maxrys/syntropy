@@ -45,21 +45,58 @@ final class Archivator {
     }
 
     static public func pathsTrimSharedPrefix(_ paths: [String]) -> [String] {
-        var result: [String] = []
-        return result
+        if let longestString = paths.max(by: { (lhs, rhs) in lhs.count < rhs.count }) {
+            var parts = longestString.split(separator: "/")
+            while parts.count > 1 {
+                parts = parts.dropLast()
+                let prefix = "/" + parts.joined(separator: "/") + "/"
+                if (paths.allSatisfy { path in path.hasPrefix(prefix) }) {
+                    return paths.map { path in path.trimPrefix(prefix) }
+                }
+            }
+        }
+        return paths
     }
 
-    static public func compress(from sourcePaths: [String], to destinationPath: String) {
+    static public func pathsSharedPrefix(_ paths: [String]) -> String? {
+        if let longestString = paths.max(by: { (lhs, rhs) in lhs.count < rhs.count }) {
+            var parts = longestString.split(separator: "/")
+            while parts.count > 1 {
+                parts = parts.dropLast()
+                let prefix = "/" + parts.joined(separator: "/") + "/"
+                if (paths.allSatisfy { path in path.hasPrefix(prefix) }) {
+                    return prefix
+                }
+            }
+        }
+        return nil
+    }
+
+    static public func compress(
+        from sourcePaths: [String],
+        to destinationPath: String,
+        isTrimPrefix: Bool = true
+    ) {
         do {
             let archiveURL = URL(fileURLWithPath: destinationPath)
             let archive = try Archive(
                 url: archiveURL,
                 accessMode: .create
             )
+            var pathSharedPrefix: String? = nil
+            if (isTrimPrefix) {
+                pathSharedPrefix = self.pathsSharedPrefix(
+                    sourcePaths
+                )
+            }
             for sourcePath in sourcePaths {
                 let sourceURL = URL(fileURLWithPath: sourcePath)
+                var pathInArchive = sourceURL.path
+                if let pathSharedPrefix {
+                    pathInArchive = pathInArchive.trimPrefix(pathSharedPrefix)
+                }
                 try archive.addEntry(
-                    with: sourceURL.path,
+                    with: pathInArchive,
                     fileURL: sourceURL
                 )
             }
