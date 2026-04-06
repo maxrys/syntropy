@@ -5,7 +5,14 @@
       "shouldTranslate" : false
     },
     "%lld %%" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld %%"
+          }
+        }
+      }
     },
     "About %@" : {
       "localizations" : {

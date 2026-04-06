@@ -7,7 +7,6 @@ import SwiftUI
 
 struct MainScene: View {
 
-    @State private var demoProgress: Double = 0.5
     @State private var url: URL?
 
     public var body: some View {
@@ -15,7 +14,6 @@ struct MainScene: View {
             if let url = self.url {
                 Text(url.path)
             } else {
-                ProgressCustom(value: self.$demoProgress).padding(20)
                 Text("No URL")
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
