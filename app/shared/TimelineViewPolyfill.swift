@@ -34,7 +34,7 @@ struct TimelineViewPolyfill<Content: View>: View {
 
     public var body: some View {
         if #available(macOS 12.0, *) {
-            TimelineView(.periodic(from: .nowPolyfill, by: self.interval)) { _ in
+            TimelineView(.periodic(from: Date(), by: self.interval)) { _ in
                 self.content()
             }
         } else {

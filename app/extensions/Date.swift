@@ -13,12 +13,4 @@ extension Date {
         Double(UInt(Self().timeIntervalSince1970 * speed) % max)
     }
 
-    static var nowPolyfill: Self {
-        if #available(macOS 12, *) {
-            Self.now
-        } else {
-            Self()
-        }
-    }
-
 }
