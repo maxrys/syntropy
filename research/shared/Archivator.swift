@@ -45,17 +45,9 @@ final class Archivator {
     }
 
     static public func pathsTrimSharedPrefix(_ paths: [String]) -> [String] {
-        if let longestString = paths.max(by: { (lhs, rhs) in lhs.count < rhs.count }) {
-            var parts = longestString.split(separator: "/")
-            while parts.count > 1 {
-                parts = parts.dropLast()
-                let prefix = "/" + parts.joined(separator: "/") + "/"
-                if (paths.allSatisfy { path in path.hasPrefix(prefix) }) {
-                    return paths.map { path in path.trimPrefix(prefix) }
-                }
-            }
-        }
-        return paths
+        if let pathsSharedPrefix = self.pathsSharedPrefix(paths)
+             { return paths.map { path in path.trimPrefix(pathsSharedPrefix) } }
+        else { return paths }
     }
 
     static public func pathsSharedPrefix(_ paths: [String]) -> String? {
