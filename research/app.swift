@@ -28,6 +28,16 @@ import ZIPFoundation
                     )
                 }
 
+                Button("Archivator.trimSharedPathPrefix()") {
+                    dump(
+                        Archivator.pathsTrimSharedPrefix(
+                            Archivator.pathScanRecursuve(
+                                "/Volumes/dev/xcode/syntropy/test/by_structure"
+                            )
+                        )
+                    )
+                }
+
                 Button("Archivator.compress()") {
                     Archivator.compress(
                         from: Archivator.pathScanRecursuve(

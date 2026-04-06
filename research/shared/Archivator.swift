@@ -35,13 +35,18 @@ final class Archivator {
             let parentPath      = url.parentPath
             let objectName      = url.pathName
             let objectExtension = url.pathExtension
-            let timeMark        = Date.nowPolyfill.ISO8601Mono
+            let timeMark        = Date().ISO8601Mono
             if (objectExtension.isEmpty)
                  { return "\(parentPath)/\(objectName)-\(timeMark)" }
             else { return "\(parentPath)/\(objectName)-\(timeMark).\(objectExtension)" }
         } else {
             return path
         }
+    }
+
+    static public func pathsTrimSharedPrefix(_ paths: [String]) -> [String] {
+        var result: [String] = []
+        return result
     }
 
     static public func compress(from sourcePaths: [String], to destinationPath: String) {
