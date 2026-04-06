@@ -18,29 +18,6 @@ struct Process: View {
     }
 
     func processCompres() {
-        /*
-        let fileManager = FileManager.default
-        let sourceURL = URL(fileURLWithPath: "/path/to/sourceFolder")
-        let archiveURL = URL(fileURLWithPath: "/path/to/newArchive.zip")
-
-        do {
-            guard let archive = Archive(url: archiveURL, accessMode: .create) else { throw NSError(domain: "ZIP", code: 2) }
-
-            let resourceKeys: [URLResourceKey] = [.isDirectoryKey]
-            let enumerator = fileManager.enumerator(at: sourceURL, includingPropertiesForKeys: resourceKeys)!
-
-            for case let fileURL as URL in enumerator {
-                let relativePath = fileURL.path.replacingOccurrences(of: sourceURL.path + "/", with: "")
-                if let isDirectory = try fileURL.resourceValues(forKeys: Set(resourceKeys)).isDirectory, isDirectory {
-                    try archive.addEntry(with: relativePath + "/", type: .directory, uncompressedSize: 0, compressionMethod: .none)
-                } else {
-                    try archive.addEntry(with: relativePath, relativeTo: sourceURL)
-                }
-            }
-        } catch {
-            print("Ошибка упаковки: \(error)")
-        }
-        */
     }
 
     func processExtract() {

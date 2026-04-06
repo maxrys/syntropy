@@ -20,8 +20,8 @@ extension URL {
         guard let attributes = try? FileManager.default.attributesOfItem(atPath: self.path) else {
             return .notSupported
         }
-        if let attribute = attributes[.type] as? FileAttributeType {
-            switch attribute {
+        if let type = attributes[.type] as? FileAttributeType {
+            switch type {
                 case .typeRegular:
                     if (FORMATS.contains(self.pathExtension))
                          { return .fileArchive }
