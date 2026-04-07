@@ -36,7 +36,7 @@ import ZIPFoundation
 
             Button("CompresAsync()") {
                 Task {
-                    var compressSequence = CompresAsync(
+                    let compressSequence = CompresAsync(
                         from: FileManager.pathScanRecursuve("/Volumes/dev/xcode/syntropy/test/by_structure"),
                         to: FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/result/file.zip"),
                         isTrimPrefix: self.isTrimPrefix

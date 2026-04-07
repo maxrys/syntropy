@@ -70,31 +70,31 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
 
     mutating func next() async -> CompresAsyncResult? {
         if (self.index < self.total) {
-            let result = await self.payloadStep()
+            let pregress = Double(self.index + 1) / Double(self.total)
+            let sourcePath = self.sequence.sourcePaths[self.index]
+            let payloadResult = await self.payloadStep(sourcePath)
             defer { self.index += 1 }
-            return result
+            return CompresAsyncResult(
+                isSuccessed: payloadResult,
+                index: self.index,
+                path: sourcePath,
+                progress: pregress
+            )
         }
         return nil
     }
 
-    func payloadStep() async -> CompresAsyncResult? {
+    func payloadStep(_ sourcePath: String) async -> Bool {
         do {
-            if let sourcePath = self.sequence.sourcePaths[safe: self.index] {
-                let sourceURL = URL(fileURLWithPath: sourcePath)
-                if let pathSharedPrefix = self.pathSharedPrefix
-                     { try self.sequence.archive.addEntry(with: sourcePath.trimPrefix(pathSharedPrefix), fileURL: sourceURL) }
-                else { try self.sequence.archive.addEntry(with: sourcePath                             , fileURL: sourceURL) }
-                return CompresAsyncResult(
-                    isSuccessed: true,
-                    index: self.index,
-                    path: sourcePath,
-                    progress: Double(self.index + 1) / Double(self.total)
-                )
-            }
+            let sourceURL = URL(fileURLWithPath: sourcePath)
+            if let pathSharedPrefix = self.pathSharedPrefix
+                 { try self.sequence.archive.addEntry(with: sourcePath.trimPrefix(pathSharedPrefix), fileURL: sourceURL) }
+            else { try self.sequence.archive.addEntry(with: sourcePath                             , fileURL: sourceURL) }
+            return true
         } catch {
             Logger.customLog("\(error.localizedDescription)")
+            return false
         }
-        return nil
     }
 
 }
