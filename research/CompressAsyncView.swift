@@ -59,18 +59,24 @@ struct CompressAsyncView: View {
                 to: FileManager.pathToSafePath(Self.DEMO_TO),
                 isTrimPrefix: self.isTrimPrefix
             ) {
-                self.progress = 0.0
-                self.report = []
-                self.isActiveTask = true
+                await MainActor.run {
+                    self.progress = 0.0
+                    self.report = []
+                    self.isActiveTask = true
+                }
                 for await result in compressSequence {
-                    self.progress = result.progress
-                    switch result.value {
-                        case .failure(_, let text): self.report.append("\(result.object) → " + NSLocalizedString("failure", comment: "") + ": " + text)
-                        case .seccess             : self.report.append("\(result.object) → " + NSLocalizedString("success", comment: ""))
-                        case .cancelTask          : break
+                    await MainActor.run {
+                        self.progress = result.progress
+                        switch result.value {
+                            case .failure(_, let text): self.report.append("\(result.object) → " + NSLocalizedString("failure", comment: "") + ": " + text)
+                            case .success             : self.report.append("\(result.object) → " + NSLocalizedString("success", comment: ""))
+                        }
                     }
                 }
-                self.isActiveTask = false
+                await MainActor.run {
+                    self.progress = 1.0
+                    self.isActiveTask = false
+                }
             }
         }
     }

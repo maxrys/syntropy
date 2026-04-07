@@ -9,9 +9,8 @@ import ZIPFoundation
 
 struct CompresAsyncStepResult {
     enum Value {
-        case seccess
+        case success
         case failure(code: Int, text: String)
-        case cancelTask
     }
     let value: Value
     let index: Int
@@ -78,31 +77,35 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
             defer { self.index += 1 }
             let pregress = Double(self.index + 1) / Double(self.total)
             let sourcePath = self.sequence.sourcePaths[self.index]
-            let stepResult = await self.payloadStep(sourcePath)
-            return CompresAsync.Element(
-                value: stepResult,
-                index: self.index,
-                progress: pregress,
-                object: sourcePath
-            )
+            let internalPath = sharedPrefix.ifNotNil({ sourcePath.trimPrefix($0) }, else: sourcePath)
+            do {
+                try await self.addFile(
+                    from: URL(fileURLWithPath: sourcePath),
+                    internalPath: internalPath
+                )
+                return CompresAsync.Element(
+                    value: .success,
+                    index: self.index,
+                    progress: pregress,
+                    object: sourcePath
+                )
+            } catch is CancellationError {
+                try? FileManager.default.removeItem(
+                    at: URL(fileURLWithPath: self.sequence.destinationPath)
+                )
+                return nil
+            } catch let error as NSError {
+                return CompresAsync.Element(
+                    value: .failure(
+                        code: error.code,
+                        text: error.localizedDescription),
+                    index: self.index,
+                    progress: pregress,
+                    object: sourcePath
+                )
+            }
         }
         return nil
-    }
-
-    private func payloadStep(_ sourcePath: String) async -> CompresAsync.Element.Value {
-        do {
-            let sourceURL = URL(fileURLWithPath: sourcePath)
-            let internalPath = sharedPrefix.ifNotNil({ sourcePath.trimPrefix($0) }, else: sourcePath)
-            try await self.addFile(from: sourceURL, internalPath: internalPath)
-            return .seccess
-        } catch is CancellationError {
-            return .cancelTask
-        } catch let error as NSError {
-            return .failure(
-                code: error.code,
-                text: error.localizedDescription
-            )
-        }
     }
 
     private func addFile(from fileURL: URL, internalPath: String) async throws {
