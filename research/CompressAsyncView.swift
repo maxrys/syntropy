@@ -32,8 +32,9 @@ struct CompressAsyncView: View {
 
             }
 
-            ProgressView(value: self.progress)
-                .progressViewStyle(LinearProgressViewStyle())
+            ProgressView(
+                value: self.progress
+            )
 
             ScrollView {
                 ForEach (self.progressLog.indices.reversed(), id: \.self) { index in
