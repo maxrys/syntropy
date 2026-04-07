@@ -56,7 +56,9 @@ struct CompressAsyncView: View {
             if let compressSequence = CompresAsync(
                 from: FileManager.pathScanRecursuve(Self.DEMO_FROM),
                 to: FileManager.pathToSafePath(Self.DEMO_TO),
-                isTrimPrefix: self.isTrimPrefix
+                preset: CompresPreset(
+                    isTrimPrefix: self.isTrimPrefix
+                )
             ) {
                 self.progress = 0.0
                 self.report = []

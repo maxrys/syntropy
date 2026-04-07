@@ -7,6 +7,10 @@ import os
 import Foundation
 import ZIPFoundation
 
+struct CompresPreset {
+    let isTrimPrefix: Bool
+}
+
 struct CompresAsyncStepResult {
     enum Value {
         case success
@@ -25,18 +29,18 @@ struct CompresAsync: AsyncSequence {
 
     public let sourcePaths: [String]
     public let archivePath: String
-    public let isTrimPrefix: Bool
+    public let preset: CompresPreset
 
     fileprivate let archive: Archive
 
     init?(
         from sourcePaths: [String],
         to archivePath: String,
-        isTrimPrefix: Bool = true
+        preset: CompresPreset
     ) {
         self.sourcePaths = sourcePaths
         self.archivePath = archivePath
-        self.isTrimPrefix = isTrimPrefix
+        self.preset = preset
         do {
             self.archive = try Archive(
                 url: URL(fileURLWithPath: self.archivePath),
@@ -67,7 +71,7 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         self.sequence = sequence
         self.total = sequence.sourcePaths.count
         self.index = 0
-        if (sequence.isTrimPrefix) {
+        if (sequence.preset.isTrimPrefix) {
             self.sharedPrefix = FileManager.pathsSharedPrefix(
                 sequence.sourcePaths
             )
@@ -79,12 +83,10 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
             defer { self.index += 1 }
             let pregress = Double(self.index + 1) / Double(self.total)
             let sourcePath = self.sequence.sourcePaths[self.index]
-            let internalPath = sharedPrefix.ifNotNil({ sourcePath.trimPrefix($0) }, else: sourcePath)
             do {
-                try await self.addFile(
-                    from: URL(fileURLWithPath: sourcePath),
-                    internalPath: internalPath
-                )
+                if let sharedPrefix = self.sharedPrefix
+                     { try await self.addFile(from: URL(fileURLWithPath: sourcePath), internalPath: sourcePath.trimPrefix(sharedPrefix)) }
+                else { try await self.addFile(from: URL(fileURLWithPath: sourcePath), internalPath: sourcePath) }
                 return CompresAsync.Element(
                     value: .success,
                     index: self.index,
