@@ -14,7 +14,6 @@ struct CompressAsyncView: View {
 
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
-    @State private var isActiveTask: Bool = false
     @State private var progress: Double = 0.0
     @State private var report: [String] = []
 
@@ -25,15 +24,15 @@ struct CompressAsyncView: View {
 
                 Toggle(isOn: self.$isTrimPrefix) {
                     Text("Trim Prefix")
-                }.disabled(self.isActiveTask)
+                }.disabled(self.task != nil)
 
                 Button("Compres") {
                     self.startCompress()
-                }.disabled(self.isActiveTask)
+                }.disabled(self.task != nil)
 
                 Button("Cancel") {
                     self.cancelCompress()
-                }.disabled(!self.isActiveTask)
+                }.disabled(self.task == nil)
 
             }
 
@@ -62,7 +61,6 @@ struct CompressAsyncView: View {
                 await MainActor.run {
                     self.progress = 0.0
                     self.report = []
-                    self.isActiveTask = true
                 }
                 for await result in compressSequence {
                     await MainActor.run {
@@ -75,7 +73,7 @@ struct CompressAsyncView: View {
                 }
                 await MainActor.run {
                     self.progress = 1.0
-                    self.isActiveTask = false
+                    self.task = nil
                 }
             }
         }
@@ -84,6 +82,7 @@ struct CompressAsyncView: View {
     private func cancelCompress() {
         if let task = self.task {
             task.cancel()
+            self.task = nil
         }
     }
 
