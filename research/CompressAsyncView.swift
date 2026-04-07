@@ -59,9 +59,10 @@ struct CompressAsyncView: View {
                 self.isActive = true
                 for await result in compressSequence {
                     self.progress = result.progress
-                    self.progressLog.append(
-                        "\(result.path) → " + (result.isSuccessed ? NSLocalizedString("ok", comment: "") : NSLocalizedString("fail", comment: ""))
-                    )
+                    switch result.value {
+                        case .failure(_, let text): self.progressLog.append("\(result.path) → " + NSLocalizedString("failure", comment: "") + ": " + text)
+                        case .seccess             : self.progressLog.append("\(result.path) → " + NSLocalizedString("success", comment: ""))
+                    }
                 }
                 self.isActive = false
             }

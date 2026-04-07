@@ -7,8 +7,12 @@ import os
 import Foundation
 import ZIPFoundation
 
-struct CompresAsyncResult {
-    let isSuccessed: Bool
+struct CompresAsyncStepResult {
+    enum Value {
+        case seccess
+        case failure(code: Int, text: String)
+    }
+    let value: Value
     let index: Int
     let path: String
     let progress: Double
@@ -16,7 +20,7 @@ struct CompresAsyncResult {
 
 struct CompresAsync: AsyncSequence {
 
-    typealias Element = CompresAsyncResult
+    typealias Element = CompresAsyncStepResult
 
     fileprivate let sourcePaths: [String]
     fileprivate let destinationPath: String
@@ -68,14 +72,14 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         }
     }
 
-    mutating func next() async -> CompresAsyncResult? {
+    mutating func next() async -> CompresAsync.Element? {
         if (self.index < self.total) {
             let pregress = Double(self.index + 1) / Double(self.total)
             let sourcePath = self.sequence.sourcePaths[self.index]
-            let payloadResult = await self.payloadStep(sourcePath)
+            let stepResult = await self.payloadStep(sourcePath)
             defer { self.index += 1 }
-            return CompresAsyncResult(
-                isSuccessed: payloadResult,
+            return CompresAsync.Element(
+                value: stepResult,
                 index: self.index,
                 path: sourcePath,
                 progress: pregress
@@ -84,16 +88,19 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         return nil
     }
 
-    func payloadStep(_ sourcePath: String) async -> Bool {
+    func payloadStep(_ sourcePath: String) async -> CompresAsync.Element.Value {
         do {
             let sourceURL = URL(fileURLWithPath: sourcePath)
             if let pathSharedPrefix = self.pathSharedPrefix
                  { try self.sequence.archive.addEntry(with: sourcePath.trimPrefix(pathSharedPrefix), fileURL: sourceURL) }
             else { try self.sequence.archive.addEntry(with: sourcePath                             , fileURL: sourceURL) }
-            return true
-        } catch {
+            return .seccess
+        } catch let error as NSError {
             Logger.customLog("\(error.localizedDescription)")
-            return false
+            return .failure(
+                code: error.code,
+                text: error.localizedDescription
+            )
         }
     }
 
