@@ -9,6 +9,7 @@ import ZIPFoundation
 
 struct CompresPreset {
     let isTrimPrefix: Bool
+    let compression: CompressionMethod
 }
 
 struct CompresAsyncStepResult {
@@ -120,7 +121,12 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         try self.sequence.archive.addEntry(
             with: internalPath,
             type: .file,
-            uncompressedSize: Int64(try fileHandle.seekToEnd())
+            uncompressedSize: Int64(try fileHandle.seekToEnd()),
+         // modificationDate: Date = Date(),
+         // permissions: UInt16? = nil,
+            compressionMethod: self.sequence.preset.compression,
+         // bufferSize: Int = defaultWriteChunkSize,
+         // progress: Progress? = nil
         ) { position, size -> Data in
             try fileHandle.seek(toOffset: UInt64(position))
             let data = try fileHandle.read(upToCount: Int(size)) ?? Data()

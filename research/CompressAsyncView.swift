@@ -14,6 +14,7 @@ struct CompressAsyncView: View {
 
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
+    @State private var isCompressed: Bool = true
     @State private var progress: Double = 0.0
     @State private var report: [String] = []
 
@@ -24,6 +25,10 @@ struct CompressAsyncView: View {
 
                 Toggle(isOn: self.$isTrimPrefix) {
                     Text("Trim Prefix")
+                }.disabled(self.task != nil)
+
+                Toggle(isOn: self.$isCompressed) {
+                    Text("Compressed")
                 }.disabled(self.task != nil)
 
                 Button("Compres") {
@@ -57,7 +62,8 @@ struct CompressAsyncView: View {
                 from: FileManager.pathScanRecursuve(Self.DEMO_FROM),
                 to: FileManager.pathToSafePath(Self.DEMO_TO),
                 preset: CompresPreset(
-                    isTrimPrefix: self.isTrimPrefix
+                    isTrimPrefix: self.isTrimPrefix,
+                    compression: self.isCompressed ? .deflate : .none
                 )
             ) {
                 self.progress = 0.0
