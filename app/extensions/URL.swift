@@ -9,6 +9,18 @@ extension URL {
 
     static public let SCHEME_FOR_PROCESS = "syntropyArchiver"
 
+    var pathName: String {
+        var url = self
+        url.deletePathExtension()
+        return url.lastPathComponent
+    }
+
+    var parentPath: String {
+        var url = self
+        url.deleteLastPathComponent()
+        return url.path
+    }
+
     public enum ObjectType {
         case fileArchive
         case fileNonArchive
