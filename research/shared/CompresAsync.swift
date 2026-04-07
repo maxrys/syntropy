@@ -7,26 +7,9 @@ import os
 import Foundation
 import ZIPFoundation
 
-struct CompresPreset {
-    let isTrimPrefix: Bool
-    let compression: CompressionMethod
-}
-
-struct CompresAsyncStepResult {
-    enum Value {
-        case success
-        case failure(code: Int, text: String)
-        case cancelTask
-    }
-    let value: Value
-    let index: Int
-    let progress: Double
-    let object: String
-}
-
 struct CompresAsync: AsyncSequence {
 
-    typealias Element = CompresAsyncStepResult
+    typealias Element = CompresStepResult
 
     public let sourcePaths: [String]
     public let archivePath: String
@@ -96,7 +79,7 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
                 )
             } catch is CancellationError {
                 return CompresAsync.Element(
-                    value: .cancelTask,
+                    value: .cancellationByUser,
                     index: self.index,
                     progress: pregress,
                     object: sourcePath
