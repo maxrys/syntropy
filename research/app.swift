@@ -8,6 +8,7 @@ import SwiftUI
 @main struct ThisApp: App {
 
     enum Tab: Hashable {
+        case compressPublisherView
         case compressAsyncView
         case fileManagerView
     }
@@ -17,11 +18,14 @@ import SwiftUI
     var body: some Scene {
         WindowGroup {
             TabView(selection: $selection) {
+                CompressPublisherView()
+                    .tabItem { Label("CompressPublisherView", systemImage: "1.circle") }
+                    .tag(Tab.compressPublisherView)
                 CompressAsyncView()
-                    .tabItem { Label("CompressAsyncView", systemImage: "1.circle") }
+                    .tabItem { Label("CompressAsyncView", systemImage: "2.circle") }
                     .tag(Tab.compressAsyncView)
                 FileManagerView()
-                    .tabItem { Label("FileManagerView", systemImage: "2.circle") }
+                    .tabItem { Label("FileManagerView", systemImage: "3.circle") }
                     .tag(Tab.fileManagerView)
             }.padding(20)
         }
