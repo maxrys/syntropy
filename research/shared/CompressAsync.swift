@@ -11,7 +11,7 @@ struct CompresAsyncStepResult {
     enum Value {
         case success
         case failure(code: Int, text: String)
-        case cancelTask(path: String)
+        case cancelTask
     }
     let value: Value
     let index: Int
@@ -23,22 +23,23 @@ struct CompresAsync: AsyncSequence {
 
     typealias Element = CompresAsyncStepResult
 
-    fileprivate let sourcePaths: [String]
-    fileprivate let destinationPath: String
-    fileprivate let isTrimPrefix: Bool
+    public let sourcePaths: [String]
+    public let archivePath: String
+    public let isTrimPrefix: Bool
+
     fileprivate let archive: Archive
 
     init?(
         from sourcePaths: [String],
-        to destinationPath: String,
+        to archivePath: String,
         isTrimPrefix: Bool = true
     ) {
         self.sourcePaths = sourcePaths
-        self.destinationPath = destinationPath
+        self.archivePath = archivePath
         self.isTrimPrefix = isTrimPrefix
         do {
             self.archive = try Archive(
-                url: URL(fileURLWithPath: self.destinationPath),
+                url: URL(fileURLWithPath: self.archivePath),
                 accessMode: .create
             )
         } catch {
@@ -92,7 +93,7 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
                 )
             } catch is CancellationError {
                 return CompresAsync.Element(
-                    value: .cancelTask(path: self.sequence.destinationPath),
+                    value: .cancelTask,
                     index: self.index,
                     progress: pregress,
                     object: sourcePath
