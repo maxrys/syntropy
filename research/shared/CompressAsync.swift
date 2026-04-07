@@ -11,11 +11,12 @@ struct CompresAsyncStepResult {
     enum Value {
         case seccess
         case failure(code: Int, text: String)
+        case cancelTask
     }
     let value: Value
     let index: Int
-    let path: String
     let progress: Double
+    let object: String
 }
 
 struct CompresAsync: AsyncSequence {
@@ -57,7 +58,7 @@ struct CompresAsync: AsyncSequence {
 struct CompresAsyncIterator: AsyncIteratorProtocol {
 
     private let sequence: CompresAsync
-    private var pathSharedPrefix: String?
+    private var sharedPrefix: String?
     private let total: Int
     private var index: Int
 
@@ -66,7 +67,7 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         self.total = sequence.sourcePaths.count
         self.index = 0
         if (sequence.isTrimPrefix) {
-            self.pathSharedPrefix = FileManager.pathsSharedPrefix(
+            self.sharedPrefix = FileManager.pathsSharedPrefix(
                 sequence.sourcePaths
             )
         }
@@ -74,15 +75,15 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
 
     mutating func next() async -> CompresAsync.Element? {
         if (self.index < self.total) {
+            defer { self.index += 1 }
             let pregress = Double(self.index + 1) / Double(self.total)
             let sourcePath = self.sequence.sourcePaths[self.index]
             let stepResult = await self.payloadStep(sourcePath)
-            defer { self.index += 1 }
             return CompresAsync.Element(
                 value: stepResult,
                 index: self.index,
-                path: sourcePath,
-                progress: pregress
+                progress: pregress,
+                object: sourcePath
             )
         }
         return nil
@@ -91,12 +92,12 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
     private func payloadStep(_ sourcePath: String) async -> CompresAsync.Element.Value {
         do {
             let sourceURL = URL(fileURLWithPath: sourcePath)
-            let internalPath = self.pathSharedPrefix != nil ? sourcePath.trimPrefix(self.pathSharedPrefix!) : sourcePath
-         // try self.sequence.archive.addEntry(with: internalPath, fileURL: sourceURL)
+            let internalPath = sharedPrefix.ifNotNil({ sourcePath.trimPrefix($0) }, else: sourcePath)
             try await self.addFile(from: sourceURL, internalPath: internalPath)
             return .seccess
+        } catch is CancellationError {
+            return .cancelTask
         } catch let error as NSError {
-            Logger.customLog("\(error.localizedDescription)")
             return .failure(
                 code: error.code,
                 text: error.localizedDescription
@@ -114,7 +115,7 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         ) { position, size -> Data in
             try fileHandle.seek(toOffset: UInt64(position))
             let data = try fileHandle.read(upToCount: Int(size)) ?? Data()
-         // if Task.isCancelled { throw CancellationError() }
+            if Task.isCancelled { throw CancellationError() }
             return data
         }
     }

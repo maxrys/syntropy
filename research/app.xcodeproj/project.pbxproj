@@ -18,6 +18,7 @@
 		50D290022F84EF20006A7304 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290012F84EF1C006A7304 /* FileManager.swift */; };
 		50D290062F84FE41006A7304 /* CompressAsyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290052F84FE3F006A7304 /* CompressAsyncView.swift */; };
 		50D290082F84FEDE006A7304 /* FileManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290072F84FEDC006A7304 /* FileManagerView.swift */; };
+		50D290252F8551E8006A7304 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290242F8551E4006A7304 /* Optional.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		50D290012F84EF1C006A7304 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		50D290052F84FE3F006A7304 /* CompressAsyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressAsyncView.swift; sourceTree = "<group>"; };
 		50D290072F84FEDC006A7304 /* FileManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerView.swift; sourceTree = "<group>"; };
+		50D290242F8551E4006A7304 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				50D28FF22F8426C9006A7304 /* Double.swift */,
 				50D290012F84EF1C006A7304 /* FileManager.swift */,
 				50D28FE82F83A279006A7304 /* Logger.swift */,
+				50D290242F8551E4006A7304 /* Optional.swift */,
 				50D28FEE2F83C4A1006A7304 /* String.swift */,
 				50D28FEA2F83B2CF006A7304 /* URL.swift */,
 			);
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50993B6C2D33C4C900195667 /* app.swift in Sources */,
+				50D290252F8551E8006A7304 /* Optional.swift in Sources */,
 				50D28FE92F83A2B3006A7304 /* Logger.swift in Sources */,
 				50D28FEF2F83C4A1006A7304 /* String.swift in Sources */,
 				50D290082F84FEDE006A7304 /* FileManagerView.swift in Sources */,
