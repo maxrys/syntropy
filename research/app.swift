@@ -16,13 +16,13 @@ import ZIPFoundation
     var body: some Scene {
         WindowGroup {
             VStack(spacing: 50) {
-                CompresView()
-                DemoView()
+                CompressAsyncView()
+                FileManagerView()
             }.padding(50)
         }
     }
 
-    @ViewBuilder func CompresView() -> some View {
+    @ViewBuilder func CompressAsyncView() -> some View {
         VStack(spacing: 10) {
 
             Toggle(isOn: self.$isTrimPrefix) {
@@ -45,10 +45,10 @@ import ZIPFoundation
 
             Button("Archivator.compres()") {
                 Archivator.compres(
-                    from: Archivator.pathScanRecursuve(
+                    from: FileManager.pathScanRecursuve(
                         "/Volumes/dev/xcode/syntropy/test/by_structure"
                     ),
-                    to: Archivator.pathToSafePath(
+                    to: FileManager.pathToSafePath(
                         "/Volumes/dev/xcode/syntropy/test/result/file.zip"
                     ),
                     isTrimPrefix: self.isTrimPrefix
@@ -58,19 +58,19 @@ import ZIPFoundation
         }
     }
 
-    @ViewBuilder func DemoView() -> some View {
+    @ViewBuilder func FileManagerView() -> some View {
         VStack(spacing: 10) {
 
             Button("Archivator.pathToSafePath()") {
-                Logger.customLog( Archivator.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/folder") )
-                Logger.customLog( Archivator.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/folder.extension") )
-                Logger.customLog( Archivator.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/file_noExtension") )
-                Logger.customLog( Archivator.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/file.txt") )
+                Logger.customLog( FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/folder") )
+                Logger.customLog( FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/folder.extension") )
+                Logger.customLog( FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/file_noExtension") )
+                Logger.customLog( FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/file.txt") )
             }
 
-            Button("Archivator.pathScanRecursuve()") {
+            Button("FileManager.pathScanRecursuve()") {
                 dump(
-                    Archivator.pathScanRecursuve(
+                    FileManager.pathScanRecursuve(
                         "/Volumes/dev/xcode/syntropy/test/by_structure"
                     )
                 )
@@ -78,7 +78,7 @@ import ZIPFoundation
 
             Button("Archivator.trimSharedPathPrefix()") {
                 dump(
-                    Archivator.pathsTrimSharedPrefix([
+                    FileManager.pathsTrimSharedPrefix([
                         "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 1/nested file 1.txt",
                         "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 2/nested file 5.txt",
                         "/Volumes/dev/xcode/syntropy/test/by_structure/file 1.txt",

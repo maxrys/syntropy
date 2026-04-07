@@ -16,6 +16,7 @@
 		50D28FF12F8423A0006A7304 /* Archivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FF02F8422FB006A7304 /* Archivator.swift */; };
 		50D28FF32F8426D0006A7304 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FF22F8426C9006A7304 /* Double.swift */; };
 		50D290002F845A82006A7304 /* CompressAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FFF2F845A82006A7304 /* CompressAsync.swift */; };
+		50D290022F84EF20006A7304 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290012F84EF1C006A7304 /* FileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		50D28FF02F8422FB006A7304 /* Archivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archivator.swift; sourceTree = "<group>"; };
 		50D28FF22F8426C9006A7304 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		50D28FFF2F845A82006A7304 /* CompressAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressAsync.swift; sourceTree = "<group>"; };
+		50D290012F84EF1C006A7304 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			children = (
 				50D28FEC2F83B66E006A7304 /* Date.swift */,
 				50D28FF22F8426C9006A7304 /* Double.swift */,
+				50D290012F84EF1C006A7304 /* FileManager.swift */,
 				50D28FE82F83A279006A7304 /* Logger.swift */,
 				50D28FEE2F83C4A1006A7304 /* String.swift */,
 				50D28FEA2F83B2CF006A7304 /* URL.swift */,
@@ -164,6 +167,7 @@
 				50D28FEB2F83B2CF006A7304 /* URL.swift in Sources */,
 				50D28FF12F8423A0006A7304 /* Archivator.swift in Sources */,
 				50D28FED2F83B66E006A7304 /* Date.swift in Sources */,
+				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
 				50D290002F845A82006A7304 /* CompressAsync.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
 			);
