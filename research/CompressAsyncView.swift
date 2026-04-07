@@ -44,7 +44,7 @@ struct CompressAsyncView: View {
                 ForEach (self.report.indices.reversed(), id: \.self) { index in
                     Text(self.report[index]).id(index)
                 }
-            }.frame(maxHeight: 300)
+            }
 
         }
         .padding(20)
@@ -58,23 +58,22 @@ struct CompressAsyncView: View {
                 to: FileManager.pathToSafePath(Self.DEMO_TO),
                 isTrimPrefix: self.isTrimPrefix
             ) {
-                await MainActor.run {
-                    self.progress = 0.0
-                    self.report = []
-                }
-                for await result in compressSequence {
-                    await MainActor.run {
-                        self.progress = result.progress
-                        switch result.value {
-                            case .failure(_, let text): self.report.append("\(result.object) → " + NSLocalizedString("failure", comment: "") + ": " + text)
-                            case .success             : self.report.append("\(result.object) → " + NSLocalizedString("success", comment: ""))
-                        }
+                self.progress = 0.0
+                self.report = []
+                process: for await result in compressSequence {
+                    self.progress = result.progress
+                    switch result.value {
+                        case .failure(_, let text): self.report.append("\(result.object) → " + NSLocalizedString("failure", comment: "") + ": " + text)
+                        case .success             : self.report.append("\(result.object) → " + NSLocalizedString("success", comment: ""))
+                        case .cancelTask(let path): self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))
+                            try? FileManager.default.removeItem(
+                                at: URL(fileURLWithPath: path)
+                            )
+                            break process
                     }
                 }
-                await MainActor.run {
-                    self.progress = 1.0
-                    self.task = nil
-                }
+                self.progress = 1.0
+                self.task = nil
             }
         }
     }

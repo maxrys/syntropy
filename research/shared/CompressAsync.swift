@@ -11,6 +11,7 @@ struct CompresAsyncStepResult {
     enum Value {
         case success
         case failure(code: Int, text: String)
+        case cancelTask(path: String)
     }
     let value: Value
     let index: Int
@@ -90,10 +91,12 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
                     object: sourcePath
                 )
             } catch is CancellationError {
-                try? FileManager.default.removeItem(
-                    at: URL(fileURLWithPath: self.sequence.destinationPath)
+                return CompresAsync.Element(
+                    value: .cancelTask(path: self.sequence.destinationPath),
+                    index: self.index,
+                    progress: pregress,
+                    object: sourcePath
                 )
-                return nil
             } catch let error as NSError {
                 return CompresAsync.Element(
                     value: .failure(
