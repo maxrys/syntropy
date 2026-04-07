@@ -11,7 +11,7 @@ import ZIPFoundation
 
     @State private var isTrimPrefix: Bool = false
     @State private var progress: Double = 0.0
-    @State private var description: String = "n/a"
+    @State private var progressLog: [String] = []
 
     var body: some Scene {
         WindowGroup {
@@ -32,7 +32,11 @@ import ZIPFoundation
             ProgressView(value: self.progress)
                 .progressViewStyle(LinearProgressViewStyle())
 
-            Text("\(self.description)")
+            ScrollView {
+                ForEach (self.progressLog.reversed(), id: \.self) { logString in
+                    Text(logString)
+                }
+            }.frame(maxHeight: 300)
 
             Button("CompresAsync()") {
                 Task {
@@ -44,7 +48,9 @@ import ZIPFoundation
                     if let compressSequence {
                         for await result in compressSequence {
                             self.progress = result.progress
-                            self.description = "index: \(result.index) | path: \(result.path) | isSuccessed: \(result.isSuccessed)"
+                            self.progressLog.append(
+                                "\(result.index) | \(result.path) | " + (result.isSuccessed ? "ok" : "fail")
+                            )
                         }
                     }
                 }
