@@ -88,12 +88,12 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         return nil
     }
 
-    func payloadStep(_ sourcePath: String) async -> CompresAsync.Element.Value {
+    private func payloadStep(_ sourcePath: String) async -> CompresAsync.Element.Value {
         do {
             let sourceURL = URL(fileURLWithPath: sourcePath)
-            if let pathSharedPrefix = self.pathSharedPrefix
-                 { try self.sequence.archive.addEntry(with: sourcePath.trimPrefix(pathSharedPrefix), fileURL: sourceURL) }
-            else { try self.sequence.archive.addEntry(with: sourcePath                             , fileURL: sourceURL) }
+            let internalPath = self.pathSharedPrefix != nil ? sourcePath.trimPrefix(self.pathSharedPrefix!) : sourcePath
+         // try self.sequence.archive.addEntry(with: internalPath, fileURL: sourceURL)
+            try await self.addFile(from: sourceURL, internalPath: internalPath)
             return .seccess
         } catch let error as NSError {
             Logger.customLog("\(error.localizedDescription)")
@@ -101,6 +101,21 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
                 code: error.code,
                 text: error.localizedDescription
             )
+        }
+    }
+
+    private func addFile(from fileURL: URL, internalPath: String) async throws {
+        let fileHandle = try FileHandle(forReadingFrom: fileURL)
+        defer { try? fileHandle.close() }
+        try self.sequence.archive.addEntry(
+            with: internalPath,
+            type: .file,
+            uncompressedSize: Int64(try fileHandle.seekToEnd())
+        ) { position, size -> Data in
+            try fileHandle.seek(toOffset: UInt64(position))
+            let data = try fileHandle.read(upToCount: Int(size)) ?? Data()
+         // if Task.isCancelled { throw CancellationError() }
+            return data
         }
     }
 
