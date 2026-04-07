@@ -34,25 +34,20 @@ import ZIPFoundation
 
             Text("\(self.description)")
 
-            Button("test ProgressView") {
+            Button("CompresAsync()") {
                 Task {
-                    for await result in CompresAsync(3) {
-                        self.progress = result.progress
-                        self.description = "index: \(result.index) | isSuccessed: \(result.isSuccessed)"
+                    var compressSequence = CompresAsync(
+                        from: FileManager.pathScanRecursuve("/Volumes/dev/xcode/syntropy/test/by_structure"),
+                        to: FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/result/file.zip"),
+                        isTrimPrefix: self.isTrimPrefix
+                    )
+                    if let compressSequence {
+                        for await result in compressSequence {
+                            self.progress = result.progress
+                            self.description = "index: \(result.index) | path: \(result.path) | isSuccessed: \(result.isSuccessed)"
+                        }
                     }
                 }
-            }
-
-            Button("Archivator.compres()") {
-                Archivator.compres(
-                    from: FileManager.pathScanRecursuve(
-                        "/Volumes/dev/xcode/syntropy/test/by_structure"
-                    ),
-                    to: FileManager.pathToSafePath(
-                        "/Volumes/dev/xcode/syntropy/test/result/file.zip"
-                    ),
-                    isTrimPrefix: self.isTrimPrefix
-                )
             }
 
         }
