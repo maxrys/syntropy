@@ -7,12 +7,23 @@ import SwiftUI
 
 @main struct ThisApp: App {
 
+    enum Tab: Hashable {
+        case compressAsyncView
+        case fileManagerView
+    }
+
+    @State private var selection: Tab = .compressAsyncView
+
     var body: some Scene {
         WindowGroup {
-            VStack(spacing: 50) {
+            TabView(selection: $selection) {
                 CompressAsyncView()
+                    .tabItem { Label("CompressAsyncView", systemImage: "1.circle") }
+                    .tag(Tab.compressAsyncView)
                 FileManagerView()
-            }.padding(50)
+                    .tabItem { Label("FileManagerView", systemImage: "2.circle") }
+                    .tag(Tab.fileManagerView)
+            }.padding(20)
         }
     }
 
