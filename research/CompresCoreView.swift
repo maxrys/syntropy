@@ -14,7 +14,6 @@ struct CompresCoreView: View {
     @State private var compresCore: CompresCore?
     @State private var isTrimPrefix: Bool = true
     @State private var isCompressed: Bool = true
-    @State private var report: [String] = []
 
     init() {
     }
@@ -42,13 +41,14 @@ struct CompresCoreView: View {
 
             }
 
-            ProgressView(
-                value: self.compresCore?.progress
-            )
+            ProgressView(value: self.compresCore?.progressTotal ?? 0.0)
+            ProgressView(value: self.compresCore?.progressLocal ?? 0.0)
 
             ScrollView {
-                ForEach (self.report.indices.reversed(), id: \.self) { index in
-                    Text(self.report[index]).id(index)
+                if let compresCore = self.compresCore {
+                    ForEach (compresCore.report.indices.reversed(), id: \.self) { index in
+                        Text(compresCore.report[index]).id(index)
+                    }
                 }
             }
 

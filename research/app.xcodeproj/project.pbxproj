@@ -23,6 +23,7 @@
 		50D290352F85A953006A7304 /* CompresCoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290342F85A953006A7304 /* CompresCoreView.swift */; };
 		50D290392F85AB16006A7304 /* CompresPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290382F85AB16006A7304 /* CompresPreset.swift */; };
 		50D2903B2F85AB78006A7304 /* CompresStepResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D2903A2F85AB78006A7304 /* CompresStepResult.swift */; };
+		50D2903F2F86678F006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D2903E2F86678F006A7304 /* Numeric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		50D290342F85A953006A7304 /* CompresCoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresCoreView.swift; sourceTree = "<group>"; };
 		50D290382F85AB16006A7304 /* CompresPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresPreset.swift; sourceTree = "<group>"; };
 		50D2903A2F85AB78006A7304 /* CompresStepResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresStepResult.swift; sourceTree = "<group>"; };
+		50D2903E2F86678F006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				50D28FF22F8426C9006A7304 /* Double.swift */,
 				50D290012F84EF1C006A7304 /* FileManager.swift */,
 				50D28FE82F83A279006A7304 /* Logger.swift */,
+				50D2903E2F86678F006A7304 /* Numeric.swift */,
 				50D290242F8551E4006A7304 /* Optional.swift */,
 				50D28FEE2F83C4A1006A7304 /* String.swift */,
 				50D28FEA2F83B2CF006A7304 /* URL.swift */,
@@ -190,6 +193,7 @@
 				50D28FEB2F83B2CF006A7304 /* URL.swift in Sources */,
 				50D290392F85AB16006A7304 /* CompresPreset.swift in Sources */,
 				50D28FED2F83B66E006A7304 /* Date.swift in Sources */,
+				50D2903F2F86678F006A7304 /* Numeric.swift in Sources */,
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
 				50D290002F845A82006A7304 /* CompresAsync.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
