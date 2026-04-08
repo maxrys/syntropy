@@ -8,24 +8,24 @@ import SwiftUI
 @main struct ThisApp: App {
 
     enum Tab: Hashable {
-        case compressPublisherView
+        case compressCoreView
         case compressAsyncView
         case fileManagerView
     }
 
-    @State private var selection: Tab = .compressAsyncView
+    @State private var selection: Tab = .compressCoreView
 
     var body: some Scene {
         WindowGroup {
             TabView(selection: $selection) {
-                CompressPublisherView()
-                    .tabItem { Label("CompressPublisherView", systemImage: "1.circle") }
-                    .tag(Tab.compressPublisherView)
+                CompresCoreView()
+                    .tabItem { Text("CompresCoreView") }
+                    .tag(Tab.compressCoreView)
                 CompressAsyncView()
-                    .tabItem { Label("CompressAsyncView", systemImage: "2.circle") }
+                    .tabItem { Text("CompressAsyncView") }
                     .tag(Tab.compressAsyncView)
                 FileManagerView()
-                    .tabItem { Label("FileManagerView", systemImage: "3.circle") }
+                    .tabItem { Text("FileManagerView") }
                     .tag(Tab.fileManagerView)
             }.padding(20)
         }

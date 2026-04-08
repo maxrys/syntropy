@@ -18,9 +18,9 @@ struct FileManagerView: View {
                 Logger.customLog( FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/file.txt") )
             }
 
-            Button("FileManager.pathScanRecursuve()") {
+            Button("FileManager.pathScanRecursive()") {
                 dump(
-                    FileManager.pathScanRecursuve(
+                    FileManager.pathScanRecursive(
                         "/Volumes/dev/xcode/syntropy/test/by_structure"
                     )
                 )

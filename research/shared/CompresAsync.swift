@@ -69,8 +69,8 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
             let sourcePath = self.sequence.sourcePaths[self.index]
             do {
                 if let sharedPrefix = self.sharedPrefix
-                     { try await self.addFile(from: URL(fileURLWithPath: sourcePath), internalPath: sourcePath.trimPrefix(sharedPrefix)) }
-                else { try await self.addFile(from: URL(fileURLWithPath: sourcePath), internalPath: sourcePath) }
+                     { try await self.addFile(from: sourcePath, internalPath: sourcePath.trimPrefix(sharedPrefix)) }
+                else { try await self.addFile(from: sourcePath, internalPath: sourcePath) }
                 return CompresAsync.Element(
                     value: .success,
                     index: self.index,
@@ -98,8 +98,12 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         return nil
     }
 
-    private func addFile(from fileURL: URL, internalPath: String) async throws {
-        let fileHandle = try FileHandle(forReadingFrom: fileURL)
+    private func addFile(from sourcePath: String, internalPath: String) async throws {
+        let fileHandle = try FileHandle(
+            forReadingFrom: URL(
+                fileURLWithPath: sourcePath
+            )
+        )
         defer { try? fileHandle.close() }
         try self.sequence.archive.addEntry(
             with: internalPath,

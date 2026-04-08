@@ -59,7 +59,7 @@ struct CompressAsyncView: View {
     private func startCompress() {
         self.task = Task {
             if let compressSequence = CompresAsync(
-                from: FileManager.pathScanRecursuve(Self.DEMO_FROM),
+                from: FileManager.pathScanRecursive(Self.DEMO_FROM),
                 to: FileManager.pathToSafePath(Self.DEMO_TO),
                 preset: CompresPreset(
                     isTrimPrefix: self.isTrimPrefix,
