@@ -61,6 +61,7 @@ final class CompresCore: ObservableObject {
                     uncompressedSize: Int64(try fileHandle.seekToEnd()),
                     compressionMethod: self.preset.compression,
                 ) { position, size -> Data in
+                    defer { self.progress += 0.01 }
                     try fileHandle.seek(toOffset: UInt64(position))
                     let data = try fileHandle.read(upToCount: Int(size)) ?? Data()
                     return data

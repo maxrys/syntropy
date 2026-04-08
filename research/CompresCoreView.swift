@@ -14,6 +14,7 @@ struct CompresCoreView: View {
     @State private var compresCore: CompresCore?
     @State private var isTrimPrefix: Bool = true
     @State private var isCompressed: Bool = true
+    @State private var report: [String] = []
 
     init() {
     }
@@ -23,6 +24,14 @@ struct CompresCoreView: View {
 
             HStack(spacing: 10) {
 
+                Toggle(isOn: self.$isTrimPrefix) {
+                    Text("Trim Prefix")
+                }
+
+                Toggle(isOn: self.$isCompressed) {
+                    Text("Compressed")
+                }
+
                 Button("Compres") {
                     self.startCompress()
                 }
@@ -31,6 +40,16 @@ struct CompresCoreView: View {
                     self.cancelCompress()
                 }
 
+            }
+
+            ProgressView(
+                value: self.compresCore?.progress
+            )
+
+            ScrollView {
+                ForEach (self.report.indices.reversed(), id: \.self) { index in
+                    Text(self.report[index]).id(index)
+                }
             }
 
         }
