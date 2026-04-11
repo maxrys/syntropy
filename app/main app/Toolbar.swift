@@ -96,8 +96,7 @@ struct Toolbar: View {
                 flexibility: .infinity
             )
 
-            ToolbarCustom_TextField(
-                hint: NSLocalizedString("Search", comment: ""),
+            ToolbarCustom_FieldSearch(
                 text: self.$searchText,
                 minWidth: 100,
                 maxWidth: .infinity

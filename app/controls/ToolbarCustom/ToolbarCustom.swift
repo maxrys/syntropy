@@ -83,8 +83,7 @@ struct ToolbarCustom_Preview: PreviewProvider {
                     Button(NSLocalizedString("Menu item 6", comment: ""), action: { } ).keyboardShortcut(.init("6", modifiers: [.command, .shift]))
                 }
                 ToolbarCustom_Spacer(flexibility: .infinity)
-                ToolbarCustom_TextField(
-                    hint: NSLocalizedString("Search", comment: ""),
+                ToolbarCustom_FieldSearch(
                     text: Binding.constant(""),
                     minWidth: 100,
                     maxWidth: 200
