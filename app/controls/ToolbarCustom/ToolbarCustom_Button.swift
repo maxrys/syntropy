@@ -47,7 +47,7 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
                     style: StrokeStyle(lineWidth: 1)
                 )
                 .frame(width: 28, height: 27)
-                .contentShape(RoundedRectangle(cornerRadius: 5))
+                .focusEffect(RoundedRectangle(cornerRadius: 5))
                 .overlayPolyfill {
                     self.IconView()
                 }
@@ -58,7 +58,7 @@ struct ToolbarCustom_Button: ToolbarCustom_Item_Protocol {
 
     @ViewBuilder private func IconView() -> some View {
         self.icon
-            .contentShape(RoundedRectangle(cornerRadius: 5))
+            .focusEffect(RoundedRectangle(cornerRadius: 5))
             .font(.system(size: 17))
             .foregroundPolyfill(
                 self.colorScheme == .dark ?
