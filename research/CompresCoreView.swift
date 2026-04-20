@@ -41,8 +41,9 @@ struct CompresCoreView: View {
 
             }
 
-            ProgressView(value: self.compresCore?.progressTotal ?? 0.0)
-            ProgressView(value: self.compresCore?.progressLocal ?? 0.0)
+            ProgressView(
+                value: self.compresCore?.progress ?? 0.0
+            )
 
             ScrollView {
                 if let compresCore = self.compresCore {
