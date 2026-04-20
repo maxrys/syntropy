@@ -98,6 +98,7 @@ final class CompresCore: ObservableObject {
          // defer { self.progressLocal = self.calculateProgress(current: position, maximum: fileSize) }
             try file.seek(toOffset: UInt64(position))
             let data = try file.read(upToCount: Int(size)) ?? Data()
+            if Task.isCancelled { throw CancellationError() }
             return data
         }
     }

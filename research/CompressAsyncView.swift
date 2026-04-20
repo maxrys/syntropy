@@ -54,6 +54,8 @@ struct CompressAsyncView: View {
         }
         .padding(20)
         .background(Color.white)
+        .onDisappear {
+        }
     }
 
     private func startCompress() {

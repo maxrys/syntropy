@@ -11,6 +11,7 @@ struct CompresCoreView: View {
     static let DEMO_FROM = "/Volumes/dev/xcode/syntropy/test/by_structure"
     static let DEMO_TO = "/Volumes/dev/xcode/syntropy/test/result/file.zip"
 
+    @State private var task: Task<Void, Never>? = nil
     @State private var compresCore: CompresCore?
     @State private var isTrimPrefix: Bool = true
     @State private var isCompressed: Bool = true
@@ -25,19 +26,19 @@ struct CompresCoreView: View {
 
                 Toggle(isOn: self.$isTrimPrefix) {
                     Text("Trim Prefix")
-                }
+                }.disabled(self.task != nil)
 
                 Toggle(isOn: self.$isCompressed) {
                     Text("Compressed")
-                }
+                }.disabled(self.task != nil)
 
                 Button("Compres") {
                     self.startCompress()
-                }
+                }.disabled(self.task != nil)
 
                 Button("Cancel") {
                     self.cancelCompress()
-                }
+                }.disabled(self.task == nil)
 
             }
 
@@ -61,18 +62,24 @@ struct CompresCoreView: View {
     }
 
     private func startCompress() {
-        self.compresCore = CompresCore(
-            from: FileManager.pathScanRecursive(Self.DEMO_FROM),
-            to: FileManager.pathToSafePath(Self.DEMO_TO),
-            preset: CompresPreset(
-                isTrimPrefix: self.isTrimPrefix,
-                compression: self.isCompressed ? .deflate : .none
+        self.task = Task {
+            self.compresCore = CompresCore(
+                from: FileManager.pathScanRecursive(Self.DEMO_FROM),
+                to: FileManager.pathToSafePath(Self.DEMO_TO),
+                preset: CompresPreset(
+                    isTrimPrefix: self.isTrimPrefix,
+                    compression: self.isCompressed ? .deflate : .none
+                )
             )
-        )
-        self.compresCore?.start()
+            self.compresCore?.start()
+        }
     }
 
     private func cancelCompress() {
+        if let task = self.task {
+            task.cancel()
+            self.task = nil
+        }
     }
 
 }
