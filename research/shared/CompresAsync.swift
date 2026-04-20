@@ -14,6 +14,7 @@ struct CompresAsync: AsyncSequence {
     public let sourcePaths: [String]
     public let archivePath: String
     public let preset: CompresPreset
+    public let sharedPrefix: String?
 
     fileprivate let archive: Archive
 
@@ -22,14 +23,17 @@ struct CompresAsync: AsyncSequence {
         to archivePath: String,
         preset: CompresPreset
     ) {
-        self.sourcePaths = sourcePaths
-        self.archivePath = archivePath
-        self.preset = preset
         do {
+            self.sourcePaths = sourcePaths
+            self.archivePath = archivePath
+            self.preset = preset
             self.archive = try Archive(
-                url: URL(fileURLWithPath: self.archivePath),
+                url: URL(fileURLWithPath: archivePath),
                 accessMode: .create
             )
+            if (self.preset.isTrimPrefix)
+                 { self.sharedPrefix = FileManager.pathsSharedPrefix(sourcePaths) }
+            else { self.sharedPrefix = nil }
         } catch {
             Logger.customLog("\(error.localizedDescription)")
             return nil
@@ -47,7 +51,6 @@ struct CompresAsync: AsyncSequence {
 struct CompresAsyncIterator: AsyncIteratorProtocol {
 
     private let sequence: CompresAsync
-    private var sharedPrefix: String?
     private let total: Int
     private var index: Int
 
@@ -55,11 +58,6 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         self.sequence = sequence
         self.total = sequence.sourcePaths.count
         self.index = 0
-        if (sequence.preset.isTrimPrefix) {
-            self.sharedPrefix = FileManager.pathsSharedPrefix(
-                sequence.sourcePaths
-            )
-        }
     }
 
     mutating func next() async -> CompresAsync.Element? {
@@ -68,7 +66,7 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
             let pregress = Double(self.index + 1) / Double(self.total)
             let sourcePath = self.sequence.sourcePaths[self.index]
             do {
-                if let sharedPrefix = self.sharedPrefix
+                if let sharedPrefix = self.sequence.sharedPrefix
                      { try await self.addFile(from: sourcePath, internalPath: sourcePath.trimPrefix(sharedPrefix)) }
                 else { try await self.addFile(from: sourcePath, internalPath: sourcePath) }
                 return CompresAsync.Element(
