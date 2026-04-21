@@ -58,7 +58,7 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
         enum Status {
             case success
             case failure(code: Int, text: String)
-            case cancellByUser
+            case cancelledByUser
         }
 
         let status: Status
@@ -95,17 +95,17 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
             )
         }
 
-        let pregress = self.calculateProgress(
+        let progress = self.calculateProgress(
             current: self.offset + self.chunkSize,
             maximum: self.totalSize
         )
 
         if Task.isCancelled {
             return FileSequence.Element(
-                status  : .cancellByUser,
+                status  : .cancelledByUser,
                 offset  : self.offset,
                 data    : nil,
-                progress: pregress
+                progress: progress
             )
         }
 
@@ -122,7 +122,7 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
             status  : .success,
             offset  : self.offset,
             data    : data,
-            progress: pregress
+            progress: progress
         )
     }
 

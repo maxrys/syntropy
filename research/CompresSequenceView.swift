@@ -77,7 +77,7 @@ struct CompresSequenceView: View {
                     switch result.status {
                         case .failure(_, let text): self.report.append("\(result.object) → " + NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append("\(result.object) → " + NSLocalizedString("success", comment: ""))
-                        case .cancellByUser       : self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))
+                        case .cancelledByUser     : self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))
                             try? FileManager.default.removeItem(
                                 at: URL(fileURLWithPath: compressSequence.archivePath)
                             )

@@ -58,7 +58,7 @@ struct FileIteratorView: View {
                     switch result.status {
                         case .failure(_, let text): self.report.append(NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append(NSLocalizedString("success", comment: "") + ": offset = \(result.offset) | progress = \(result.progress)")
-                        case .cancellByUser       : self.report.append(NSLocalizedString("Task was cancelled.", comment: "")); break process
+                        case .cancelledByUser     : self.report.append(NSLocalizedString("Task was cancelled.", comment: "")); break process
                     }
                     try? await Task.sleep(
                         nanoseconds: 10_000_000
