@@ -31,6 +31,8 @@ struct FileIteratorView: View {
                 value: self.$progress
             )
 
+            Text("Progress: \(self.progress) %")
+
             ScrollView {
                 ForEach (self.report.indices.reversed(), id: \.self) { index in
                     Text(self.report[index]).id(index)
@@ -55,8 +57,10 @@ struct FileIteratorView: View {
                 await MainActor.run {
                     self.progress = Double(index) / 100
                 }
+                if Task.isCancelled {
+                    break
+                }
             }
-            self.progress = 1.0
             self.task = nil
         }
 

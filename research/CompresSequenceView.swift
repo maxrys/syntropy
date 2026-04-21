@@ -7,7 +7,7 @@ import os
 import SwiftUI
 import ZIPFoundation
 
-struct CompressAsyncView: View {
+struct CompresSequenceView: View {
 
     static let DEMO_FROM = "/Volumes/dev/xcode/syntropy/test/by_structure"
     static let DEMO_TO = "/Volumes/dev/xcode/syntropy/test/result/file.zip"
@@ -60,7 +60,7 @@ struct CompressAsyncView: View {
 
     private func startCompress() {
         self.task = Task {
-            if let compressSequence = CompresAsync(
+            if let compressSequence = CompresSequence(
                 from: FileManager.pathScanRecursive(Self.DEMO_FROM),
                 to: FileManager.pathToSafePath(Self.DEMO_TO),
                 preset: CompresPreset(
@@ -82,7 +82,6 @@ struct CompressAsyncView: View {
                             break process
                     }
                 }
-                self.progress = 1.0
                 self.task = nil
             }
         }

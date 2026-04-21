@@ -7,9 +7,9 @@ import os
 import Foundation
 import ZIPFoundation
 
-struct CompresAsync: AsyncSequence {
+struct CompresSequence: AsyncSequence {
 
-    typealias Element = CompresStepResult
+    typealias Element = CompresSequenceIterator.StepResult
 
     public let sourcePaths: [String]
     public let archivePath: String
@@ -40,21 +40,36 @@ struct CompresAsync: AsyncSequence {
         }
     }
 
-    func makeAsyncIterator() -> CompresAsyncIterator {
-        CompresAsyncIterator(
+    func makeAsyncIterator() -> CompresSequenceIterator {
+        CompresSequenceIterator(
             root: self
         )
     }
 
 }
 
-struct CompresAsyncIterator: AsyncIteratorProtocol {
+struct CompresSequenceIterator: AsyncIteratorProtocol {
 
-    private let sequence: CompresAsync
+    struct StepResult {
+
+        enum Value {
+            case success
+            case failure(code: Int, text: String)
+            case cancellationByUser
+        }
+
+        let value: Value
+        let index: Int
+        let progress: Double
+        let object: String
+
+    }
+
+    private let sequence: CompresSequence
     private let total: Int
     private var index: Int
 
-    init(root sequence: CompresAsync) {
+    init(root sequence: CompresSequence) {
         self.sequence = sequence
         self.total = sequence.sourcePaths.count
         self.index = 0
@@ -68,7 +83,7 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
         )
     }
 
-    mutating func next() async -> CompresAsync.Element? {
+    mutating func next() async -> CompresSequence.Element? {
         if (self.index < self.total) {
 
             defer { self.index += 1 }
@@ -93,21 +108,21 @@ struct CompresAsyncIterator: AsyncIteratorProtocol {
                     from: sourcePath,
                     as: internalPath
                 )
-                return CompresAsync.Element(
+                return CompresSequence.Element(
                     value   : .success,
                     index   : self.index,
                     progress: pregress,
                     object  : sourcePath
                 )
             } catch is CancellationError {
-                return CompresAsync.Element(
+                return CompresSequence.Element(
                     value   : .cancellationByUser,
                     index   : self.index,
                     progress: pregress,
                     object  : sourcePath
                 )
             } catch let error as NSError {
-                return CompresAsync.Element(
+                return CompresSequence.Element(
                     value   : .failure(code: error.code, text: error.localizedDescription),
                     index   : self.index,
                     progress: pregress,
