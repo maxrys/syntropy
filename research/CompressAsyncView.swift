@@ -1,7 +1,7 @@
 
-/* ################################################################## */
-/* ### Copyright © 2024—2025 Maxim Rysevets. All rights reserved. ### */
-/* ################################################################## */
+/* ############################################################# */
+/* ### Copyright © 2026 Maxim Rysevets. All rights reserved. ### */
+/* ############################################################# */
 
 import os
 import SwiftUI
@@ -41,8 +41,8 @@ struct CompressAsyncView: View {
 
             }
 
-            ProgressView(
-                value: self.progress
+            ProgressCustom(
+                value: self.$progress
             )
 
             ScrollView {

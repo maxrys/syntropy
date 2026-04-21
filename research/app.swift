@@ -9,6 +9,7 @@ import SwiftUI
 
     enum Tab: Hashable {
         case compressAsyncView
+        case fileIteratorView
         case fileManagerView
     }
 
@@ -20,6 +21,9 @@ import SwiftUI
                 CompressAsyncView()
                     .tabItem { Text("CompressAsyncView") }
                     .tag(Tab.compressAsyncView)
+                FileIteratorView()
+                    .tabItem { Text("FileIteratorView") }
+                    .tag(Tab.fileIteratorView)
                 FileManagerView()
                     .tabItem { Text("FileManagerView") }
                     .tag(Tab.fileManagerView)

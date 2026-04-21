@@ -3,11 +3,8 @@
 /* ### Copyright © 2026 Maxim Rysevets. All rights reserved. ### */
 /* ############################################################# */
 
-import ZIPFoundation
+import os
+import Foundation
 
-struct CompresPreset {
-
-    let isTrimPrefix: Bool
-    let compression: CompressionMethod
-
+struct FileIterator {
 }
