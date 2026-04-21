@@ -8,19 +8,15 @@ import SwiftUI
 @main struct ThisApp: App {
 
     enum Tab: Hashable {
-        case compressCoreView
         case compressAsyncView
         case fileManagerView
     }
 
-    @State private var selection: Tab = .compressCoreView
+    @State private var selection: Tab = .compressAsyncView
 
     var body: some Scene {
         WindowGroup {
             TabView(selection: $selection) {
-                CompresCoreView()
-                    .tabItem { Text("CompresCoreView") }
-                    .tag(Tab.compressCoreView)
                 CompressAsyncView()
                     .tabItem { Text("CompressAsyncView") }
                     .tag(Tab.compressAsyncView)
