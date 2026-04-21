@@ -9,8 +9,8 @@ import ZIPFoundation
 
 struct CompresSequenceView: View {
 
-    static let DEMO_FROM = "/Volumes/dev/xcode/syntropy/test/by_structure"
-    static let DEMO_TO = "/Volumes/dev/xcode/syntropy/test/result/file.zip"
+    static let DEMO_PATH_FROM = "/Volumes/dev/xcode/syntropy/test/by_structure"
+    static let DEMO_PATH_TO = "/Volumes/dev/xcode/syntropy/test/result/file.zip"
 
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
@@ -63,8 +63,8 @@ struct CompresSequenceView: View {
     private func startCompress() {
         self.task = Task {
             if let compressSequence = CompresSequence(
-                from: FileManager.pathScanRecursive(Self.DEMO_FROM),
-                to: FileManager.pathToSafePath(Self.DEMO_TO),
+                from: FileManager.pathScanRecursive(Self.DEMO_PATH_FROM),
+                to  : FileManager.pathToSafePath   (Self.DEMO_PATH_TO),
                 preset: CompresPreset(
                     isTrimPrefix: self.isTrimPrefix,
                     compression: self.isCompressed ? .deflate : .none
@@ -74,7 +74,7 @@ struct CompresSequenceView: View {
                 self.report = []
                 process: for await result in compressSequence {
                     self.progress = result.progress
-                    switch result.value {
+                    switch result.status {
                         case .failure(_, let text): self.report.append("\(result.object) → " + NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append("\(result.object) → " + NSLocalizedString("success", comment: ""))
                         case .cancellationByUser  : self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))

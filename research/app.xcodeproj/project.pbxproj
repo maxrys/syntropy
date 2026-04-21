@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5056A82B2F977189009B89C3 /* FileIteratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82A2F97717F009B89C3 /* FileIteratorView.swift */; };
-		5056A82D2F97729B009B89C3 /* FileIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82C2F97729B009B89C3 /* FileIterator.swift */; };
+		5056A82D2F97729B009B89C3 /* FileSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82C2F97729B009B89C3 /* FileSequence.swift */; };
 		5056A8302F9774ED009B89C3 /* ProgressCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82F2F97741B009B89C3 /* ProgressCustom.swift */; };
 		5056A8322F9775E6009B89C3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A8312F9775E6009B89C3 /* View.swift */; };
 		5056A8342F97779D009B89C3 /* GeometryReaderPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A8332F97779D009B89C3 /* GeometryReaderPolyfill.swift */; };
@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		5056A82A2F97717F009B89C3 /* FileIteratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIteratorView.swift; sourceTree = "<group>"; };
-		5056A82C2F97729B009B89C3 /* FileIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIterator.swift; sourceTree = "<group>"; };
+		5056A82C2F97729B009B89C3 /* FileSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSequence.swift; sourceTree = "<group>"; };
 		5056A82F2F97741B009B89C3 /* ProgressCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustom.swift; sourceTree = "<group>"; };
 		5056A8312F9775E6009B89C3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		5056A8332F97779D009B89C3 /* GeometryReaderPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryReaderPolyfill.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 			children = (
 				50D290382F85AB16006A7304 /* CompresPreset.swift */,
 				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
-				5056A82C2F97729B009B89C3 /* FileIterator.swift */,
+				5056A82C2F97729B009B89C3 /* FileSequence.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -209,7 +209,7 @@
 				5056A8362F9778D1009B89C3 /* Color.swift in Sources */,
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
 				50D290002F845A82006A7304 /* CompresSequence.swift in Sources */,
-				5056A82D2F97729B009B89C3 /* FileIterator.swift in Sources */,
+				5056A82D2F97729B009B89C3 /* FileSequence.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
 				5056A8342F97779D009B89C3 /* GeometryReaderPolyfill.swift in Sources */,
 				50D290062F84FE41006A7304 /* CompresSequenceView.swift in Sources */,
