@@ -31,7 +31,7 @@ struct FileIteratorView: View {
                 value: self.$progress
             )
 
-            Text("Progress: \(self.progress) %")
+            Text("Progress: \(Int(self.progress * 100)) %")
 
             ScrollView {
                 ForEach (self.report.indices.reversed(), id: \.self) { index in

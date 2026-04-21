@@ -74,10 +74,9 @@
 		507501382EF19BAC00624409 /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
 				50D290382F85AB16006A7304 /* CompresPreset.swift */,
+				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
 				5056A82C2F97729B009B89C3 /* FileIterator.swift */,
-				5056A8332F97779D009B89C3 /* GeometryReaderPolyfill.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -112,6 +111,7 @@
 				50D28FEC2F83B66E006A7304 /* Date.swift */,
 				50D28FF22F8426C9006A7304 /* Double.swift */,
 				50D290012F84EF1C006A7304 /* FileManager.swift */,
+				5056A8332F97779D009B89C3 /* GeometryReaderPolyfill.swift */,
 				50D28FE82F83A279006A7304 /* Logger.swift */,
 				50D2903E2F86678F006A7304 /* Numeric.swift */,
 				50D28FEE2F83C4A1006A7304 /* String.swift */,

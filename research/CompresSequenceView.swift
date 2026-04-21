@@ -45,6 +45,8 @@ struct CompresSequenceView: View {
                 value: self.$progress
             )
 
+            Text("Progress: \(Int(self.progress * 100)) %")
+
             ScrollView {
                 ForEach (self.report.indices.reversed(), id: \.self) { index in
                     Text(self.report[index]).id(index)
