@@ -32,11 +32,11 @@ struct CompresSequenceView: View {
                 }.disabled(self.task != nil)
 
                 Button("Compres") {
-                    self.startCompress()
+                    self.onClickStart()
                 }.disabled(self.task != nil)
 
                 Button("Cancel") {
-                    self.cancelCompress()
+                    self.onClickCancel()
                 }.disabled(self.task == nil)
 
             }
@@ -60,16 +60,16 @@ struct CompresSequenceView: View {
         }
     }
 
-    private func startCompress() {
-        self.task = Task {
-            if let compressSequence = CompresSequence(
-                from: FileManager.pathScanRecursive(Self.DEMO_PATH_FROM),
-                to  : FileManager.pathToSafePath   (Self.DEMO_PATH_TO),
-                preset: CompresPreset(
-                    isTrimPrefix: self.isTrimPrefix,
-                    compression: self.isCompressed ? .deflate : .none
-                )
-            ) {
+    private func onClickStart() {
+        if let compressSequence = CompresSequence(
+            from  : FileManager.pathScanRecursive(Self.DEMO_PATH_FROM),
+            to    : FileManager.pathToSafePath   (Self.DEMO_PATH_TO),
+            preset: CompresPreset(
+                isTrimPrefix: self.isTrimPrefix,
+                compression : self.isCompressed ? .deflate : .none
+            )
+        ) {
+            self.task = Task {
                 self.progress = 0.0
                 self.report = []
                 process: for await result in compressSequence {
@@ -89,7 +89,7 @@ struct CompresSequenceView: View {
         }
     }
 
-    private func cancelCompress() {
+    private func onClickCancel() {
         if let task = self.task {
             task.cancel()
             self.task = nil

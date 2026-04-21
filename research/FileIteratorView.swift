@@ -20,11 +20,11 @@ struct FileIteratorView: View {
             HStack(spacing: 10) {
 
                 Button("Reading") {
-                    self.startReading()
+                    self.onClickStart()
                 }.disabled(self.task != nil)
 
                 Button("Cancel") {
-                    self.cancelReading()
+                    self.onClickCancel()
                 }.disabled(self.task == nil)
 
             }
@@ -48,7 +48,7 @@ struct FileIteratorView: View {
         }
     }
 
-    private func startReading() {
+    private func onClickStart() {
         if let fileSequence = FileSequence(path: Self.DEMO_PATH, chunkSize: nil) {
             self.task = Task {
                 self.progress = 0.0
@@ -67,10 +67,9 @@ struct FileIteratorView: View {
                 self.task = nil
             }
         }
-
     }
 
-    private func cancelReading() {
+    private func onClickCancel() {
         if let task = self.task {
             task.cancel()
             self.task = nil
