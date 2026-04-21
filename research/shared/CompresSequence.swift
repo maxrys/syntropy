@@ -55,7 +55,7 @@ struct CompresSequenceIterator: AsyncIteratorProtocol {
         enum Status {
             case success
             case failure(code: Int, text: String)
-            case cancellationByUser
+            case cancellByUser
         }
 
         let status: Status
@@ -116,7 +116,7 @@ struct CompresSequenceIterator: AsyncIteratorProtocol {
                 )
             } catch is CancellationError {
                 return CompresSequence.Element(
-                    status  : .cancellationByUser,
+                    status  : .cancellByUser,
                     index   : self.index,
                     progress: pregress,
                     object  : sourcePath

@@ -8,7 +8,7 @@ import SwiftUI
 
 struct FileIteratorView: View {
 
-    static let DEMO_PATH = "/Volumes/dev/xcode/syntropy/test/by_structure/big_files/bigFile1.zip"
+    static let DEMO_PATH = "/Volumes/dev/xcode/syntropy/test/by_structure/file 1.txt"
 
     @State private var task: Task<Void, Never>? = nil
     @State private var progress: Double = 0.0
@@ -49,8 +49,8 @@ struct FileIteratorView: View {
     }
 
     private func startReading() {
-        self.task = Task {
-            if let fileSequence = FileSequence(path: Self.DEMO_PATH) {
+        if let fileSequence = FileSequence(path: Self.DEMO_PATH, chunkSize: nil) {
+            self.task = Task {
                 self.progress = 0.0
                 self.report = []
                 process: for await result in fileSequence {
@@ -58,10 +58,10 @@ struct FileIteratorView: View {
                     switch result.status {
                         case .failure(_, let text): self.report.append(NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append(NSLocalizedString("success", comment: "") + ": offset = \(result.offset) | progress = \(result.progress)")
-                        case .cancellationByUser  : self.report.append(NSLocalizedString("Task was cancelled.", comment: "")); break process
+                        case .cancellByUser       : self.report.append(NSLocalizedString("Task was cancelled.", comment: "")); break process
                     }
                     try? await Task.sleep(
-                        nanoseconds: 1_000_000
+                        nanoseconds: 10_000_000
                     )
                 }
                 self.task = nil

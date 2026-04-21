@@ -14,16 +14,27 @@ struct FileSequence: AsyncSequence {
     private let chunkSize: UInt
     private let totalSize: UInt
 
-    init?(path: String, chunkSize: UInt = 0xFFFFF) {
+    init?(path: String, chunkSize: UInt? = nil) {
         do {
             guard FileManager.default.fileExists(atPath: path) else {
                 return nil
             }
-            let fileURL = URL(fileURLWithPath: path)
-            let fileSizeAttribute = try fileURL.resourceValues(forKeys: [.fileSizeKey])
-            self.handle = try FileHandle(forReadingFrom: fileURL)
-            self.totalSize = UInt(fileSizeAttribute.fileSize ?? 0)
-            self.chunkSize = chunkSize
+
+            let url = URL(fileURLWithPath: path)
+            let sizeAttribute = try url.resourceValues(forKeys: [.fileSizeKey])
+            let totalSize = UInt(sizeAttribute.fileSize ?? 0)
+
+            if (totalSize == 0) { return nil }
+            if (chunkSize == 0) { return nil }
+
+            self.totalSize = totalSize
+            if let chunkSize
+                 { self.chunkSize = chunkSize }
+            else { self.chunkSize = (totalSize / 100).fixBounds(min: 1, max: totalSize) }
+
+            self.handle = try FileHandle(
+                forReadingFrom: url
+            )
         } catch {
             Logger.customLog("\(error.localizedDescription)")
             return nil
@@ -47,7 +58,7 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
         enum Status {
             case success
             case failure(code: Int, text: String)
-            case cancellationByUser
+            case cancellByUser
         }
 
         let status: Status
@@ -79,17 +90,19 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
 
     mutating func next() async -> FileSequence.Element? {
         defer {
-            self.offset += self.chunkSize
+            self.offset = (self.offset + self.chunkSize).fixBounds(
+                max: self.totalSize
+            )
         }
 
         let pregress = self.calculateProgress(
-            current: self.offset,
+            current: self.offset + self.chunkSize,
             maximum: self.totalSize
         )
 
         if Task.isCancelled {
             return FileSequence.Element(
-                status  : .cancellationByUser,
+                status  : .cancellByUser,
                 offset  : self.offset,
                 data    : nil,
                 progress: pregress
