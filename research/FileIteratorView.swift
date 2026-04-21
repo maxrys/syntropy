@@ -60,6 +60,9 @@ struct FileIteratorView: View {
                         case .success             : self.report.append(NSLocalizedString("success", comment: "") + ": offset = \(result.offset) | progress = \(result.progress)")
                         case .cancellationByUser  : self.report.append(NSLocalizedString("Task was cancelled.", comment: "")); break process
                     }
+                    try? await Task.sleep(
+                        nanoseconds: 1_000_000
+                    )
                 }
                 self.task = nil
             }
