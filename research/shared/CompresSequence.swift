@@ -108,6 +108,20 @@ struct CompresSequenceIterator: AsyncIteratorProtocol {
                     from: sourcePath,
                     as: internalPath
                 )
+             // if let fileSequence = FileSequence(path: sourcePath, chunkSize: nil) {
+             //     var iterator = fileSequence.makeIterator()
+             //     try self.sequence.archive.addEntry(
+             //         with: internalPath,
+             //         type: .file,
+             //         uncompressedSize: Int64(fileSequence.totalSize),
+             //         compressionMethod: self.sequence.preset.compression,
+             //         bufferSize: Int(fileSequence.chunkSize),
+             //     ) { _, _ -> Data in
+             //         if Task.isCancelled { throw CancellationError() }
+             //         return iterator.next()?.data ?? Data()
+             //     }
+             // } else {
+             // }
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
@@ -147,10 +161,9 @@ struct CompresSequenceIterator: AsyncIteratorProtocol {
          // bufferSize: Int = defaultWriteChunkSize,
          // progress: Progress? = nil
         ) { position, size -> Data in
-            try file.seek(toOffset: UInt64(position))
-            let data = try file.read(upToCount: Int(size)) ?? Data()
             if Task.isCancelled { throw CancellationError() }
-            return data
+            try file.seek(toOffset: UInt64(position))
+            return try file.read(upToCount: Int(size)) ?? Data()
         }
     }
 
