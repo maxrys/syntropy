@@ -8,10 +8,10 @@ import SwiftUI
 
 struct ProgressCustom: View {
 
-    @Binding private var value: Double
+    private var value: Double
 
-    init(value: Binding<Double>) {
-        self._value = value
+    init(value: Double) {
+        self.value = value
     }
 
     var body: some View {
@@ -39,28 +39,21 @@ struct ProgressCustom: View {
 /* ############################################################# */
 
 struct ProgressCustom_Previews: PreviewProvider {
-    struct ViewWithState: View {
-        @State private var progress: Double = 0.0
-        public var body: some View {
-            VStack(spacing: 5) {
-                ProgressCustom(value: self.$progress)
-                ProgressCustom(value: .constant(0.0))
-                ProgressCustom(value: .constant(0.1))
-                ProgressCustom(value: .constant(0.2))
-                ProgressCustom(value: .constant(0.3))
-                ProgressCustom(value: .constant(0.4))
-                ProgressCustom(value: .constant(0.5))
-                ProgressCustom(value: .constant(0.6))
-                ProgressCustom(value: .constant(0.7))
-                ProgressCustom(value: .constant(0.8))
-                ProgressCustom(value: .constant(0.9))
-                ProgressCustom(value: .constant(1.0))
-                ProgressCustom(value: .constant(1.1))
-            }.padding(20).frame(width: 200)
-        }
-    }
     static public var previews: some View {
-        ViewWithState()
+        VStack(spacing: 5) {
+            ProgressCustom(value: 0.0)
+            ProgressCustom(value: 0.1)
+            ProgressCustom(value: 0.2)
+            ProgressCustom(value: 0.3)
+            ProgressCustom(value: 0.4)
+            ProgressCustom(value: 0.5)
+            ProgressCustom(value: 0.6)
+            ProgressCustom(value: 0.7)
+            ProgressCustom(value: 0.8)
+            ProgressCustom(value: 0.9)
+            ProgressCustom(value: 1.0)
+            ProgressCustom(value: 1.1)
+        }.padding(20).frame(width: 200)
     }
 }
 

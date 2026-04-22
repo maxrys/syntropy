@@ -15,7 +15,8 @@ struct CompresSequenceView: View {
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
     @State private var isCompressed: Bool = true
-    @State private var progress: Double = 0.0
+    @State private var progressTotal: Double = 0.0
+    @State private var progressLocal: Double = 0.0
     @State private var report: [String] = []
 
     var body: some View {
@@ -41,11 +42,8 @@ struct CompresSequenceView: View {
 
             }
 
-            ProgressCustom(
-                value: self.$progress
-            )
-
-            Text("Progress: \(Int(self.progress * 100)) %")
+            ProgressCustom(value: self.progressTotal)
+            ProgressCustom(value: self.progressLocal)
 
             ScrollView {
                 ForEach (self.report.indices.reversed(), id: \.self) { index in
@@ -70,11 +68,11 @@ struct CompresSequenceView: View {
             )
         ) {
             self.task = Task {
-                self.progress = 0.0
+                self.progressTotal = 0.0
                 self.report = []
                 let iterator = compressSequence.makeAsyncIterator()
                 process: while let result = await iterator.next() {
-                    self.progress = iterator.progress
+                    self.progressTotal = iterator.progress
                     switch result.status {
                         case .failure(_, let text): self.report.append("\(result.sourcePath) → " + NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append("\(result.sourcePath) → " + NSLocalizedString("success", comment: ""))

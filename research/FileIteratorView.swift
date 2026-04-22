@@ -34,7 +34,7 @@ struct FileIteratorView: View {
             }
 
             ProgressCustom(
-                value: self.$progress
+                value: self.progress
             )
 
             Text("Progress: \(Int(self.progress * 100)) %")
