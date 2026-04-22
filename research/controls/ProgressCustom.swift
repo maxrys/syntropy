@@ -41,18 +41,9 @@ struct ProgressCustom: View {
 struct ProgressCustom_Previews: PreviewProvider {
     static public var previews: some View {
         VStack(spacing: 5) {
-            ProgressCustom(value: 0.0)
-            ProgressCustom(value: 0.1)
-            ProgressCustom(value: 0.2)
-            ProgressCustom(value: 0.3)
-            ProgressCustom(value: 0.4)
-            ProgressCustom(value: 0.5)
-            ProgressCustom(value: 0.6)
-            ProgressCustom(value: 0.7)
-            ProgressCustom(value: 0.8)
-            ProgressCustom(value: 0.9)
-            ProgressCustom(value: 1.0)
-            ProgressCustom(value: 1.1)
+            ForEach(Array(stride(from: -0.1, through: 1.1, by: 0.1)), id: \.self) { value in
+                ProgressCustom(value: value)
+            }
         }.padding(20).frame(width: 200)
     }
 }
