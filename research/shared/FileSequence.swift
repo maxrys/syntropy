@@ -6,14 +6,27 @@
 import os
 import Foundation
 
-struct FileSequence: AsyncSequence {
+struct FileSequence: Sequence, IteratorProtocol {
 
-    typealias Element = FileSequenceIterator.StepResult
+    struct Result {
+        enum Status {
+            case success
+            case failure(code: Int, text: String)
+            case cancelledByUser
+        }
+        let status: Status
+        let offset: UInt
+        let data: Data?
+        let progress: Double
+    }
 
-    private let handle: FileHandle
+    typealias Element = Result
 
     public let chunkSize: UInt
     public let totalSize: UInt
+
+    private let handle: FileHandle
+    private var offset: UInt
 
     init?(path: String, chunkSize: UInt? = nil) {
         do {
@@ -29,6 +42,7 @@ struct FileSequence: AsyncSequence {
             if (chunkSize == 0) { return nil }
 
             self.totalSize = totalSize
+            self.offset = 0
             if let chunkSize
                  { self.chunkSize = chunkSize }
             else { self.chunkSize = (totalSize / 100).fixBounds(min: 1, max: 0xFFFFFF /* 16 MiB */ ) }
@@ -42,45 +56,6 @@ struct FileSequence: AsyncSequence {
         }
     }
 
-    func makeAsyncIterator() -> FileSequenceIterator {
-        FileSequenceIterator(
-            handle   : self.handle,
-            chunkSize: self.chunkSize,
-            totalSize: self.totalSize
-        )
-    }
-
-}
-
-struct FileSequenceIterator: AsyncIteratorProtocol {
-
-    struct StepResult {
-
-        enum Status {
-            case success
-            case failure(code: Int, text: String)
-            case cancelledByUser
-        }
-
-        let status: Status
-        let offset: UInt
-        let data: Data?
-        let progress: Double
-
-    }
-
-    private let handle: FileHandle
-    private let chunkSize: UInt
-    private let totalSize: UInt
-    private var offset: UInt
-
-    init(handle: FileHandle, chunkSize: UInt, totalSize: UInt) {
-        self.handle    = handle
-        self.chunkSize = chunkSize
-        self.totalSize = totalSize
-        self.offset    = 0
-    }
-
     private func calculateProgress(current: any BinaryInteger, maximum: any BinaryInteger) -> Double {
         let result = Double(current) / Double(maximum)
         return result.isNaN ? 0 : result.fixBounds(
@@ -89,7 +64,7 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
         )
     }
 
-    mutating func next() async -> FileSequence.Element? {
+    mutating func next() -> Self.Element? {
         defer {
             self.offset = (self.offset + self.chunkSize).fixBounds(
                 max: self.totalSize
@@ -102,7 +77,7 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
         )
 
         if Task.isCancelled {
-            return FileSequence.Element(
+            return Self.Element(
                 status  : .cancelledByUser,
                 offset  : self.offset,
                 data    : nil,
@@ -119,7 +94,7 @@ struct FileSequenceIterator: AsyncIteratorProtocol {
             return nil
         }
 
-        return FileSequence.Element(
+        return Self.Element(
             status  : .success,
             offset  : self.offset,
             data    : data,

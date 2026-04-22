@@ -53,7 +53,7 @@ struct FileIteratorView: View {
             self.task = Task {
                 self.progress = 0.0
                 self.report = []
-                process: for await result in fileSequence {
+                process: for result in fileSequence {
                     self.progress = result.progress
                     switch result.status {
                         case .failure(_, let text): self.report.append(NSLocalizedString("failure", comment: "") + ": " + text)
