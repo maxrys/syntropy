@@ -110,9 +110,9 @@ struct FileSequenceIteratorAsync: AsyncIteratorProtocol {
             )
         }
 
-        let data = self.handle.readData(
-            ofLength: Int(self.chunkSize)
-        )
+        let data = (try? self.handle.read(
+            upToCount: Int(self.chunkSize)
+        )) ?? Data()
 
         if (data.isEmpty) {
             self.handle.closeFile()
