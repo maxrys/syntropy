@@ -11,8 +11,9 @@ struct FileSequence: AsyncSequence {
     typealias Element = FileSequenceIterator.StepResult
 
     private let handle: FileHandle
-    private let chunkSize: UInt
-    private let totalSize: UInt
+
+    public let chunkSize: UInt
+    public let totalSize: UInt
 
     init?(path: String, chunkSize: UInt? = nil) {
         do {
@@ -30,7 +31,7 @@ struct FileSequence: AsyncSequence {
             self.totalSize = totalSize
             if let chunkSize
                  { self.chunkSize = chunkSize }
-            else { self.chunkSize = (totalSize / 100).fixBounds(min: 1, max: totalSize) }
+            else { self.chunkSize = (totalSize / 100).fixBounds(min: 1, max: 0xFFFFFF /* 16 MiB */ ) }
 
             self.handle = try FileHandle(
                 forReadingFrom: url
