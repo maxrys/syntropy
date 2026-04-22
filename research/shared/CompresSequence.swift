@@ -6,10 +6,14 @@
 import os
 import Foundation
 import ZIPFoundation
+import SwiftUI
 
 final class CompresSequence: AsyncSequence {
 
     typealias Element = CompresSequenceIterator.StepResult
+
+    @Binding var progressTotal: Double
+    @Binding var progressLocal: Double
 
     public let sourcePaths: [String]
     public let archivePath: String
@@ -21,7 +25,9 @@ final class CompresSequence: AsyncSequence {
     init?(
         from sourcePaths: [String],
         to archivePath: String,
-        preset: CompresPreset
+        preset: CompresPreset,
+        progressTotal: Binding<Double>,
+        progressLocal: Binding<Double>
     ) {
         do {
             self.sourcePaths = sourcePaths
@@ -34,6 +40,8 @@ final class CompresSequence: AsyncSequence {
             if (self.preset.isTrimPrefix)
                  { self.sharedPrefix = FileManager.pathsSharedPrefix(sourcePaths) }
             else { self.sharedPrefix = nil }
+            self._progressTotal = progressTotal
+            self._progressLocal = progressLocal
         } catch {
             Logger.customLog("\(error.localizedDescription)")
             return nil
@@ -48,7 +56,7 @@ final class CompresSequence: AsyncSequence {
 
 }
 
-final class CompresSequenceIterator: AsyncIteratorProtocol, ObservableObject {
+final class CompresSequenceIterator: AsyncIteratorProtocol {
 
     struct StepResult {
         enum Status {
@@ -58,11 +66,8 @@ final class CompresSequenceIterator: AsyncIteratorProtocol, ObservableObject {
         }
         let status: Status
         let index: Int
-        let progress: Double
         let sourcePath: String
     }
-
-    @Published var progress: Double
 
     private let sequence: CompresSequence
     private let total: Int
@@ -72,7 +77,6 @@ final class CompresSequenceIterator: AsyncIteratorProtocol, ObservableObject {
         self.sequence = sequence
         self.total = sequence.sourcePaths.count
         self.index = 0
-        self.progress = 0
     }
 
     private func calculateProgress(current: any BinaryInteger, maximum: any BinaryInteger) -> Double {
@@ -88,7 +92,8 @@ final class CompresSequenceIterator: AsyncIteratorProtocol, ObservableObject {
 
             defer { self.index += 1 }
 
-            self.progress = self.calculateProgress(
+            self.sequence.progressLocal = 0
+            self.sequence.progressTotal = self.calculateProgress(
                 current: self.index + 1,
                 maximum: self.total
             )
@@ -125,21 +130,18 @@ final class CompresSequenceIterator: AsyncIteratorProtocol, ObservableObject {
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
-                    progress  : self.progress,
                     sourcePath: sourcePath
                 )
             } catch is CancellationError {
                 return CompresSequence.Element(
                     status    : .cancelledByUser,
                     index     : self.index,
-                    progress  : self.progress,
                     sourcePath: sourcePath
                 )
             } catch let error as NSError {
                 return CompresSequence.Element(
                     status    : .failure(code: error.code, text: error.localizedDescription),
                     index     : self.index,
-                    progress  : self.progress,
                     sourcePath: sourcePath
                 )
             }
@@ -162,6 +164,8 @@ final class CompresSequenceIterator: AsyncIteratorProtocol, ObservableObject {
          // progress: Progress? = nil
         ) { position, size -> Data in
             if Task.isCancelled { throw CancellationError() }
+            self.sequence.progressLocal = self.calculateProgress(current: position, maximum: fileSize)
+         // Thread.sleep(forTimeInterval: 0.01)
             try file.seek(toOffset: UInt64(position))
             return try file.read(upToCount: Int(size)) ?? Data()
         }

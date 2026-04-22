@@ -12,11 +12,12 @@ struct CompresSequenceView: View {
     static let DEMO_PATH_FROM = "/Volumes/dev/xcode/syntropy/test/by_structure"
     static let DEMO_PATH_TO = "/Volumes/dev/xcode/syntropy/test/result/file.zip"
 
+    @State private var progressTotal: Double = 0.0
+    @State private var progressLocal: Double = 0.0
+
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
     @State private var isCompressed: Bool = true
-    @State private var progressTotal: Double = 0.0
-    @State private var progressLocal: Double = 0.0
     @State private var report: [String] = []
 
     var body: some View {
@@ -42,8 +43,8 @@ struct CompresSequenceView: View {
 
             }
 
-            ProgressCustom(value: self.progressTotal)
-            ProgressCustom(value: self.progressLocal)
+            ProgressCustom(value: self.progressTotal); Text("Progress: \(Int(self.progressTotal * 100)) %")
+            ProgressCustom(value: self.progressLocal); Text("Progress: \(Int(self.progressLocal * 100)) %")
 
             ScrollView {
                 ForEach (self.report.indices.reversed(), id: \.self) { index in
@@ -65,14 +66,14 @@ struct CompresSequenceView: View {
             preset: CompresPreset(
                 isTrimPrefix: self.isTrimPrefix,
                 compression : self.isCompressed ? .deflate : .none
-            )
+            ),
+            progressTotal: self.$progressTotal,
+            progressLocal: self.$progressLocal
         ) {
             self.task = Task {
-                self.progressTotal = 0.0
                 self.report = []
                 let iterator = compressSequence.makeAsyncIterator()
                 process: while let result = await iterator.next() {
-                    self.progressTotal = iterator.progress
                     switch result.status {
                         case .failure(_, let text): self.report.append("\(result.sourcePath) → " + NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append("\(result.sourcePath) → " + NSLocalizedString("success", comment: ""))
