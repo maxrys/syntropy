@@ -61,7 +61,7 @@ struct CompresSequenceIterator: AsyncIteratorProtocol {
         let status: Status
         let index: Int
         let progress: Double
-        let object: String
+        let sourcePath: String
 
     }
 
@@ -109,24 +109,24 @@ struct CompresSequenceIterator: AsyncIteratorProtocol {
                     as: internalPath
                 )
                 return CompresSequence.Element(
-                    status  : .success,
-                    index   : self.index,
-                    progress: progress,
-                    object  : sourcePath
+                    status    : .success,
+                    index     : self.index,
+                    progress  : progress,
+                    sourcePath: sourcePath
                 )
             } catch is CancellationError {
                 return CompresSequence.Element(
-                    status  : .cancelledByUser,
-                    index   : self.index,
-                    progress: progress,
-                    object  : sourcePath
+                    status    : .cancelledByUser,
+                    index     : self.index,
+                    progress  : progress,
+                    sourcePath: sourcePath
                 )
             } catch let error as NSError {
                 return CompresSequence.Element(
-                    status  : .failure(code: error.code, text: error.localizedDescription),
-                    index   : self.index,
-                    progress: progress,
-                    object  : sourcePath
+                    status    : .failure(code: error.code, text: error.localizedDescription),
+                    index     : self.index,
+                    progress  : progress,
+                    sourcePath: sourcePath
                 )
             }
         }

@@ -75,8 +75,8 @@ struct CompresSequenceView: View {
                 process: for await result in compressSequence {
                     self.progress = result.progress
                     switch result.status {
-                        case .failure(_, let text): self.report.append("\(result.object) → " + NSLocalizedString("failure", comment: "") + ": " + text)
-                        case .success             : self.report.append("\(result.object) → " + NSLocalizedString("success", comment: ""))
+                        case .failure(_, let text): self.report.append("\(result.sourcePath) → " + NSLocalizedString("failure", comment: "") + ": " + text)
+                        case .success             : self.report.append("\(result.sourcePath) → " + NSLocalizedString("success", comment: ""))
                         case .cancelledByUser     : self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))
                             try? FileManager.default.removeItem(
                                 at: URL(fileURLWithPath: compressSequence.archivePath)
