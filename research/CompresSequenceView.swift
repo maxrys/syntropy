@@ -72,8 +72,9 @@ struct CompresSequenceView: View {
             self.task = Task {
                 self.progress = 0.0
                 self.report = []
-                process: for await result in compressSequence {
-                    self.progress = result.progress
+                let iterator = compressSequence.makeAsyncIterator()
+                process: while let result = await iterator.next() {
+                    self.progress = iterator.progress
                     switch result.status {
                         case .failure(_, let text): self.report.append("\(result.sourcePath) → " + NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append("\(result.sourcePath) → " + NSLocalizedString("success", comment: ""))

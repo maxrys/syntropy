@@ -55,18 +55,15 @@ final class FileSequenceAsync: AsyncSequence {
 final class FileSequenceIteratorAsync: AsyncIteratorProtocol {
 
     struct StepResult {
-
         enum Status {
             case success
             case failure(code: Int, text: String)
             case cancelledByUser
         }
-
         let status: Status
         let offset: UInt
         let data: Data?
         let progress: Double
-
     }
 
     private let handle: FileHandle

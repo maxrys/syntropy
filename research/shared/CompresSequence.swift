@@ -48,22 +48,21 @@ final class CompresSequence: AsyncSequence {
 
 }
 
-final class CompresSequenceIterator: AsyncIteratorProtocol {
+final class CompresSequenceIterator: AsyncIteratorProtocol, ObservableObject {
 
     struct StepResult {
-
         enum Status {
             case success
             case failure(code: Int, text: String)
             case cancelledByUser
         }
-
         let status: Status
         let index: Int
         let progress: Double
         let sourcePath: String
-
     }
+
+    @Published var progress: Double
 
     private let sequence: CompresSequence
     private let total: Int
@@ -73,6 +72,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
         self.sequence = sequence
         self.total = sequence.sourcePaths.count
         self.index = 0
+        self.progress = 0
     }
 
     private func calculateProgress(current: any BinaryInteger, maximum: any BinaryInteger) -> Double {
@@ -88,7 +88,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
 
             defer { self.index += 1 }
 
-            let progress = self.calculateProgress(
+            self.progress = self.calculateProgress(
                 current: self.index + 1,
                 maximum: self.total
             )
@@ -125,21 +125,21 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
-                    progress  : progress,
+                    progress  : self.progress,
                     sourcePath: sourcePath
                 )
             } catch is CancellationError {
                 return CompresSequence.Element(
                     status    : .cancelledByUser,
                     index     : self.index,
-                    progress  : progress,
+                    progress  : self.progress,
                     sourcePath: sourcePath
                 )
             } catch let error as NSError {
                 return CompresSequence.Element(
                     status    : .failure(code: error.code, text: error.localizedDescription),
                     index     : self.index,
-                    progress  : progress,
+                    progress  : self.progress,
                     sourcePath: sourcePath
                 )
             }
