@@ -6,7 +6,7 @@
 import os
 import Foundation
 
-struct FileSequenceAsync: AsyncSequence {
+final class FileSequenceAsync: AsyncSequence {
 
     typealias Element = FileSequenceIteratorAsync.StepResult
 
@@ -52,7 +52,7 @@ struct FileSequenceAsync: AsyncSequence {
 
 }
 
-struct FileSequenceIteratorAsync: AsyncIteratorProtocol {
+final class FileSequenceIteratorAsync: AsyncIteratorProtocol {
 
     struct StepResult {
 
@@ -89,7 +89,7 @@ struct FileSequenceIteratorAsync: AsyncIteratorProtocol {
         )
     }
 
-    mutating func next() async -> FileSequenceAsync.Element? {
+    func next() async -> FileSequenceAsync.Element? {
         defer {
             self.offset = (self.offset + self.chunkSize).fixBounds(
                 max: self.totalSize

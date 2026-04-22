@@ -6,7 +6,7 @@
 import os
 import Foundation
 
-struct FileSequence: Sequence, IteratorProtocol {
+final class FileSequence: Sequence, IteratorProtocol {
 
     struct Result {
         enum Status {
@@ -64,7 +64,7 @@ struct FileSequence: Sequence, IteratorProtocol {
         )
     }
 
-    mutating func next() -> Self.Element? {
+    func next() -> Result? {
         defer {
             self.offset = (self.offset + self.chunkSize).fixBounds(
                 max: self.totalSize

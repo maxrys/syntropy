@@ -7,7 +7,7 @@ import os
 import Foundation
 import ZIPFoundation
 
-struct CompresSequence: AsyncSequence {
+final class CompresSequence: AsyncSequence {
 
     typealias Element = CompresSequenceIterator.StepResult
 
@@ -48,7 +48,7 @@ struct CompresSequence: AsyncSequence {
 
 }
 
-struct CompresSequenceIterator: AsyncIteratorProtocol {
+final class CompresSequenceIterator: AsyncIteratorProtocol {
 
     struct StepResult {
 
@@ -83,7 +83,7 @@ struct CompresSequenceIterator: AsyncIteratorProtocol {
         )
     }
 
-    mutating func next() async -> CompresSequence.Element? {
+    func next() async -> CompresSequence.Element? {
         if (self.index < self.total) {
 
             defer { self.index += 1 }

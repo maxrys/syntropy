@@ -23,6 +23,10 @@ struct FileIteratorView: View {
                     self.onClickStart()
                 }.disabled(self.task != nil)
 
+                Button("Reading Async") {
+                    self.onClickStart()
+                }.disabled(self.task != nil)
+
                 Button("Cancel") {
                     self.onClickCancel()
                 }.disabled(self.task == nil)
@@ -54,6 +58,27 @@ struct FileIteratorView: View {
                 self.progress = 0.0
                 self.report = []
                 process: for result in fileSequence {
+                    self.progress = result.progress
+                    switch result.status {
+                        case .failure(_, let text): self.report.append(NSLocalizedString("failure", comment: "") + ": " + text)
+                        case .success             : self.report.append(NSLocalizedString("success", comment: "") + ": offset = \(result.offset) | progress = \(result.progress)")
+                        case .cancelledByUser     : self.report.append(NSLocalizedString("Task was cancelled.", comment: "")); break process
+                    }
+                    try? await Task.sleep(
+                        nanoseconds: 10_000_000
+                    )
+                }
+                self.task = nil
+            }
+        }
+    }
+
+    private func onClickStartAsync() {
+        if let fileSequence = FileSequenceAsync(path: Self.DEMO_PATH, chunkSize: nil) {
+            self.task = Task {
+                self.progress = 0.0
+                self.report = []
+                process: for await result in fileSequence {
                     self.progress = result.progress
                     switch result.status {
                         case .failure(_, let text): self.report.append(NSLocalizedString("failure", comment: "") + ": " + text)
