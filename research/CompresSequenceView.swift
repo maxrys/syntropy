@@ -57,6 +57,7 @@ struct CompresSequenceView: View {
         .padding(20)
         .background(Color.white)
         .onDisappear {
+            self.onClickCancel()
         }
     }
 
@@ -80,7 +81,11 @@ struct CompresSequenceView: View {
                         case .failure(_, let text): self.report.append("\(result.sourcePath) → " + NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append("\(result.sourcePath) → " + NSLocalizedString("success", comment: ""))
                         case .cancelledByUser     : self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))
-                            self.onCleanUp()
+                            if let archivePath = self.archivePath {
+                                try? FileManager.default.removeItem(
+                                    at: URL(fileURLWithPath: archivePath)
+                                )
+                            }
                             break process
                     }
                 }
@@ -93,14 +98,6 @@ struct CompresSequenceView: View {
         if let task = self.task {
             task.cancel()
             self.task = nil
-        }
-    }
-
-    private func onCleanUp() {
-        if let archivePath = self.archivePath {
-            try? FileManager.default.removeItem(
-                at: URL(fileURLWithPath: archivePath)
-            )
         }
     }
 
