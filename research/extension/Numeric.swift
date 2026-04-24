@@ -13,16 +13,9 @@ extension Numeric {
         return self
     }
 
-}
-
-extension BinaryInteger {
-
-    func progress(max: Self) -> Double {
+    func progress(max: Self) -> Double where Self: BinaryInteger {
         let result = Double(self) / Double(max)
-        return result.isNaN ? 0 : result.fixBounds(
-            min: 0.0,
-            max: 1.0
-        )
+        return result.isNaN ? 0 : result.fixBounds(min: 0.0, max: 1.0)
     }
 
 }
