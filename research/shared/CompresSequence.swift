@@ -79,24 +79,13 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
         self.index = 0
     }
 
-    private func calculateProgress(current: any BinaryInteger, maximum: any BinaryInteger) -> Double {
-        let result = Double(current) / Double(maximum)
-        return result.isNaN ? 0 : result.fixBounds(
-            min: 0.0,
-            max: 1.0
-        )
-    }
-
     func next() async -> CompresSequence.Element? {
         if (self.index < self.total) {
 
             defer { self.index += 1 }
 
             self.sequence.progressLocal = 0
-            self.sequence.progressTotal = self.calculateProgress(
-                current: self.index + 1,
-                maximum: self.total
-            )
+            self.sequence.progressTotal = (self.index + 1).progress(max: self.total)
 
             let sourcePath = self.sequence.sourcePaths[
                 self.index
@@ -164,7 +153,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
          // progress: Progress? = nil
         ) { position, size -> Data in
             if Task.isCancelled { throw CancellationError() }
-            self.sequence.progressLocal = self.calculateProgress(current: position, maximum: fileSize)
+            self.sequence.progressLocal = position.progress(max: fileSize)
          // Thread.sleep(forTimeInterval: 0.01)
             try file.seek(toOffset: UInt64(position))
             return try file.read(upToCount: Int(size)) ?? Data()

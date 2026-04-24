@@ -56,14 +56,6 @@ final class FileSequence: Sequence, IteratorProtocol {
         }
     }
 
-    private func calculateProgress(current: any BinaryInteger, maximum: any BinaryInteger) -> Double {
-        let result = Double(current) / Double(maximum)
-        return result.isNaN ? 0 : result.fixBounds(
-            min: 0.0,
-            max: 1.0
-        )
-    }
-
     func next() -> Result? {
         defer {
             self.offset = (self.offset + self.chunkSize).fixBounds(
@@ -71,10 +63,7 @@ final class FileSequence: Sequence, IteratorProtocol {
             )
         }
 
-        let progress = self.calculateProgress(
-            current: self.offset + self.chunkSize,
-            maximum: self.totalSize
-        )
+        let progress = (self.offset + self.chunkSize).progress(max: self.totalSize)
 
         if Task.isCancelled {
             return Self.Element(
