@@ -19,7 +19,6 @@ struct CompresSequenceView: View {
     @State private var isTrimPrefix: Bool = true
     @State private var isCompressed: Bool = true
     @State private var report: [String] = []
-    @State private var archivePath: String? = nil
 
     var body: some View {
         VStack(spacing: 10) {
@@ -72,7 +71,6 @@ struct CompresSequenceView: View {
             progressTotal: self.$progressTotal,
             progressLocal: self.$progressLocal
         ) {
-            self.archivePath = compressSequence.archivePath
             self.task = Task {
                 self.report = []
                 let iterator = compressSequence.makeAsyncIterator()
@@ -81,11 +79,9 @@ struct CompresSequenceView: View {
                         case .failure(_, let text): self.report.append("\(result.sourcePath) → " + NSLocalizedString("failure", comment: "") + ": " + text)
                         case .success             : self.report.append("\(result.sourcePath) → " + NSLocalizedString("success", comment: ""))
                         case .cancelledByUser     : self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))
-                            if let archivePath = self.archivePath {
-                                try? FileManager.default.removeItem(
-                                    at: URL(fileURLWithPath: archivePath)
-                                )
-                            }
+                            try? FileManager.default.removeItem(
+                                at: URL(fileURLWithPath: compressSequence.archivePath)
+                            )
                             break process
                     }
                 }

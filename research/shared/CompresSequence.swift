@@ -85,7 +85,9 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
             defer { self.index += 1 }
 
             self.sequence.progressLocal = 0
-            self.sequence.progressTotal = (self.index + 1).progress(max: self.total)
+            self.sequence.progressTotal = (self.index + 1).progress(
+                max: self.total
+            )
 
             let sourcePath = self.sequence.sourcePaths[
                 self.index
@@ -114,8 +116,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
              //         if Task.isCancelled { throw CancellationError() }
              //         return iterator.next()?.data ?? Data()
              //     }
-             // } else {
-             // }
+             // } else {}
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
@@ -140,8 +141,9 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
 
     private func addFile(from sourcePath: String, as internalPath: String) async throws {
         let file = try FileHandle(forReadingFrom: URL(fileURLWithPath: sourcePath))
-        defer { try? file.close() }
         let fileSize = Int64(try file.seekToEnd())
+        defer { try? file.close() }
+        defer { if (fileSize == 0) { self.sequence.progressLocal = 1.0 } }
         try self.sequence.archive.addEntry(
             with: internalPath,
             type: .file,
@@ -153,10 +155,11 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
          // progress: Progress? = nil
         ) { position, size -> Data in
             if Task.isCancelled { throw CancellationError() }
-            self.sequence.progressLocal = position.progress(max: fileSize)
          // Thread.sleep(forTimeInterval: 0.01)
             try file.seek(toOffset: UInt64(position))
-            return try file.read(upToCount: Int(size)) ?? Data()
+            let result = try file.read(upToCount: Int(size)) ?? Data()
+            self.sequence.progressLocal = (position + Int64(size)).progress(max: fileSize)
+            return result
         }
     }
 
