@@ -65,9 +65,11 @@ import SwiftUI
                 )
             }
         }
-        NSApplication.showAppsDock()
-        NSApp.mainMenu = NSMenu.main
-        NSApplication.show() /* menu reactivation */
+        if (!ProcessInfo.isPreview) {
+            NSApplication.showAppsDock()
+            NSApp.mainMenu = NSMenu.main
+            NSApplication.show() /* menu reactivation */
+        }
     }
 
     @objc func showWindowSettings() {

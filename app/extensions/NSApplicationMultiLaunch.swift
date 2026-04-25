@@ -29,14 +29,18 @@ class NSApplicationMultiLaunch: NSObject, NSApplicationDelegate {
         if (self.launchType == .urls) { self.launchType = .icon; return }
         self.showLaunchType()
         self.onLaunchViaClickIcon()
-        NSApplication.show() /* bring the window to the foreground */
+        if (!ProcessInfo.isPreview) {
+            NSApplication.show() /* bring the window to the foreground */
+        }
     }
 
     func application(_ sender: NSApplication, open urls: [URL]) {
         if (self.launchType == .none) { self.launchType = .urls }
         self.showLaunchType()
         self.onLaunchViaReceivedURLs(urls: urls)
-        NSApplication.show() /* bring the window to the foreground */
+        if (!ProcessInfo.isPreview) {
+            NSApplication.show() /* bring the window to the foreground */
+        }
     }
 
     func applicationShouldHandleReopen(_ app: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

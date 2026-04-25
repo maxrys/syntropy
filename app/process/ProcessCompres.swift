@@ -23,9 +23,46 @@ struct ProcessCompres: View {
     }
 
     public var body: some View {
-        VStack {
-            Text(self.pathsFrom.joined(separator: "\n"))
-        }.frame(width: 500, height: 100)
+        VStack(spacing: 10) {
+
+            ProgressCustom(value: self.progressTotal)
+            ProgressCustom(value: self.progressLocal)
+
+            HStack(spacing: 10) {
+
+                Button("Compres") {
+                    self.onClickStart()
+                }.disabled(self.task != nil)
+
+                Button("Cancel") {
+                    self.onClickCancel()
+                }.disabled(self.task == nil)
+
+            }
+
+            if (!self.report.isEmpty) {
+                ScrollView {
+                    ForEach (self.report.indices.reversed(), id: \.self) { index in
+                        Text(self.report[index]).id(index)
+                    }
+                }.background(Color.white)
+            }
+
+        }
+        .padding(20)
+        .onDisappear {
+            self.onClickCancel()
+        }
+    }
+
+    private func onClickStart() {
+    }
+
+    private func onClickCancel() {
+        if let task = self.task {
+            task.cancel()
+            self.task = nil
+        }
     }
 
 }
@@ -43,5 +80,5 @@ struct ProcessCompres: View {
             "/test/2",
             "/test/3",
         ]
-    )
+    ).frame(width: 400)
 }
