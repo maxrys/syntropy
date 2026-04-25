@@ -90,6 +90,9 @@
         }
       }
     },
+    "failure" : {
+
+    },
     "Files..." : {
       "localizations" : {
         "ru" : {
@@ -190,6 +193,9 @@
         }
       }
     },
+    "success" : {
+
+    },
     "Syntropy Archiver" : {
       "localizations" : {
         "ru" : {
@@ -229,6 +235,9 @@
           }
         }
       }
+    },
+    "Task was cancelled." : {
+
     },
     "Test" : {
       "localizations" : {

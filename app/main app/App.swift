@@ -103,7 +103,7 @@ import SwiftUI
                         size: CGSize(width: 600, height: 100),
                         delegate: self,
                         view: ProcessCompres(
-                            pathsFrom: appURL.paths
+                            appURLPaths: appURL.paths
                         )
                     )
                 case .extract:
