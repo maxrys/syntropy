@@ -7,7 +7,7 @@ import Foundation
 
 extension FileManager {
 
-    static public func pathScanRecursive(_ path: String) -> [String] {
+    static public func pathScanRecursive(_ path: String, filter: Set<FileAttributeType> = [.typeRegular]) -> [String] {
         var result: [String] = []
         let enumerator = Self.default.enumerator(
             at: URL(fileURLWithPath: path),
@@ -17,7 +17,7 @@ extension FileManager {
             for case let url as URL in enumerator {
                 if let attributes = try? Self.default.attributesOfItem(atPath: url.path) {
                     if let type = attributes[.type] as? FileAttributeType {
-                        if type == .typeRegular {
+                        if filter.contains(type) {
                             result.append(url.path)
                         }
                     }
