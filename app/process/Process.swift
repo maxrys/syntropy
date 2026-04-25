@@ -8,7 +8,7 @@ import ZIPFoundation
 
 struct Process: View {
 
-    let appURL: AppURL
+    let appURL: AppIncomingURL
 
     public var body: some View {
         VStack {
@@ -33,6 +33,8 @@ struct Process: View {
 
 #Preview {
     Process(
-        appURL: AppURL(operationType: .compres, ["/test"])
+        appURL: AppIncomingURL(
+            operationType: .compres, ["/test"]
+        )
     )
 }

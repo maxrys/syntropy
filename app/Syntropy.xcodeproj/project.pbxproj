@@ -54,12 +54,12 @@
 		50D28FB12F7BA7D6006A7304 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FAD2F7BA759006A7304 /* URL.swift */; };
 		50D28FB32F7BA80D006A7304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D28FB22F7BA80D006A7304 /* Assets.xcassets */; };
 		50D28FB52F7D7870006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB42F7D7870006A7304 /* Numeric.swift */; };
-		50D28FB82F7E60BC006A7304 /* ContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB72F7E60BA006A7304 /* ContextType.swift */; };
-		50D28FB92F7E60BC006A7304 /* ContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB72F7E60BA006A7304 /* ContextType.swift */; };
+		50D28FB82F7E60BC006A7304 /* FinderContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB72F7E60BA006A7304 /* FinderContextType.swift */; };
+		50D28FB92F7E60BC006A7304 /* FinderContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FB72F7E60BA006A7304 /* FinderContextType.swift */; };
 		50D28FBC2F7FA07E006A7304 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBB2F7FA07E006A7304 /* OperationType.swift */; };
 		50D28FBD2F7FA07E006A7304 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBB2F7FA07E006A7304 /* OperationType.swift */; };
-		50D28FBF2F7FF8AC006A7304 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppURL.swift */; };
-		50D28FC02F7FF8AC006A7304 /* AppURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppURL.swift */; };
+		50D28FBF2F7FF8AC006A7304 /* AppIncomingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppIncomingURL.swift */; };
+		50D28FC02F7FF8AC006A7304 /* AppIncomingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppIncomingURL.swift */; };
 		50D28FC22F82771A006A7304 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FC12F82767F006A7304 /* Process.swift */; };
 		50D28FCC2F82DA0D006A7304 /* ProgressCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */; };
 		50D28FCE2F82DA55006A7304 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCD2F82DA55006A7304 /* Date.swift */; };
@@ -141,9 +141,9 @@
 		50D28FAD2F7BA759006A7304 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		50D28FB22F7BA80D006A7304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50D28FB42F7D7870006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
-		50D28FB72F7E60BA006A7304 /* ContextType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextType.swift; sourceTree = "<group>"; };
+		50D28FB72F7E60BA006A7304 /* FinderContextType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderContextType.swift; sourceTree = "<group>"; };
 		50D28FBB2F7FA07E006A7304 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
-		50D28FBE2F7FF89F006A7304 /* AppURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppURL.swift; sourceTree = "<group>"; };
+		50D28FBE2F7FF89F006A7304 /* AppIncomingURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIncomingURL.swift; sourceTree = "<group>"; };
 		50D28FC12F82767F006A7304 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustom.swift; sourceTree = "<group>"; };
 		50D28FCD2F82DA55006A7304 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -257,8 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				503D1B422F320014005B8A98 /* _const.swift */,
-				50D28FBE2F7FF89F006A7304 /* AppURL.swift */,
-				50D28FB72F7E60BA006A7304 /* ContextType.swift */,
+				50D28FBE2F7FF89F006A7304 /* AppIncomingURL.swift */,
+				50D28FB72F7E60BA006A7304 /* FinderContextType.swift */,
 				50D28FBB2F7FA07E006A7304 /* OperationType.swift */,
 				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
 				50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */,
@@ -457,7 +457,7 @@
 				50CEA0B52F4E4CC7001006CF /* Logger.swift in Sources */,
 				50D28FBC2F7FA07E006A7304 /* OperationType.swift in Sources */,
 				50D28FD22F82E916006A7304 /* ValueState.swift in Sources */,
-				50D28FBF2F7FF8AC006A7304 /* AppURL.swift in Sources */,
+				50D28FBF2F7FF8AC006A7304 /* AppIncomingURL.swift in Sources */,
 				503D1B4A2F32009C005B8A98 /* TabCustom.swift in Sources */,
 				50D28FA42F7AC584006A7304 /* NSApplication.swift in Sources */,
 				50D28FA52F7AC584006A7304 /* NSApplicationMultiLaunch.swift in Sources */,
@@ -467,7 +467,7 @@
 				50D28FCC2F82DA0D006A7304 /* ProgressCustom.swift in Sources */,
 				503D1B5E2F320193005B8A98 /* Extraction.swift in Sources */,
 				503D1B5F2F320193005B8A98 /* Compression.swift in Sources */,
-				50D28FB82F7E60BC006A7304 /* ContextType.swift in Sources */,
+				50D28FB82F7E60BC006A7304 /* FinderContextType.swift in Sources */,
 				503D1B602F320193005B8A98 /* Settings.swift in Sources */,
 				503D1B612F320193005B8A98 /* Presets.swift in Sources */,
 				503D1B532F3200C0005B8A98 /* ToolbarCustom_Menu.swift in Sources */,
@@ -495,11 +495,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D28FB12F7BA7D6006A7304 /* URL.swift in Sources */,
-				50D28FB92F7E60BC006A7304 /* ContextType.swift in Sources */,
+				50D28FB92F7E60BC006A7304 /* FinderContextType.swift in Sources */,
 				50CEA0B72F4E4CE5001006CF /* Logger.swift in Sources */,
 				50D2902D2F85824C006A7304 /* Numeric.swift in Sources */,
 				503D1B692F32022F005B8A98 /* FinderSync.swift in Sources */,
-				50D28FC02F7FF8AC006A7304 /* AppURL.swift in Sources */,
+				50D28FC02F7FF8AC006A7304 /* AppIncomingURL.swift in Sources */,
 				50D28FAC2F7ACDE2006A7304 /* String.swift in Sources */,
 				503D1B732F32027F005B8A98 /* _const.swift in Sources */,
 				50D28FBD2F7FA07E006A7304 /* OperationType.swift in Sources */,

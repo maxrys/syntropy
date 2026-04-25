@@ -30,7 +30,7 @@ import SwiftUI
 
     override func onLaunchViaReceivedURLs(urls: [URL]) {
         for url in urls {
-            if let appURL = AppURL(decode: url) {
+            if let appURL = AppIncomingURL(decode: url) {
                 self.showWindowProcess(appURL)
             }
         }
@@ -85,7 +85,7 @@ import SwiftUI
         }
     }
 
-    func showWindowProcess(_ appURL: AppURL) {
+    func showWindowProcess(_ appURL: AppIncomingURL) {
         let ID = "\(WINDOW_PROCESS_ID_PREFIX)\(appURL.hashValue)"
         Logger.customLog("Window \"Process\" will show | ID: \(ID)")
         if let windowProcess = NSWindow.customWindows[ID] {

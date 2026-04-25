@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct AppURL: Codable, Hashable {
+struct AppIncomingURL: Codable, Hashable {
 
     public private(set) var operationType: OperationType
     public private(set) var paths: [String] = []

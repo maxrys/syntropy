@@ -64,7 +64,7 @@ class FinderSync: FIFinderSync {
         }
         let menu = NSMenu(title: Self.MENU_TITLE_LOCALIZED)
         if (menuKind == .contextualMenuForItems || menuKind == .contextualMenuForContainer) {
-            if let contextType = ContextType(self.selectedURLs) {
+            if let contextType = FinderContextType(self.selectedURLs) {
                 switch contextType {
                     case .compres: menu.addItem(self.menuItemForCompres)
                     case .extract: menu.addItem(self.menuItemForExtract)
@@ -83,7 +83,7 @@ class FinderSync: FIFinderSync {
         }
 
         if (menuItem.tag == 0) {
-            if let appURLdata = AppURL(operationType: .compres, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let appURLdata = AppIncomingURL(operationType: .compres, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 if let resultURL = URL(string: URL.SCHEME_FOR_PROCESS + "://json?data=" + appURLdata) {
                     NSWorkspace.shared.open(
                         resultURL
@@ -92,7 +92,7 @@ class FinderSync: FIFinderSync {
             }
         }
         if (menuItem.tag == 1) {
-            if let appURLdata = AppURL(operationType: .extract, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let appURLdata = AppIncomingURL(operationType: .extract, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 if let resultURL = URL(string: URL.SCHEME_FOR_PROCESS + "://json?data=" + appURLdata) {
                     NSWorkspace.shared.open(
                         resultURL
