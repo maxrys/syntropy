@@ -8,7 +8,14 @@ import ZIPFoundation
 
 struct Process: View {
 
-    let appURL: AppIncomingURL
+    @State private var progressTotal: Double = 0.0
+    @State private var progressLocal: Double = 0.0
+
+    private let appURL: AppIncomingURL
+
+    init(appURL: AppIncomingURL) {
+        self.appURL = appURL
+    }
 
     public var body: some View {
         VStack {
