@@ -65,7 +65,7 @@ import SwiftUI
                 )
             }
         }
-        if (!ProcessInfo.isPreview) {
+        if (!NSApplication.isXCodePreview) {
             NSApplication.showAppsDock()
             NSApp.mainMenu = NSMenu.main
             NSApplication.show() /* menu reactivation */

@@ -29,7 +29,7 @@ class NSApplicationMultiLaunch: NSObject, NSApplicationDelegate {
         if (self.launchType == .urls) { self.launchType = .icon; return }
         self.showLaunchType()
         self.onLaunchViaClickIcon()
-        if (!ProcessInfo.isPreview) {
+        if (!NSApplication.isXCodePreview) {
             NSApplication.show() /* bring the window to the foreground */
         }
     }
@@ -38,7 +38,7 @@ class NSApplicationMultiLaunch: NSObject, NSApplicationDelegate {
         if (self.launchType == .none) { self.launchType = .urls }
         self.showLaunchType()
         self.onLaunchViaReceivedURLs(urls: urls)
-        if (!ProcessInfo.isPreview) {
+        if (!NSApplication.isXCodePreview) {
             NSApplication.show() /* bring the window to the foreground */
         }
     }
