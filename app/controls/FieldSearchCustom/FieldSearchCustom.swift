@@ -38,7 +38,8 @@ struct FieldSearchCustom: View {
                     y: 0
                 )
         )
-        .focusEffect(RoundedRectangle(cornerRadius: 5))
+        .contentShape(RoundedRectangle(cornerRadius: 5))
+        .focusEffect (RoundedRectangle(cornerRadius: 5))
         .overlayPolyfill(alignment: .leading) { self.IconView() }
         .overlayPolyfill(alignment: .trailing) {
             if (!self.text.isEmpty) {
@@ -65,8 +66,9 @@ struct FieldSearchCustom: View {
                         Color.fieldSearch.buttonResetBackgroundDark :
                         Color.fieldSearch.buttonResetBackground
                 )
-                .clipShape(Circle())
-                .focusEffect(Circle())
+                .clipShape   (Circle())
+                .contentShape(Circle())
+                .focusEffect (Circle())
         }
         .buttonStyle(.plain)
         .pointerStyleLinkPolyfill()

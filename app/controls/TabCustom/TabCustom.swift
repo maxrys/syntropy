@@ -121,7 +121,9 @@ fileprivate struct TabCustom_HeadTitle: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(style: StrokeStyle(lineWidth: 4))
                             .foregroundPolyfill(self.colorBorder)
-                    }.focusEffect(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .contentShape(RoundedRectangle(cornerRadius: 10))
+                    .focusEffect (RoundedRectangle(cornerRadius: 10))
             )
         }
         .buttonStyle(.plain)

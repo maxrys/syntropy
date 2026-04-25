@@ -68,7 +68,8 @@ struct ToolbarCustom_Menu: ToolbarCustom_Item_Protocol {
 
     @ViewBuilder private func IconView() -> some View {
         self.icon
-            .focusEffect(RoundedRectangle(cornerRadius: 5))
+            .contentShape(RoundedRectangle(cornerRadius: 5))
+            .focusEffect (RoundedRectangle(cornerRadius: 5))
             .font(.system(size: 17))
             .foregroundPolyfill(
                 self.colorScheme == .dark ?
