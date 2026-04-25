@@ -19,6 +19,18 @@ struct CompresSequenceView: View {
     @State private var isCompressed: Bool = true
     @State private var report: [String] = []
 
+    private var pathsFrom: [String] {FileManager.pathScanRecursive(Self.DEMO_PATH_FROM)}
+    private var pathTo:     String  {FileManager.pathToSafePath   (Self.DEMO_PATH_TO  )}
+    private var preset: CompresPreset {
+        CompresPreset(
+            isTrimPrefix: self.isTrimPrefix,
+            compression : self.isCompressed ? .deflate : .none
+        )
+    }
+
+    init() {
+    }
+
     var body: some View {
         VStack(spacing: 10) {
 
@@ -61,12 +73,9 @@ struct CompresSequenceView: View {
 
     private func onClickStart() {
         if let compressSequence = CompresSequence(
-            from  : FileManager.pathScanRecursive(Self.DEMO_PATH_FROM),
-            to    : FileManager.pathToSafePath   (Self.DEMO_PATH_TO),
-            preset: CompresPreset(
-                isTrimPrefix: self.isTrimPrefix,
-                compression : self.isCompressed ? .deflate : .none
-            ),
+            from         : self.pathsFrom,
+            to           : self.pathTo,
+            preset       : self.preset,
             progressTotal: self.$progressTotal,
             progressLocal: self.$progressLocal
         ) {
