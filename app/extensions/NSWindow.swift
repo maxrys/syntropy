@@ -34,6 +34,7 @@ extension NSWindow {
         delegate: any NSWindowDelegate,
         view: some View
     ) -> Bool {
+
         if let window = Self.customWindows[ID] {
             window.show()
             return true

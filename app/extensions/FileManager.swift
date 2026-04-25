@@ -7,7 +7,7 @@ import Foundation
 
 extension FileManager {
 
-    static public func pathScanRecursuve(_ path: String) -> [String] {
+    static public func pathScanRecursive(_ path: String) -> [String] {
         var result: [String] = []
         let enumerator = Self.default.enumerator(
             at: URL(fileURLWithPath: path),

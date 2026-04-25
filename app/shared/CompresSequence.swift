@@ -104,19 +104,6 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                     from: sourcePath,
                     as: internalPath
                 )
-             // if let fileSequence = FileSequence(path: sourcePath, chunkSize: nil) {
-             //     var iterator = fileSequence.makeIterator()
-             //     try self.sequence.archive.addEntry(
-             //         with: internalPath,
-             //         type: .file,
-             //         uncompressedSize: Int64(fileSequence.totalSize),
-             //         compressionMethod: self.sequence.preset.compression,
-             //         bufferSize: Int(fileSequence.chunkSize),
-             //     ) { _, _ -> Data in
-             //         if Task.isCancelled { throw CancellationError() }
-             //         return iterator.next()?.data ?? Data()
-             //     }
-             // } else {}
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
@@ -148,14 +135,9 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
             with: internalPath,
             type: .file,
             uncompressedSize: fileSize,
-         // modificationDate: Date = Date(),
-         // permissions: UInt16? = nil,
             compressionMethod: self.sequence.preset.compression,
-         // bufferSize: Int = defaultWriteChunkSize,
-         // progress: Progress? = nil
         ) { position, size -> Data in
             if Task.isCancelled { throw CancellationError() }
-         // Thread.sleep(forTimeInterval: 0.01)
             try file.seek(toOffset: UInt64(position))
             let result = try file.read(upToCount: Int(size)) ?? Data()
             self.sequence.progressLocal = (position + Int64(size)).progress(max: fileSize)
