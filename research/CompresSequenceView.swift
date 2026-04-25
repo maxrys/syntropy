@@ -14,7 +14,6 @@ struct CompresSequenceView: View {
 
     @State private var progressTotal: Double = 0.0
     @State private var progressLocal: Double = 0.0
-
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
     @State private var isCompressed: Bool = true

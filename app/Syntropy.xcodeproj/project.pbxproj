@@ -59,7 +59,7 @@
 		50D28FBC2F7FA07E006A7304 /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBB2F7FA07E006A7304 /* OperationType.swift */; };
 		50D28FBF2F7FF8AC006A7304 /* AppIncomingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppIncomingURL.swift */; };
 		50D28FC02F7FF8AC006A7304 /* AppIncomingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FBE2F7FF89F006A7304 /* AppIncomingURL.swift */; };
-		50D28FC22F82771A006A7304 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FC12F82767F006A7304 /* Process.swift */; };
+		50D28FC22F82771A006A7304 /* ProcessCompres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FC12F82767F006A7304 /* ProcessCompres.swift */; };
 		50D28FCC2F82DA0D006A7304 /* ProgressCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */; };
 		50D28FCE2F82DA55006A7304 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCD2F82DA55006A7304 /* Date.swift */; };
 		50D28FD02F82DB0C006A7304 /* TimelineViewPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */; };
@@ -145,7 +145,7 @@
 		50D28FB72F7E60BA006A7304 /* FinderContextType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderContextType.swift; sourceTree = "<group>"; };
 		50D28FBB2F7FA07E006A7304 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
 		50D28FBE2F7FF89F006A7304 /* AppIncomingURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIncomingURL.swift; sourceTree = "<group>"; };
-		50D28FC12F82767F006A7304 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
+		50D28FC12F82767F006A7304 /* ProcessCompres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessCompres.swift; sourceTree = "<group>"; };
 		50D28FCA2F82DA0D006A7304 /* ProgressCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustom.swift; sourceTree = "<group>"; };
 		50D28FCD2F82DA55006A7304 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewPolyfill.swift; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 		50D28FBA2F7F967B006A7304 /* process */ = {
 			isa = PBXGroup;
 			children = (
-				50D28FC12F82767F006A7304 /* Process.swift */,
+				50D28FC12F82767F006A7304 /* ProcessCompres.swift */,
 			);
 			path = process;
 			sourceTree = "<group>";
@@ -455,7 +455,7 @@
 				503D1B3E2F31FF52005B8A98 /* Array.swift in Sources */,
 				50D28F952F7A9D4D006A7304 /* Color.swift in Sources */,
 				50D28FAE2F7BA759006A7304 /* URL.swift in Sources */,
-				50D28FC22F82771A006A7304 /* Process.swift in Sources */,
+				50D28FC22F82771A006A7304 /* ProcessCompres.swift in Sources */,
 				503D1B3F2F31FF52005B8A98 /* String.swift in Sources */,
 				50D28F9C2F7AB03D006A7304 /* TabCustomColors.swift in Sources */,
 				503D1B492F32009C005B8A98 /* TabCustom_Item.swift in Sources */,

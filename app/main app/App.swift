@@ -91,19 +91,33 @@ import SwiftUI
         if let windowProcess = NSWindow.customWindows[ID] {
             windowProcess.show()
         } else {
-            _ = NSWindow.makeAndShowFromSwiftUIView(
-                ID: ID,
-                title: appURL.operationType == .extract ?
-                    WINDOW_PROCESS_EXTRACT_TITLE_LOCALIZED :
-                    WINDOW_PROCESS_COMPRES_TITLE_LOCALIZED,
-                styleMask: [.titled, .closable],
-                level: .floating,
-                size: CGSize(width: 600, height: 100),
-                delegate: self,
-                view: Process(
-                    appURL: appURL
-                )
-            )
+            switch appURL.operationType {
+                case .compres:
+                    _ = NSWindow.makeAndShowFromSwiftUIView(
+                        ID: ID,
+                        title: WINDOW_PROCESS_COMPRES_TITLE_LOCALIZED,
+                        styleMask: [.titled, .closable],
+                        level: .floating,
+                        size: CGSize(width: 600, height: 100),
+                        delegate: self,
+                        view: ProcessCompres(
+                            pathsFrom: appURL.paths
+                        )
+                    )
+                case .extract:
+                 // _ = NSWindow.makeAndShowFromSwiftUIView(
+                 //     ID: ID,
+                 //     title: WINDOW_PROCESS_EXTRACT_TITLE_LOCALIZED,
+                 //     styleMask: [.titled, .closable],
+                 //     level: .floating,
+                 //     size: CGSize(width: 600, height: 100),
+                 //     delegate: self,
+                 //     view: ProcessExtract(
+                 //         pathsFrom: appURL.paths
+                 //     )
+                 // )
+                    break
+            }
         }
     }
 

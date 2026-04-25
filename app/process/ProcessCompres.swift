@@ -6,28 +6,26 @@
 import SwiftUI
 import ZIPFoundation
 
-struct Process: View {
+struct ProcessCompres: View {
 
     @State private var progressTotal: Double = 0.0
     @State private var progressLocal: Double = 0.0
+    @State private var task: Task<Void, Never>? = nil
+    @State private var isTrimPrefix: Bool = true
+    @State private var isCompressed: Bool = true
+    @State private var report: [String] = []
 
-    private let appURL: AppIncomingURL
+    private let pathsFrom: [String]
+    private let pathTo: String = ""
 
-    init(appURL: AppIncomingURL) {
-        self.appURL = appURL
+    init(pathsFrom: [String]) {
+        self.pathsFrom = pathsFrom
     }
 
     public var body: some View {
         VStack {
-            Text(self.appURL.operationType.rawValue)
-            Text(self.appURL.paths.joined(separator: "\n"))
+            Text(self.pathsFrom.joined(separator: "\n"))
         }.frame(width: 500, height: 100)
-    }
-
-    func processCompres() {
-    }
-
-    func processExtract() {
     }
 
 }
@@ -39,9 +37,11 @@ struct Process: View {
 /* ############################################################# */
 
 #Preview {
-    Process(
-        appURL: AppIncomingURL(
-            operationType: .compres, ["/test"]
-        )
+    ProcessCompres(
+        pathsFrom: [
+            "/test/1",
+            "/test/2",
+            "/test/3",
+        ]
     )
 }
