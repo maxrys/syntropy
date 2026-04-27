@@ -23,21 +23,17 @@ extension FileManager {
 
     static public func pathScanRecursive(_ path: String) -> ScanRecursiveResult {
         var result = ScanRecursiveResult()
+        let keys: Set<URLResourceKey> = [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey]
         let enumerator = Self.default.enumerator(
             at: URL(fileURLWithPath: path),
-            includingPropertiesForKeys: nil
+            includingPropertiesForKeys: Array(keys)
         )
         if let enumerator {
             for case let url as URL in enumerator {
-                if let attributes = try? Self.default.attributesOfItem(atPath: url.path) {
-                    if let type = attributes[.type] as? FileAttributeType {
-                        switch type {
-                            case .typeDirectory   : result.directories.append(url.path.addSuffixIfMissing("/"))
-                            case .typeRegular     : result.files      .append(url.path)
-                            case .typeSymbolicLink: result.links      .append(url.path)
-                            default: break
-                        }
-                    }
+                if let attributes = try? url.resourceValues(forKeys: keys) {
+                    if (attributes.isDirectory    ?? false) { result.directories.append(url.path.addSuffixIfMissing("/")) }
+                    if (attributes.isRegularFile  ?? false) { result.files      .append(url.path) }
+                    if (attributes.isSymbolicLink ?? false) { result.links      .append(url.path) }
                 }
             }
         }
