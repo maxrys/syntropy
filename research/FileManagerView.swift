@@ -16,7 +16,6 @@ struct FileManagerView: View {
                     "/Volumes/dev/xcode/syntropy/test/by_structure"
                 )
                 dump(scanResult)
-                dump(scanResult.emptyDirectories)
             }
 
             Button("FileManager.pathToSafePath()") {

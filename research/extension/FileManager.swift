@@ -7,36 +7,42 @@ import Foundation
 
 extension FileManager {
 
-    public struct ScanRecursiveResult {
-        public var directories: [String] = []
-        public var files      : [String] = []
-        public var links      : [String] = []
-        public var emptyDirectories: [String] {
-            self.directories.filter { checkingPath in
-                let hasChild = self.files      .contains { filePath      in                                  filePath     .hasPrefix(checkingPath) } ||
-                               self.links      .contains { linkPath      in                                  linkPath     .hasPrefix(checkingPath) } ||
-                               self.directories.contains { directoryPath in directoryPath != checkingPath && directoryPath.hasPrefix(checkingPath) }
-                return !hasChild
-            }
-        }
+    public class ScanRecursiveResult {
+        public var files           : [String] = []
+        public var links           : [String] = []
+        public var directories     : [String] = []
+        public var emptyDirectories: [String] = []
     }
 
-    static public func pathScanRecursive(_ path: String) -> ScanRecursiveResult {
-        var result = ScanRecursiveResult()
-        let keys: Set<URLResourceKey> = [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey]
-        let enumerator = Self.default.enumerator(
-            at: URL(fileURLWithPath: path),
-            includingPropertiesForKeys: Array(keys)
-        )
-        if let enumerator {
-            for case let url as URL in enumerator {
-                if let attributes = try? url.resourceValues(forKeys: keys) {
-                    if (attributes.isDirectory    ?? false) { result.directories.append(url.path.addSuffixIfMissing("/")) }
-                    if (attributes.isRegularFile  ?? false) { result.files      .append(url.path) }
-                    if (attributes.isSymbolicLink ?? false) { result.links      .append(url.path) }
+    static public func pathScanRecursive(_ basePath: String) -> ScanRecursiveResult? {
+        guard let checkingItem = try? URL(fileURLWithPath: basePath).resourceValues(
+            forKeys: [.isDirectoryKey]
+        ), checkingItem.isDirectory == true else {
+            return nil
+        }
+        let result = ScanRecursiveResult()
+        func scanDirectory(_ path: String) -> Void {
+            if let urls = try? Self.default.contentsOfDirectory(at: URL(fileURLWithPath: path), includingPropertiesForKeys: nil) {
+                if (!urls.isEmpty) {
+                    for url in urls {
+                        if let attributes = try? url.resourceValues(forKeys: [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey]) {
+                            if (attributes.isRegularFile  ?? false) { result.files.append(url.path) }
+                            if (attributes.isSymbolicLink ?? false) { result.links.append(url.path) }
+                            if (attributes.isDirectory    ?? false) {
+                                let directoryPath = url.path.addSuffixIfMissing("/")
+                                result.directories.append(directoryPath)
+                                scanDirectory(directoryPath)
+                            }
+                        }
+                    }
+                } else {
+                    result.emptyDirectories.append(
+                        path.addSuffixIfMissing("/")
+                    )
                 }
             }
         }
+        scanDirectory(basePath)
         return result
     }
 
