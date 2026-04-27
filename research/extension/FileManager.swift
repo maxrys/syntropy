@@ -50,10 +50,11 @@ extension FileManager {
             let parentPath      = url.parentPath
             let objectName      = url.pathName
             let objectExtension = url.pathExtension
+            let suffux          = path.hasSuffix("/") ? "/" : ""
             let timeMark        = Date().ISO8601Mono
             if (objectExtension.isEmpty)
-                 { return "\(parentPath)/\(objectName)-\(timeMark)" }
-            else { return "\(parentPath)/\(objectName)-\(timeMark).\(objectExtension)" }
+                 { return "\(parentPath)/\(objectName)-\(timeMark)\(suffux)" }
+            else { return "\(parentPath)/\(objectName)-\(timeMark).\(objectExtension)\(suffux)" }
         } else {
             return path
         }
