@@ -7,8 +7,22 @@ import Foundation
 
 extension FileManager {
 
-    static public func pathScanRecursive(_ path: String, filter: Set<FileAttributeType> = [.typeRegular]) -> [String] {
-        var result: [String] = []
+    public struct ScanRecursiveResult {
+        public var directories: [String] = []
+        public var files      : [String] = []
+        public var links      : [String] = []
+        public var emptyDirectories: [String] {
+            self.directories.filter { checkingPath in
+                let hasChild = self.files      .contains { filePath      in                                  filePath     .hasPrefix(checkingPath) } ||
+                               self.links      .contains { linkPath      in                                  linkPath     .hasPrefix(checkingPath) } ||
+                               self.directories.contains { directoryPath in directoryPath != checkingPath && directoryPath.hasPrefix(checkingPath) }
+                return !hasChild
+            }
+        }
+    }
+
+    static public func pathScanRecursive(_ path: String) -> ScanRecursiveResult {
+        var result = ScanRecursiveResult()
         let enumerator = Self.default.enumerator(
             at: URL(fileURLWithPath: path),
             includingPropertiesForKeys: nil
@@ -17,8 +31,11 @@ extension FileManager {
             for case let url as URL in enumerator {
                 if let attributes = try? Self.default.attributesOfItem(atPath: url.path) {
                     if let type = attributes[.type] as? FileAttributeType {
-                        if filter.contains(type) {
-                            result.append(url.path)
+                        switch type {
+                            case .typeDirectory   : result.directories.append(url.path.addSuffixIfMissing("/"))
+                            case .typeRegular     : result.files      .append(url.path)
+                            case .typeSymbolicLink: result.links      .append(url.path)
+                            default: break
                         }
                     }
                 }

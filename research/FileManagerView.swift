@@ -12,29 +12,11 @@ struct FileManagerView: View {
         VStack(spacing: 10) {
 
             Button("FileManager.pathScanRecursive()") {
-                dump(
-                    FileManager.pathScanRecursive(
-                        "/Volumes/dev/xcode/syntropy/test/by_structure"
-                    )
+                let scanResult = FileManager.pathScanRecursive(
+                    "/Volumes/dev/xcode/syntropy/test/by_structure"
                 )
-            }
-
-            Button("FileManager.pathScanRecursive(filter: typeDirectory)") {
-                dump(
-                    FileManager.pathScanRecursive(
-                        "/Volumes/dev/xcode/syntropy/test/by_structure",
-                        filter: [.typeDirectory]
-                    )
-                )
-            }
-
-            Button("FileManager.pathScanRecursive(filter: typeDirectory)") {
-                dump(
-                    FileManager.pathScanRecursive(
-                        "/Volumes/dev/xcode/syntropy/test/by_structure",
-                        filter: [.typeDirectory, .typeRegular]
-                    )
-                )
+                dump(scanResult)
+                dump(scanResult.emptyDirectories)
             }
 
             Button("FileManager.pathToSafePath()") {

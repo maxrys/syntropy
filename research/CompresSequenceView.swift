@@ -19,7 +19,7 @@ struct CompresSequenceView: View {
     @State private var isCompressed: Bool = true
     @State private var report: [String] = []
 
-    private var pathsFrom: [String] {FileManager.pathScanRecursive(Self.DEMO_PATH_FROM)}
+    private var pathsFrom: [String] {FileManager.pathScanRecursive(Self.DEMO_PATH_FROM).files}
     private var pathTo:     String  {FileManager.pathToSafePath   (Self.DEMO_PATH_TO  )}
     private var preset: CompresPreset {
         CompresPreset(

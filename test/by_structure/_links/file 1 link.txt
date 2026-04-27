@@ -1,0 +1,1 @@
+/Volumes/dev/xcode/syntropy/test/by_structure/file 1.txt
