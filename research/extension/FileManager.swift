@@ -15,9 +15,7 @@ extension FileManager {
     }
 
     static public func pathScanRecursive(_ basePath: String) -> ScanRecursiveResult? {
-        guard let checkingItem = try? URL(fileURLWithPath: basePath).resourceValues(
-            forKeys: [.isDirectoryKey]
-        ), checkingItem.isDirectory == true else {
+        guard case .directory = URL(fileURLWithPath: basePath).objectType else {
             return nil
         }
         let result = ScanRecursiveResult()

@@ -27,6 +27,7 @@
 		50D290392F85AB16006A7304 /* CompresPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290382F85AB16006A7304 /* CompresPreset.swift */; };
 		50D2903F2F86678F006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D2903E2F86678F006A7304 /* Numeric.swift */; };
 		50F244992F98C5B200DFCC8F /* FileSequenceAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */; };
+		50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A32FA0A77E00DFCC8F /* _const.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		50D290382F85AB16006A7304 /* CompresPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresPreset.swift; sourceTree = "<group>"; };
 		50D2903E2F86678F006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSequenceAsync.swift; sourceTree = "<group>"; };
+		50F244A32FA0A77E00DFCC8F /* _const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _const.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		507501382EF19BAC00624409 /* shared */ = {
 			isa = PBXGroup;
 			children = (
+				50F244A32FA0A77E00DFCC8F /* _const.swift */,
 				50D290382F85AB16006A7304 /* CompresPreset.swift */,
 				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
 				5056A82C2F97729B009B89C3 /* FileSequence.swift */,
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50993B6C2D33C4C900195667 /* app.swift in Sources */,
+				50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */,
 				50D28FE92F83A2B3006A7304 /* Logger.swift in Sources */,
 				50D28FEF2F83C4A1006A7304 /* String.swift in Sources */,
 				50D290082F84FEDE006A7304 /* FileManagerView.swift in Sources */,
