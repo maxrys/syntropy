@@ -23,14 +23,14 @@ extension FileManager {
             if let urls = try? Self.default.contentsOfDirectory(at: URL(fileURLWithPath: path), includingPropertiesForKeys: nil) {
                 if (!urls.isEmpty) {
                     for url in urls {
-                        if let attributes = try? url.resourceValues(forKeys: [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey]) {
-                            if (attributes.isRegularFile  ?? false) { result.files.append(url.path) }
-                            if (attributes.isSymbolicLink ?? false) { result.links.append(url.path) }
-                            if (attributes.isDirectory    ?? false) {
+                        switch url.objectType {
+                            case .none: continue
+                            case .file: result.files.append(url.path)
+                            case .link: result.links.append(url.path)
+                            case .directory:
                                 let directoryPath = url.path.addSuffixIfMissing("/")
                                 result.directories.append(directoryPath)
                                 scanDirectory(directoryPath)
-                            }
                         }
                     }
                 } else {
