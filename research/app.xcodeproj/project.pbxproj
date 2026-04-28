@@ -28,6 +28,7 @@
 		50D2903F2F86678F006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D2903E2F86678F006A7304 /* Numeric.swift */; };
 		50F244992F98C5B200DFCC8F /* FileSequenceAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */; };
 		50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A32FA0A77E00DFCC8F /* _const.swift */; };
+		50F244A62FA0B3E800DFCC8F /* CompresSourceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A52FA0B3E600DFCC8F /* CompresSourceInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		50D2903E2F86678F006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSequenceAsync.swift; sourceTree = "<group>"; };
 		50F244A32FA0A77E00DFCC8F /* _const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _const.swift; sourceTree = "<group>"; };
+		50F244A52FA0B3E600DFCC8F /* CompresSourceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresSourceInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				50F244A32FA0A77E00DFCC8F /* _const.swift */,
 				50D290382F85AB16006A7304 /* CompresPreset.swift */,
 				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
+				50F244A52FA0B3E600DFCC8F /* CompresSourceInfo.swift */,
 				5056A82C2F97729B009B89C3 /* FileSequence.swift */,
 				50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */,
 			);
@@ -218,6 +221,7 @@
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
 				50D290002F845A82006A7304 /* CompresSequence.swift in Sources */,
 				5056A82D2F97729B009B89C3 /* FileSequence.swift in Sources */,
+				50F244A62FA0B3E800DFCC8F /* CompresSourceInfo.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
 				5056A8342F97779D009B89C3 /* GeometryReaderPolyfill.swift in Sources */,
 				50D290062F84FE41006A7304 /* CompresSequenceView.swift in Sources */,

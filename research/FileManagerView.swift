@@ -25,15 +25,15 @@ struct FileManagerView: View {
                 Logger.customLog( FileManager.pathToSafePath("/Volumes/dev/xcode/syntropy/test/by_types/file.txt") )
             }
 
-            Button("FileManager.trimSharedPathPrefix()") {
-                dump(
-                    FileManager.pathsTrimSharedPrefix([
-                        "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 1/nested file 1.txt",
-                        "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 2/nested file 5.txt",
-                        "/Volumes/dev/xcode/syntropy/test/by_structure/file 1.txt",
-                    ])
-                )
-            }
+         // Button("FileManager.trimSharedPathPrefix()") {
+         //     dump(
+         //         FileManager.pathsTrimSharedPrefix([
+         //             "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 1/nested file 1.txt",
+         //             "/Volumes/dev/xcode/syntropy/test/by_structure/nested folder 2/nested file 5.txt",
+         //             "/Volumes/dev/xcode/syntropy/test/by_structure/file 1.txt",
+         //         ])
+         //     )
+         // }
 
         }
     }

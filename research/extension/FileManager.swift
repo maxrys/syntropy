@@ -12,6 +12,12 @@ extension FileManager {
         public var links           : [String] = []
         public var directories     : [String] = []
         public var emptyDirectories: [String] = []
+        public var isEmpty: Bool {
+            self.files.isEmpty &&
+            self.links.isEmpty &&
+            self.directories.isEmpty &&
+            self.emptyDirectories.isEmpty
+        }
     }
 
     static public func pathScanRecursive(_ basePath: String) -> ScanRecursiveResult? {
@@ -41,7 +47,8 @@ extension FileManager {
             }
         }
         scanDirectory(basePath)
-        return result
+        if (result.isEmpty) { return nil }
+        else { return result }
     }
 
     static public func pathToSafePath(_ path: String) -> String {
@@ -60,24 +67,24 @@ extension FileManager {
         }
     }
 
-    static public func pathsTrimSharedPrefix(_ paths: [String]) -> [String] {
-        if let pathsSharedPrefix = Self.pathsSharedPrefix(paths)
-             { return paths.map { path in path.trimPrefix(pathsSharedPrefix) } }
-        else { return paths }
-    }
+ // static public func pathsTrimSharedPrefix(_ paths: [String]) -> [String] {
+ //     if let pathsSharedPrefix = Self.pathsSharedPrefix(paths)
+ //          { return paths.map { path in path.trimPrefix(pathsSharedPrefix) } }
+ //     else { return paths }
+ // }
 
-    static public func pathsSharedPrefix(_ paths: [String]) -> String? {
-        if let longestString = paths.max(by: { (lhs, rhs) in lhs.count < rhs.count }) {
-            var parts = longestString.split(separator: "/")
-            while parts.count > 1 {
-                parts = parts.dropLast()
-                let prefix = "/" + parts.joined(separator: "/") + "/"
-                if (paths.allSatisfy { path in path.hasPrefix(prefix) }) {
-                    return prefix
-                }
-            }
-        }
-        return nil
-    }
+ // static public func pathsSharedPrefix(_ paths: [String]) -> String? {
+ //     if let longestString = paths.max(by: { (lhs, rhs) in lhs.count < rhs.count }) {
+ //         var parts = longestString.split(separator: "/")
+ //         while parts.count > 1 {
+ //             parts = parts.dropLast()
+ //             let prefix = "/" + parts.joined(separator: "/") + "/"
+ //             if (paths.allSatisfy { path in path.hasPrefix(prefix) }) {
+ //                 return prefix
+ //             }
+ //         }
+ //     }
+ //     return nil
+ // }
 
 }

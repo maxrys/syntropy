@@ -9,22 +9,32 @@ import ZIPFoundation
 
 struct CompresSequenceView: View {
 
-    static let DEMO_PATH_FROM = "/Volumes/dev/xcode/syntropy/test/by_structure"
-    static let DEMO_PATH_TO = "/Volumes/dev/xcode/syntropy/test/result/file.zip"
-
     @State private var progressTotal: Double = 0.0
     @State private var progressLocal: Double = 0.0
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
+    @State private var isIncludeEmptyDirs: Bool = true
     @State private var isCompressed: Bool = true
     @State private var report: [String] = []
 
-    private var pathsFrom: [String] {FileManager.pathScanRecursive(Self.DEMO_PATH_FROM)?.files ?? []}
-    private var pathTo:     String  {FileManager.pathToSafePath   (Self.DEMO_PATH_TO  )}
+    private var sourcesInfo: CompresSourceInfo = {
+        var info = CompresSourceInfo()
+        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_structure/")
+        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file.txt")
+        return info
+    }()
+
+    private var archivePath: String {
+        FileManager.pathToSafePath(
+            "/Volumes/dev/xcode/syntropy/test/result/file.zip"
+        )
+    }
+
     private var preset: CompresPreset {
         CompresPreset(
-            isTrimPrefix: self.isTrimPrefix,
-            compression : self.isCompressed ? .deflate : .none
+            isTrimPrefix      : self.isTrimPrefix,
+            isIncludeEmptyDirs: self.isIncludeEmptyDirs,
+            compression       : self.isCompressed ? .deflate : .none
         )
     }
 
@@ -37,12 +47,20 @@ struct CompresSequenceView: View {
             HStack(spacing: 10) {
 
                 Toggle(isOn: self.$isTrimPrefix) {
-                    Text("Trim Prefix")
+                    Text("isTrimPrefix")
                 }.disabled(self.task != nil)
 
                 Toggle(isOn: self.$isCompressed) {
-                    Text("Compressed")
+                    Text("isCompressed")
                 }.disabled(self.task != nil)
+
+                Toggle(isOn: self.$isIncludeEmptyDirs) {
+                    Text("isIncludeEmptyDirs")
+                }.disabled(self.task != nil)
+
+            }
+
+            HStack(spacing: 10) {
 
                 Button("Compres") {
                     self.onClickStart()
@@ -73,8 +91,8 @@ struct CompresSequenceView: View {
 
     private func onClickStart() {
         if let compressSequence = CompresSequence(
-            from         : self.pathsFrom,
-            to           : self.pathTo,
+            sourcesInfo  : self.sourcesInfo,
+            archivePath  : self.archivePath,
             preset       : self.preset,
             progressTotal: self.$progressTotal,
             progressLocal: self.$progressLocal

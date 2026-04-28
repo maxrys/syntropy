@@ -4,7 +4,6 @@
 /* ############################################################# */
 
 import os
-import Foundation
 import ZIPFoundation
 import SwiftUI
 
@@ -15,33 +14,29 @@ final class CompresSequence: AsyncSequence {
     @Binding var progressTotal: Double
     @Binding var progressLocal: Double
 
-    public let sourcePaths: [String]
+    public let sourcesInfo: CompresSourceInfo
     public let archivePath: String
     public let preset: CompresPreset
-    public let sharedPrefix: String?
 
     fileprivate let archive: Archive
 
     init?(
-        from sourcePaths: [String],
-        to archivePath: String,
+        sourcesInfo: CompresSourceInfo,
+        archivePath: String,
         preset: CompresPreset,
         progressTotal: Binding<Double>,
         progressLocal: Binding<Double>
     ) {
         do {
-            self._progressTotal = progressTotal
-            self._progressLocal = progressLocal
-            self.sourcePaths = sourcePaths
-            self.archivePath = archivePath
-            self.preset = preset
             self.archive = try Archive(
                 url: URL(fileURLWithPath: archivePath),
                 accessMode: .create
             )
-            if (self.preset.isTrimPrefix)
-                 { self.sharedPrefix = FileManager.pathsSharedPrefix(sourcePaths) }
-            else { self.sharedPrefix = nil }
+            self.sourcesInfo = sourcesInfo
+            self.archivePath = archivePath
+            self.preset = preset
+            self._progressTotal = progressTotal
+            self._progressLocal = progressLocal
         } catch {
             Logger.customLog("\(error.localizedDescription)")
             return nil
@@ -75,7 +70,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
 
     init(root sequence: CompresSequence) {
         self.sequence = sequence
-        self.total = sequence.sourcePaths.count
+        self.total = sequence.sourcesInfo.dataSet.files.count
         self.index = 0
     }
 
@@ -89,13 +84,12 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                 max: self.total
             )
 
-            let sourcePath = self.sequence.sourcePaths[
-                self.index
-            ]
+            let sourcePath     = self.sequence.sourcesInfo.dataSet.files[self.index].path
+            let sourceBasePath = self.sequence.sourcesInfo.dataSet.files[self.index].basePath
 
             let internalPath = {
-                if let sharedPrefix = self.sequence.sharedPrefix
-                     { return sourcePath.trimPrefix(sharedPrefix) }
+                if (self.sequence.preset.isTrimPrefix)
+                     { return sourcePath.trimPrefix(sourceBasePath) }
                 else { return sourcePath }
             }()
 

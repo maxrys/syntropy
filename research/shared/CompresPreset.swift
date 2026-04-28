@@ -8,6 +8,7 @@ import ZIPFoundation
 struct CompresPreset {
 
     let isTrimPrefix: Bool
+    let isIncludeEmptyDirs: Bool
     let compression: CompressionMethod
 
 }
