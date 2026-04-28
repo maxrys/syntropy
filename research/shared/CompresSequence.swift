@@ -37,9 +37,22 @@ final class CompresSequence: AsyncSequence {
             self.preset = preset
             self._progressTotal = progressTotal
             self._progressLocal = progressLocal
+            self.addEmptyDirsIfRequired()
         } catch {
             Logger.customLog("\(error.localizedDescription)")
             return nil
+        }
+    }
+
+    private func addEmptyDirsIfRequired() {
+        if (preset.isIncludeEmptyDirs) {
+            if (!self.sourcesInfo.dataSet.emptyDirectories.isEmpty) {
+                for emptyDir in self.sourcesInfo.dataSet.emptyDirectories {
+                    if (self.preset.isTrimPrefix)
+                         { try? self.archive.addEntry(with: emptyDir.path.trimPrefix(emptyDir.basePath), type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
+                    else { try? self.archive.addEntry(with: emptyDir.path                              , type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
+                }
+            }
         }
     }
 
