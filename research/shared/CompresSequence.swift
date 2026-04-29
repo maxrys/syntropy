@@ -66,8 +66,6 @@ final class CompresSequence: AsyncSequence {
 
 final class CompresSequenceIterator: AsyncIteratorProtocol {
 
-    static let THROTTLE_INTERVAL: Double = 0.0 // 0.01
-
     struct StepResult {
         enum Status {
             case success
@@ -151,7 +149,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
          // progress: Progress? = nil
         ) { position, size -> Data in
             if (Task.isCancelled) { throw CancellationError() }
-            if (Self.THROTTLE_INTERVAL > 0) { Thread.sleep(forTimeInterval: Self.THROTTLE_INTERVAL) }
+            if let throttling = self.sequence.preset.throttling { Thread.sleep(forTimeInterval: throttling) }
             try file.seek(toOffset: UInt64(position))
             let result = try file.read(upToCount: Int(size)) ?? Data()
             self.sequence.progressLocal = (position + Int64(size)).progress(max: fileSize)

@@ -9,9 +9,9 @@ import ZIPFoundation
 
 struct CompresSequenceView: View {
 
-    static public let MESSAGE_STATUS_SUCCESS_LOCALIZED        = NSLocalizedString("success", comment: "")
-    static public let MESSAGE_STATUS_FAILURE_LOCALIZED        = NSLocalizedString("failure", comment: "")
-    static public let MESSAGE_STATUS_TASK_CANCELLED_LOCALIZED = NSLocalizedString("Task was cancelled.", comment: "")
+    static private let MESSAGE_STATUS_SUCCESS_LOCALIZED        = NSLocalizedString("success", comment: "")
+    static private let MESSAGE_STATUS_FAILURE_LOCALIZED        = NSLocalizedString("failure", comment: "")
+    static private let MESSAGE_STATUS_TASK_CANCELLED_LOCALIZED = NSLocalizedString("Task was cancelled.", comment: "")
 
     @State private var progressTotal: Double = 0.0
     @State private var progressLocal: Double = 0.0
@@ -19,16 +19,19 @@ struct CompresSequenceView: View {
     @State private var isTrimPrefix: Bool = true
     @State private var isIncludeEmptyDirs: Bool = true
     @State private var isCompressed: Bool = true
+    @State private var throttlingIndex: Int = 0
     @State private var report: [(path: String, description: String)] = []
+
+    private let throttlingValues: [Double] = [0, 0.0001, 0.001, 0.01, 0.1]
 
     private var sourcesInfo: CompresSource = {
         var info = CompresSource()
         _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_structure/")
-     // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file.txt")
-     // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file_noExtension")
-     // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/archive.zip")
-     // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder.extension")
-     // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder")
+        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file.txt")
+        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file_noExtension")
+        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/archive.zip")
+        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder.extension")
+        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder")
         return info
     }()
 
@@ -43,6 +46,8 @@ struct CompresSequenceView: View {
             isTrimPrefix      : self.isTrimPrefix,
             isIncludeEmptyDirs: self.isIncludeEmptyDirs,
             compression       : self.isCompressed ? .deflate : .none,
+            throttling        : self.throttlingValues[self.throttlingIndex],
+            excludePattern    : nil,
             date              : .current
         )
     }
@@ -51,9 +56,9 @@ struct CompresSequenceView: View {
     }
 
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 20) {
 
-            HStack(spacing: 10) {
+            HStack(spacing: 20) {
 
                 Toggle(isOn: self.$isTrimPrefix) {
                     Text("isTrimPrefix")
@@ -66,6 +71,13 @@ struct CompresSequenceView: View {
                 Toggle(isOn: self.$isIncludeEmptyDirs) {
                     Text("isIncludeEmptyDirs")
                 }.disabled(self.task != nil)
+
+                Picker("Throttling", selection: self.$throttlingIndex) {
+                    ForEach(self.throttlingValues.indices, id: \.self) { index in
+                        Text("\(self.throttlingValues[index])").id(index)
+                    }
+                }.frame(width: 160)
+                .disabled(self.task != nil)
 
             }
 
@@ -81,8 +93,12 @@ struct CompresSequenceView: View {
 
             }
 
-            ProgressCustom(value: self.progressTotal); Text("Progress: \(Int(self.progressTotal * 100)) %")
-            ProgressCustom(value: self.progressLocal); Text("Progress: \(Int(self.progressLocal * 100)) %")
+            VStack(spacing: 5) {
+                ProgressCustom(value: self.progressTotal)
+                Text("Progress: \(Int(self.progressTotal * 100)) %")
+                ProgressCustom(value: self.progressLocal)
+                Text("Progress: \(Int(self.progressLocal * 100)) %")
+            }
 
             ScrollView {
                 let columns = [
