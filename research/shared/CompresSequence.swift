@@ -48,9 +48,9 @@ final class CompresSequence: AsyncSequence {
         if (preset.isIncludeEmptyDirs) {
             if (!self.sourcesInfo.emptyDirectories.isEmpty) {
                 for emptyDir in self.sourcesInfo.emptyDirectories {
-                    if (self.preset.isTrimPrefix)
-                         { try? self.archive.addEntry(with: emptyDir.path.trimPrefix(emptyDir.basePath), type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
-                    else { try? self.archive.addEntry(with: emptyDir.path                              , type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
+                    if (self.preset.isRelativePath)
+                         { try? self.archive.addEntry(with: emptyDir.relative, type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
+                    else { try? self.archive.addEntry(with: emptyDir.absolute, type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
                 }
             }
         }
@@ -97,36 +97,36 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                 max: self.total
             )
 
-            let sourcePath     = self.sequence.sourcesInfo.files[self.index].path
-            let sourceBasePath = self.sequence.sourcesInfo.files[self.index].basePath
+            let sourcePathAbsolute = self.sequence.sourcesInfo.files[self.index].absolute
+            let sourcePathRelative = self.sequence.sourcesInfo.files[self.index].relative
 
             let internalPath = {
-                if (self.sequence.preset.isTrimPrefix)
-                     { return sourcePath.trimPrefix(sourceBasePath) }
-                else { return sourcePath }
+                if (self.sequence.preset.isRelativePath)
+                     { return sourcePathRelative }
+                else { return sourcePathAbsolute }
             }()
 
             do {
                 try await self.addFile(
-                    from: sourcePath,
+                    from: sourcePathAbsolute,
                     as: internalPath
                 )
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
-                    sourcePath: sourcePath
+                    sourcePath: sourcePathAbsolute
                 )
             } catch is CancellationError {
                 return CompresSequence.Element(
                     status    : .cancelledByUser,
                     index     : self.index,
-                    sourcePath: sourcePath
+                    sourcePath: sourcePathAbsolute
                 )
             } catch let error as NSError {
                 return CompresSequence.Element(
                     status    : .failure(code: error.code, text: error.localizedDescription),
                     index     : self.index,
-                    sourcePath: sourcePath
+                    sourcePath: sourcePathAbsolute
                 )
             }
         }

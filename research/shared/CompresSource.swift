@@ -21,8 +21,8 @@ final class CompresSource {
             case .file:
                 let url = URL(fileURLWithPath: path)
                 self.files.append(ItemInfo(
-                    path: path,
-                    basePath: url.parentPath,
+                    absolute: path,
+                    relative: path.trimPrefix(url.parentPath),
                     date: url.objectDate
                 ))
                 return true

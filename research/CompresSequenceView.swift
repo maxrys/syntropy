@@ -16,7 +16,7 @@ struct CompresSequenceView: View {
     @State private var progressTotal: Double = 0.0
     @State private var progressLocal: Double = 0.0
     @State private var task: Task<Void, Never>? = nil
-    @State private var isTrimPrefix: Bool = true
+    @State private var isRelativePath: Bool = true
     @State private var isIncludeEmptyDirs: Bool = true
     @State private var isCompressed: Bool = true
     @State private var throttlingIndex: Int = 0
@@ -43,7 +43,7 @@ struct CompresSequenceView: View {
 
     private var preset: CompresPreset {
         CompresPreset(
-            isTrimPrefix      : self.isTrimPrefix,
+            isRelativePath    : self.isRelativePath,
             isIncludeEmptyDirs: self.isIncludeEmptyDirs,
             isFollowLinks     : true,
             compression       : self.isCompressed ? .deflate : .none,
@@ -61,8 +61,8 @@ struct CompresSequenceView: View {
 
             HStack(spacing: 20) {
 
-                Toggle(isOn: self.$isTrimPrefix) {
-                    Text("isTrimPrefix")
+                Toggle(isOn: self.$isRelativePath) {
+                    Text("isRelativePath")
                 }.disabled(self.task != nil)
 
                 Toggle(isOn: self.$isCompressed) {

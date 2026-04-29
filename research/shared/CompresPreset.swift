@@ -14,7 +14,7 @@ struct CompresPreset {
         case custom(value: Date)
     }
 
-    let isTrimPrefix: Bool
+    let isRelativePath: Bool
     let isIncludeEmptyDirs: Bool
     let isFollowLinks: Bool
     let compression: CompressionMethod
