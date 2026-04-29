@@ -9,7 +9,6 @@ extension NSApplication {
 
     static var isXCodePreview: Bool {
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" { return true }
-        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEW" ] == "1" { return true }
         return false
     }
 
