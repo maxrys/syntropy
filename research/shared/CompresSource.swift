@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class CompresSourceInfo {
+final class CompresSource {
 
     public class DataSet {
         public var files           : [(path: String, basePath: String)] = []

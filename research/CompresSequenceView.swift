@@ -17,8 +17,8 @@ struct CompresSequenceView: View {
     @State private var isCompressed: Bool = true
     @State private var report: [String] = []
 
-    private var sourcesInfo: CompresSourceInfo = {
-        var info = CompresSourceInfo()
+    private var sourcesInfo: CompresSource = {
+        var info = CompresSource()
         _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_structure/")
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file.txt")
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file_noExtension")

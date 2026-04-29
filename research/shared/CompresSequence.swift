@@ -14,14 +14,14 @@ final class CompresSequence: AsyncSequence {
     @Binding var progressTotal: Double
     @Binding var progressLocal: Double
 
-    public let sourcesInfo: CompresSourceInfo
+    public let sourcesInfo: CompresSource
     public let archivePath: String
     public let preset: CompresPreset
 
     fileprivate let archive: Archive
 
     init?(
-        sourcesInfo: CompresSourceInfo,
+        sourcesInfo: CompresSource,
         archivePath: String,
         preset: CompresPreset,
         progressTotal: Binding<Double>,
