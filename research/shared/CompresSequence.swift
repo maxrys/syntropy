@@ -66,6 +66,8 @@ final class CompresSequence: AsyncSequence {
 
 final class CompresSequenceIterator: AsyncIteratorProtocol {
 
+    static let THROTTLE_INTERVAL: Double = 0.0 // 0.01
+
     struct StepResult {
         enum Status {
             case success
@@ -111,19 +113,6 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                     from: sourcePath,
                     as: internalPath
                 )
-             // if let fileSequence = FileSequence(path: sourcePath, chunkSize: nil) {
-             //     var iterator = fileSequence.makeIterator()
-             //     try self.sequence.archive.addEntry(
-             //         with: internalPath,
-             //         type: .file,
-             //         uncompressedSize: Int64(fileSequence.totalSize),
-             //         compressionMethod: self.sequence.preset.compression,
-             //         bufferSize: Int(fileSequence.chunkSize),
-             //     ) { _, _ -> Data in
-             //         if Task.isCancelled { throw CancellationError() }
-             //         return iterator.next()?.data ?? Data()
-             //     }
-             // } else {}
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
@@ -161,8 +150,8 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
          // bufferSize: Int = defaultWriteChunkSize,
          // progress: Progress? = nil
         ) { position, size -> Data in
-            if Task.isCancelled { throw CancellationError() }
-         // Thread.sleep(forTimeInterval: 0.01)
+            if (Task.isCancelled) { throw CancellationError() }
+            if (Self.THROTTLE_INTERVAL > 0) { Thread.sleep(forTimeInterval: Self.THROTTLE_INTERVAL) }
             try file.seek(toOffset: UInt64(position))
             let result = try file.read(upToCount: Int(size)) ?? Data()
             self.sequence.progressLocal = (position + Int64(size)).progress(max: fileSize)
