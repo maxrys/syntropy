@@ -45,6 +45,7 @@ struct CompresSequenceView: View {
         CompresPreset(
             isTrimPrefix      : self.isTrimPrefix,
             isIncludeEmptyDirs: self.isIncludeEmptyDirs,
+            isFollowLinks     : true,
             compression       : self.isCompressed ? .deflate : .none,
             throttling        : self.throttlingValues[self.throttlingIndex],
             excludePattern    : nil,

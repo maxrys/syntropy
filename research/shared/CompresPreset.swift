@@ -16,6 +16,7 @@ struct CompresPreset {
 
     let isTrimPrefix: Bool
     let isIncludeEmptyDirs: Bool
+    let isFollowLinks: Bool
     let compression: CompressionMethod
     let throttling: Double?
     let excludePattern: String?

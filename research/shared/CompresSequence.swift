@@ -46,8 +46,8 @@ final class CompresSequence: AsyncSequence {
 
     private func addEmptyDirsIfRequired() {
         if (preset.isIncludeEmptyDirs) {
-            if (!self.sourcesInfo.dataSet.emptyDirectories.isEmpty) {
-                for emptyDir in self.sourcesInfo.dataSet.emptyDirectories {
+            if (!self.sourcesInfo.emptyDirectories.isEmpty) {
+                for emptyDir in self.sourcesInfo.emptyDirectories {
                     if (self.preset.isTrimPrefix)
                          { try? self.archive.addEntry(with: emptyDir.path.trimPrefix(emptyDir.basePath), type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
                     else { try? self.archive.addEntry(with: emptyDir.path                              , type: .directory, uncompressedSize: Int64(0)) { _, _ -> Data in Data() } }
@@ -83,7 +83,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
 
     init(root sequence: CompresSequence) {
         self.sequence = sequence
-        self.total = sequence.sourcesInfo.dataSet.files.count
+        self.total = sequence.sourcesInfo.files.count
         self.index = 0
     }
 
@@ -97,8 +97,8 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                 max: self.total
             )
 
-            let sourcePath     = self.sequence.sourcesInfo.dataSet.files[self.index].path
-            let sourceBasePath = self.sequence.sourcesInfo.dataSet.files[self.index].basePath
+            let sourcePath     = self.sequence.sourcesInfo.files[self.index].path
+            let sourceBasePath = self.sequence.sourcesInfo.files[self.index].basePath
 
             let internalPath = {
                 if (self.sequence.preset.isTrimPrefix)

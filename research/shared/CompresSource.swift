@@ -7,31 +7,32 @@ import Foundation
 
 final class CompresSource {
 
-    public class DataSet {
-        public var files           : [(path: String, basePath: String)] = []
-        public var links           : [(path: String, basePath: String)] = []
-        public var directories     : [(path: String, basePath: String)] = []
-        public var emptyDirectories: [(path: String, basePath: String)] = []
+    struct ItemInfo {
+        let path: String
+        let basePath: String
     }
 
-    public private(set) var dataSet = DataSet()
+    public private(set) var files           : [ItemInfo] = []
+    public private(set) var links           : [ItemInfo] = []
+    public private(set) var directories     : [ItemInfo] = []
+    public private(set) var emptyDirectories: [ItemInfo] = []
 
     func addSource(path: String) -> Bool {
         switch URL(fileURLWithPath: path).objectType {
             case .none: return false
             case .link: return false
             case .file:
-                self.dataSet.files.append((
+                self.files.append(ItemInfo(
                     path: path,
                     basePath: URL(fileURLWithPath: path).parentPath
                 ))
                 return true
             case .directory:
                 if let scanData = FileManager.pathScanRecursive(path) {
-                    scanData.files           .forEach { foundPath in self.dataSet.files           .append((path: foundPath, basePath: path))}
-                    scanData.links           .forEach { foundPath in self.dataSet.links           .append((path: foundPath, basePath: path))}
-                    scanData.directories     .forEach { foundPath in self.dataSet.directories     .append((path: foundPath, basePath: path))}
-                    scanData.emptyDirectories.forEach { foundPath in self.dataSet.emptyDirectories.append((path: foundPath, basePath: path))}
+                    scanData.files           .forEach { foundPath in self.files           .append(ItemInfo(path: foundPath, basePath: path))}
+                    scanData.links           .forEach { foundPath in self.links           .append(ItemInfo(path: foundPath, basePath: path))}
+                    scanData.directories     .forEach { foundPath in self.directories     .append(ItemInfo(path: foundPath, basePath: path))}
+                    scanData.emptyDirectories.forEach { foundPath in self.emptyDirectories.append(ItemInfo(path: foundPath, basePath: path))}
                     return true
                 } else {
                     return false
