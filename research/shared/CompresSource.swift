@@ -7,12 +7,7 @@ import Foundation
 
 final class CompresSource {
 
-    struct ItemInfo {
-        let path: String
-        let basePath: String
-        let created: Date
-        let updated: Date
-    }
+    typealias ItemInfo = FileManager.ScanRecursiveItem
 
     public private(set) var files           : [ItemInfo] = []
     public private(set) var links           : [ItemInfo] = []
@@ -34,11 +29,11 @@ final class CompresSource {
                 ))
                 return true
             case .directory:
-                if let scanData = FileManager.pathScanRecursive(path) {
-                    scanData.files           .forEach { foundPath in self.files           .append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
-                    scanData.links           .forEach { foundPath in self.links           .append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
-                    scanData.directories     .forEach { foundPath in self.directories     .append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
-                    scanData.emptyDirectories.forEach { foundPath in self.emptyDirectories.append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
+                if let scanedItems = FileManager.pathScanRecursive(path) {
+                    scanedItems.files           .forEach { itemInfo in self.files           .append(itemInfo) }
+                    scanedItems.links           .forEach { itemInfo in self.links           .append(itemInfo) }
+                    scanedItems.directories     .forEach { itemInfo in self.directories     .append(itemInfo) }
+                    scanedItems.emptyDirectories.forEach { itemInfo in self.emptyDirectories.append(itemInfo) }
                     return true
                 } else {
                     return false

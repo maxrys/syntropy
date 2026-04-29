@@ -7,11 +7,18 @@ import Foundation
 
 extension FileManager {
 
+    public struct ScanRecursiveItem {
+        let path: String
+        let basePath: String
+        let created: Date
+        let updated: Date
+    }
+
     public class ScanRecursiveResult {
-        public var files           : [String] = []
-        public var links           : [String] = []
-        public var directories     : [String] = []
-        public var emptyDirectories: [String] = []
+        public var files           : [ScanRecursiveItem] = []
+        public var links           : [ScanRecursiveItem] = []
+        public var directories     : [ScanRecursiveItem] = []
+        public var emptyDirectories: [ScanRecursiveItem] = []
         public var isEmpty: Bool {
             self.files.isEmpty &&
             self.links.isEmpty &&
@@ -30,18 +37,47 @@ extension FileManager {
                 if (!urls.isEmpty) {
                     for url in urls {
                         switch url.objectType {
-                            case .none: continue
-                            case .file: result.files.append(url.path)
-                            case .link: result.links.append(url.path)
+                            case .file:
+                                result.files.append(
+                                    ScanRecursiveItem(
+                                        path: url.path,
+                                        basePath: basePath,
+                                        created: Date(),
+                                        updated: Date()
+                                    )
+                                )
+                            case .link:
+                                result.links.append(
+                                    ScanRecursiveItem(
+                                        path: url.path,
+                                        basePath: basePath,
+                                        created: Date(),
+                                        updated: Date()
+                                    )
+                                )
                             case .directory:
                                 let directoryPath = url.path.addSuffixIfMissing("/")
-                                result.directories.append(directoryPath)
+                                result.directories.append(
+                                    ScanRecursiveItem(
+                                        path: directoryPath,
+                                        basePath: basePath,
+                                        created: Date(),
+                                        updated: Date()
+                                    )
+                                )
                                 scanDirectory(directoryPath)
+                            case .none: continue
                         }
                     }
                 } else {
+                    let directoryPath = path.addSuffixIfMissing("/")
                     result.emptyDirectories.append(
-                        path.addSuffixIfMissing("/")
+                        ScanRecursiveItem(
+                            path: directoryPath,
+                            basePath: basePath,
+                            created: Date(),
+                            updated: Date()
+                        )
                     )
                 }
             }
