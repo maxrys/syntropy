@@ -66,7 +66,7 @@ struct CompresSequenceView: View {
 
             HStack(spacing: 10) {
 
-                Button("Compres") {
+                Button("Compress") {
                     self.onClickStart()
                 }.disabled(self.task != nil)
 
