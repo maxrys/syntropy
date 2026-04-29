@@ -23,8 +23,4 @@ extension String {
         self.hasSuffix(suffix) ? String(self.dropLast(suffix.count)) : self
     }
 
-    var percentDecode: String {
-        self.removingPercentEncoding ?? self
-    }
-
 }

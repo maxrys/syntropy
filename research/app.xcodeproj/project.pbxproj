@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5056A82B2F977189009B89C3 /* FileIteratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82A2F97717F009B89C3 /* FileIteratorView.swift */; };
-		5056A82D2F97729B009B89C3 /* FileSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82C2F97729B009B89C3 /* FileSequence.swift */; };
 		5056A8302F9774ED009B89C3 /* ProgressCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82F2F97741B009B89C3 /* ProgressCustom.swift */; };
 		5056A8322F9775E6009B89C3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A8312F9775E6009B89C3 /* View.swift */; };
 		5056A8342F97779D009B89C3 /* GeometryReaderPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A8332F97779D009B89C3 /* GeometryReaderPolyfill.swift */; };
@@ -26,14 +24,11 @@
 		50D290082F84FEDE006A7304 /* FileManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290072F84FEDC006A7304 /* FileManagerView.swift */; };
 		50D290392F85AB16006A7304 /* CompresPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D290382F85AB16006A7304 /* CompresPreset.swift */; };
 		50D2903F2F86678F006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D2903E2F86678F006A7304 /* Numeric.swift */; };
-		50F244992F98C5B200DFCC8F /* FileSequenceAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */; };
 		50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A32FA0A77E00DFCC8F /* _const.swift */; };
 		50F244A62FA0B3E800DFCC8F /* CompresSourceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A52FA0B3E600DFCC8F /* CompresSourceInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5056A82A2F97717F009B89C3 /* FileIteratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIteratorView.swift; sourceTree = "<group>"; };
-		5056A82C2F97729B009B89C3 /* FileSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSequence.swift; sourceTree = "<group>"; };
 		5056A82F2F97741B009B89C3 /* ProgressCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCustom.swift; sourceTree = "<group>"; };
 		5056A8312F9775E6009B89C3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		5056A8332F97779D009B89C3 /* GeometryReaderPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryReaderPolyfill.swift; sourceTree = "<group>"; };
@@ -52,7 +47,6 @@
 		50D290072F84FEDC006A7304 /* FileManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerView.swift; sourceTree = "<group>"; };
 		50D290382F85AB16006A7304 /* CompresPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresPreset.swift; sourceTree = "<group>"; };
 		50D2903E2F86678F006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
-		50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSequenceAsync.swift; sourceTree = "<group>"; };
 		50F244A32FA0A77E00DFCC8F /* _const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _const.swift; sourceTree = "<group>"; };
 		50F244A52FA0B3E600DFCC8F /* CompresSourceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresSourceInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,8 +78,6 @@
 				50D290382F85AB16006A7304 /* CompresPreset.swift */,
 				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
 				50F244A52FA0B3E600DFCC8F /* CompresSourceInfo.swift */,
-				5056A82C2F97729B009B89C3 /* FileSequence.swift */,
-				50F244982F98C5B000DFCC8F /* FileSequenceAsync.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -99,7 +91,6 @@
 				5056A82E2F977406009B89C3 /* controls */,
 				50993B6B2D33C4C900195667 /* app.swift */,
 				50D290052F84FE3F006A7304 /* CompresSequenceView.swift */,
-				5056A82A2F97717F009B89C3 /* FileIteratorView.swift */,
 				50D290072F84FEDC006A7304 /* FileManagerView.swift */,
 				50993B692D33C4C900195667 /* Products */,
 			);
@@ -213,14 +204,11 @@
 				50D28FEB2F83B2CF006A7304 /* URL.swift in Sources */,
 				50D290392F85AB16006A7304 /* CompresPreset.swift in Sources */,
 				50D28FED2F83B66E006A7304 /* Date.swift in Sources */,
-				50F244992F98C5B200DFCC8F /* FileSequenceAsync.swift in Sources */,
-				5056A82B2F977189009B89C3 /* FileIteratorView.swift in Sources */,
 				50D2903F2F86678F006A7304 /* Numeric.swift in Sources */,
 				5056A8322F9775E6009B89C3 /* View.swift in Sources */,
 				5056A8362F9778D1009B89C3 /* Color.swift in Sources */,
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
 				50D290002F845A82006A7304 /* CompresSequence.swift in Sources */,
-				5056A82D2F97729B009B89C3 /* FileSequence.swift in Sources */,
 				50F244A62FA0B3E800DFCC8F /* CompresSourceInfo.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
 				5056A8342F97779D009B89C3 /* GeometryReaderPolyfill.swift in Sources */,
