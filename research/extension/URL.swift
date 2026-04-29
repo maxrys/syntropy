@@ -34,4 +34,14 @@ extension URL {
         return nil
     }
 
+    public var objectDate: (created: Date, updated: Date)? {
+        if let attributes = try? self.resourceValues(forKeys: [.creationDateKey, .contentModificationDateKey]) {
+            if let created = attributes.creationDate,
+               let updated = attributes.contentModificationDate {
+                return (created, updated)
+            }
+        }
+        return nil
+    }
+
 }

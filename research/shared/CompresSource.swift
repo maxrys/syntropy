@@ -10,6 +10,8 @@ final class CompresSource {
     struct ItemInfo {
         let path: String
         let basePath: String
+        let created: Date
+        let updated: Date
     }
 
     public private(set) var files           : [ItemInfo] = []
@@ -22,17 +24,21 @@ final class CompresSource {
             case .none: return false
             case .link: return false
             case .file:
+                let url = URL(fileURLWithPath: path)
+                let dateInfo = url.objectDate
                 self.files.append(ItemInfo(
                     path: path,
-                    basePath: URL(fileURLWithPath: path).parentPath
+                    basePath: url.parentPath,
+                    created: dateInfo?.created ?? Date(),
+                    updated: dateInfo?.updated ?? Date()
                 ))
                 return true
             case .directory:
                 if let scanData = FileManager.pathScanRecursive(path) {
-                    scanData.files           .forEach { foundPath in self.files           .append(ItemInfo(path: foundPath, basePath: path))}
-                    scanData.links           .forEach { foundPath in self.links           .append(ItemInfo(path: foundPath, basePath: path))}
-                    scanData.directories     .forEach { foundPath in self.directories     .append(ItemInfo(path: foundPath, basePath: path))}
-                    scanData.emptyDirectories.forEach { foundPath in self.emptyDirectories.append(ItemInfo(path: foundPath, basePath: path))}
+                    scanData.files           .forEach { foundPath in self.files           .append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
+                    scanData.links           .forEach { foundPath in self.links           .append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
+                    scanData.directories     .forEach { foundPath in self.directories     .append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
+                    scanData.emptyDirectories.forEach { foundPath in self.emptyDirectories.append(ItemInfo(path: foundPath, basePath: path, created: Date(), updated: Date()))}
                     return true
                 } else {
                     return false
