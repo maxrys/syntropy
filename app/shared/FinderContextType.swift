@@ -6,6 +6,12 @@
 import os
 import Foundation
 
+enum FinderContextObjectType {
+    case fileArchive
+    case fileNonArchive
+    case directory
+}
+
 enum FinderContextType {
 
     case compres
@@ -13,16 +19,17 @@ enum FinderContextType {
     case both
 
     init?(_ urls: [URL]) {
-        var objectTypesStatistics: [URL.ObjectType: UInt] = [:]
+        var objectTypesStatistics: [FinderContextObjectType: UInt] = [:]
         for url in urls {
-            objectTypesStatistics[
-                url.objectType, default: 0
-            ] += 1
+            let type = url.objectType
+            if case .file(let isArchive) = type, isArchive == true { objectTypesStatistics[.fileArchive   , default: 0] += 1 }
+            if case .file(let isArchive) = type, isArchive != true { objectTypesStatistics[.fileNonArchive, default: 0] += 1 }
+            if case .directory = type                              { objectTypesStatistics[.directory     , default: 0] += 1 }
         }
         switch (
             objectTypesStatistics[.fileArchive   , default: 0].fixBounds(max: 2),
             objectTypesStatistics[.fileNonArchive, default: 0].fixBounds(max: 2),
-            objectTypesStatistics[.dirrectory    , default: 0].fixBounds(max: 2),
+            objectTypesStatistics[.directory     , default: 0].fixBounds(max: 2),
         ) {
             case (0, 0, 1): self = .compres; Logger.customLog("FinderContextType: ___ + ___ + ___ + ___ + dir + ___")
             case (0, 0, 2): self = .compres; Logger.customLog("FinderContextType: ___ + ___ + ___ + ___ + dir + dir")

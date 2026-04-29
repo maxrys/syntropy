@@ -19,13 +19,13 @@ extension URL {
         return url.path
     }
 
-    public enum EntityType {
+    public enum ObjectType {
         case file(isArchive: Bool)
         case link
         case directory
     }
 
-    public var objectType: EntityType? {
+    public var objectType: ObjectType? {
         if let attributes = try? self.resourceValues(forKeys: [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey]) {
             if (attributes.isRegularFile  ?? false) { return .file(isArchive: FORMATS.contains(self.pathExtension)) }
             if (attributes.isSymbolicLink ?? false) { return .link }

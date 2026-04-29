@@ -22,28 +22,18 @@ extension URL {
     }
 
     public enum ObjectType {
-        case fileArchive
-        case fileNonArchive
-        case dirrectory
-        case notSupported
+        case file(isArchive: Bool)
+        case link
+        case directory
     }
 
-    public var objectType: ObjectType {
-        guard let attributes = try? FileManager.default.attributesOfItem(atPath: self.path) else {
-            return .notSupported
+    public var objectType: ObjectType? {
+        if let attributes = try? self.resourceValues(forKeys: [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey]) {
+            if (attributes.isRegularFile  ?? false) { return .file(isArchive: FORMATS.contains(self.pathExtension)) }
+            if (attributes.isSymbolicLink ?? false) { return .link }
+            if (attributes.isDirectory    ?? false) { return .directory }
         }
-        if let type = attributes[.type] as? FileAttributeType {
-            switch type {
-                case .typeRegular:
-                    if (FORMATS.contains(self.pathExtension))
-                         { return .fileArchive }
-                    else { return .fileNonArchive }
-                case .typeDirectory: return .dirrectory
-                default: return .notSupported
-            }
-        } else {
-            return .notSupported
-        }
+        return nil
     }
 
 }
