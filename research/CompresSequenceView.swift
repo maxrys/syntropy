@@ -9,13 +9,17 @@ import ZIPFoundation
 
 struct CompresSequenceView: View {
 
+    static public let MESSAGE_STATUS_SUCCESS_LOCALIZED        = NSLocalizedString("success", comment: "")
+    static public let MESSAGE_STATUS_FAILURE_LOCALIZED        = NSLocalizedString("failure", comment: "")
+    static public let MESSAGE_STATUS_TASK_CANCELLED_LOCALIZED = NSLocalizedString("Task was cancelled.", comment: "")
+
     @State private var progressTotal: Double = 0.0
     @State private var progressLocal: Double = 0.0
     @State private var task: Task<Void, Never>? = nil
     @State private var isTrimPrefix: Bool = true
     @State private var isIncludeEmptyDirs: Bool = true
     @State private var isCompressed: Bool = true
-    @State private var report: [String] = []
+    @State private var report: [(path: String, description: String)] = []
 
     private var sourcesInfo: CompresSource = {
         var info = CompresSource()
@@ -38,7 +42,8 @@ struct CompresSequenceView: View {
         CompresPreset(
             isTrimPrefix      : self.isTrimPrefix,
             isIncludeEmptyDirs: self.isIncludeEmptyDirs,
-            compression       : self.isCompressed ? .deflate : .none
+            compression       : self.isCompressed ? .deflate : .none,
+            date              : .current
         )
     }
 
@@ -80,8 +85,16 @@ struct CompresSequenceView: View {
             ProgressCustom(value: self.progressLocal); Text("Progress: \(Int(self.progressLocal * 100)) %")
 
             ScrollView {
-                ForEach (self.report.indices.reversed(), id: \.self) { index in
-                    Text(self.report[index]).id(index)
+                let columns = [
+                    GridItem(.flexible(), spacing: 0, alignment: .leading),
+                    GridItem(.fixed(200), spacing: 0, alignment: .center),
+                ]
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach (self.report.indices.reversed(), id: \.self) { index in
+                        let reportInfo = self.report[index]
+                        Text(reportInfo.path       ).id(Double(index) + 0.1)
+                        Text(reportInfo.description).id(Double(index) + 0.2)
+                    }
                 }
             }
 
@@ -106,9 +119,9 @@ struct CompresSequenceView: View {
                 let iterator = compressSequence.makeAsyncIterator()
                 process: while let result = await iterator.next() {
                     switch result.status {
-                        case .failure(_, let text): self.report.append("\(result.sourcePath) → " + NSLocalizedString("failure", comment: "") + ": " + text)
-                        case .success             : self.report.append("\(result.sourcePath) → " + NSLocalizedString("success", comment: ""))
-                        case .cancelledByUser     : self.report.append(NSLocalizedString("Task was cancelled.", comment: ""))
+                        case .failure(_, let text): self.report.append((path: result.sourcePath, description: Self.MESSAGE_STATUS_FAILURE_LOCALIZED + ": " + text))
+                        case .success             : self.report.append((path: result.sourcePath, description: Self.MESSAGE_STATUS_SUCCESS_LOCALIZED))
+                        case .cancelledByUser     : self.report.append((path: result.sourcePath, description: Self.MESSAGE_STATUS_TASK_CANCELLED_LOCALIZED))
                             try? FileManager.default.removeItem(
                                 at: URL(fileURLWithPath: compressSequence.archivePath)
                             )
