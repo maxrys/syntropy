@@ -82,6 +82,16 @@ struct CompresSequenceView: View {
 
             }
 
+            VStack(spacing: 5) {
+
+                ProgressCustom(value: self.progressTotal)
+                Text("Progress: \(Int(self.progressTotal * 100)) %")
+
+                ProgressCustom(value: self.progressLocal)
+                Text("Progress: \(Int(self.progressLocal * 100)) %")
+
+            }
+
             HStack(spacing: 10) {
 
                 Button("Compress") {
@@ -92,13 +102,6 @@ struct CompresSequenceView: View {
                     self.onClickCancel()
                 }.disabled(self.task == nil)
 
-            }
-
-            VStack(spacing: 5) {
-                ProgressCustom(value: self.progressTotal)
-                Text("Progress: \(Int(self.progressTotal * 100)) %")
-                ProgressCustom(value: self.progressLocal)
-                Text("Progress: \(Int(self.progressLocal * 100)) %")
             }
 
             ScrollView {

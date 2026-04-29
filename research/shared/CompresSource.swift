@@ -20,12 +20,10 @@ final class CompresSource {
             case .link: return false
             case .file:
                 let url = URL(fileURLWithPath: path)
-                let dateInfo = url.objectDate
                 self.files.append(ItemInfo(
                     path: path,
                     basePath: url.parentPath,
-                    created: dateInfo?.created ?? Date(),
-                    updated: dateInfo?.updated ?? Date()
+                    date: url.objectDate
                 ))
                 return true
             case .directory:
