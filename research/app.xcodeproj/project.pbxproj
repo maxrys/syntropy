@@ -26,6 +26,11 @@
 		50D2903F2F86678F006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D2903E2F86678F006A7304 /* Numeric.swift */; };
 		50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A32FA0A77E00DFCC8F /* _const.swift */; };
 		50F244A62FA0B3E800DFCC8F /* CompresSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A52FA0B3E600DFCC8F /* CompresSource.swift */; };
+		50F244AA2FA379FC00DFCC8F /* DateModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A92FA379FC00DFCC8F /* DateModes.swift */; };
+		50F244AD2FA384ED00DFCC8F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AC2FA384EC00DFCC8F /* RadioButton.swift */; };
+		50F244AF2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */; };
+		50F244B12FA38D4B00DFCC8F /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244B02FA38D4B00DFCC8F /* ValueState.swift */; };
+		50F244B32FA38D5C00DFCC8F /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244B22FA38D5C00DFCC8F /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +54,11 @@
 		50D2903E2F86678F006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		50F244A32FA0A77E00DFCC8F /* _const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _const.swift; sourceTree = "<group>"; };
 		50F244A52FA0B3E600DFCC8F /* CompresSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresSource.swift; sourceTree = "<group>"; };
+		50F244A92FA379FC00DFCC8F /* DateModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModes.swift; sourceTree = "<group>"; };
+		50F244AC2FA384EC00DFCC8F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewPolyfill.swift; sourceTree = "<group>"; };
+		50F244B02FA38D4B00DFCC8F /* ValueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueState.swift; sourceTree = "<group>"; };
+		50F244B22FA38D5C00DFCC8F /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +76,9 @@
 		5056A82E2F977406009B89C3 /* controls */ = {
 			isa = PBXGroup;
 			children = (
+				50F244A92FA379FC00DFCC8F /* DateModes.swift */,
 				5056A82F2F97741B009B89C3 /* ProgressCustom.swift */,
+				50F244AC2FA384EC00DFCC8F /* RadioButton.swift */,
 			);
 			path = controls;
 			sourceTree = "<group>";
@@ -78,6 +90,8 @@
 				50D290382F85AB16006A7304 /* CompresPreset.swift */,
 				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
 				50F244A52FA0B3E600DFCC8F /* CompresSource.swift */,
+				50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */,
+				50F244B02FA38D4B00DFCC8F /* ValueState.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -115,6 +129,7 @@
 				50D28FE82F83A279006A7304 /* Logger.swift */,
 				50D2903E2F86678F006A7304 /* Numeric.swift */,
 				50D28FEE2F83C4A1006A7304 /* String.swift */,
+				50F244B22FA38D5C00DFCC8F /* Timer.swift */,
 				50D28FEA2F83B2CF006A7304 /* URL.swift */,
 				5056A8312F9775E6009B89C3 /* View.swift */,
 			);
@@ -199,6 +214,7 @@
 				50993B6C2D33C4C900195667 /* app.swift in Sources */,
 				50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */,
 				50D28FE92F83A2B3006A7304 /* Logger.swift in Sources */,
+				50F244B12FA38D4B00DFCC8F /* ValueState.swift in Sources */,
 				50D28FEF2F83C4A1006A7304 /* String.swift in Sources */,
 				50D290082F84FEDE006A7304 /* FileManagerView.swift in Sources */,
 				50D28FEB2F83B2CF006A7304 /* URL.swift in Sources */,
@@ -209,11 +225,15 @@
 				5056A8362F9778D1009B89C3 /* Color.swift in Sources */,
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
 				50D290002F845A82006A7304 /* CompresSequence.swift in Sources */,
+				50F244AF2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift in Sources */,
 				50F244A62FA0B3E800DFCC8F /* CompresSource.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
+				50F244AA2FA379FC00DFCC8F /* DateModes.swift in Sources */,
+				50F244AD2FA384ED00DFCC8F /* RadioButton.swift in Sources */,
 				5056A8342F97779D009B89C3 /* GeometryReaderPolyfill.swift in Sources */,
 				50D290062F84FE41006A7304 /* CompresSequenceView.swift in Sources */,
 				5056A8302F9774ED009B89C3 /* ProgressCustom.swift in Sources */,
+				50F244B32FA38D5C00DFCC8F /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,29 @@ import SwiftUI
 
 extension View {
 
+    @ViewBuilder func pointerStyleLinkPolyfill(isEnabled: Bool = true) -> some View {
+        if (isEnabled) {
+            if #available(macOS 15.0, *) {
+                self.pointerStyle(.link)
+            } else {
+                self.onHover { isInView in
+                    if (isInView) { NSCursor.pointingHand.push() }
+                    else          { NSCursor.pop() }
+                }
+            }
+        } else {
+            self
+        }
+    }
+
+    @ViewBuilder func focusEffect<S>(_ shape: S) -> some View where S: Shape {
+        if #available(macOS 12.0, *) {
+            self.contentShape(.focusEffect, shape)
+        } else {
+            self
+        }
+    }
+
     @ViewBuilder func overlayPolyfill<Content: View>(
         alignment: Alignment = .center,
         @ViewBuilder content: @escaping () -> Content

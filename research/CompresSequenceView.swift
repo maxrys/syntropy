@@ -27,7 +27,7 @@ struct CompresSequenceView: View {
     private var sourcesInfo: CompresSource = {
         var info = CompresSource()
         _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_structure/")
-        _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/")
+     // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/")
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file.txt")
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/file_noExtension")
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/archive.zip")
