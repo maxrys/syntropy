@@ -26,13 +26,18 @@ extension FileManager {
         }
     }
 
-    static public func pathScanRecursive(_ basePath: String) -> ScanRecursiveResult? {
+    static public func pathScanRecursive(_ basePath: String, isSkipDSStore: Bool = true) -> ScanRecursiveResult? {
         guard case .directory = URL(fileURLWithPath: basePath).objectType else {
             return nil
         }
         let result = ScanRecursiveResult()
         func scanDirectory(_ path: String) -> Void {
-            if let urls = try? Self.default.contentsOfDirectory(at: URL(fileURLWithPath: path), includingPropertiesForKeys: nil) {
+            if var urls = try? Self.default.contentsOfDirectory(at: URL(fileURLWithPath: path), includingPropertiesForKeys: nil) {
+                if (isSkipDSStore) {
+                    urls = urls.filter { url in
+                        url.lastPathComponent != ".DS_Store"
+                    }
+                }
                 if (!urls.isEmpty) {
                     for url in urls {
                         let pathAbsolute = url.path
