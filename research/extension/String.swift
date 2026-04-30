@@ -23,4 +23,8 @@ extension String {
         self.hasSuffix(suffix) ? String(self.dropLast(suffix.count)) : self
     }
 
+    func width(_ size: UInt) -> String {
+        self.padding(toLength: Int(size), withPad: " ", startingAt: 0)
+    }
+
 }
