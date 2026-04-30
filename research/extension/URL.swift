@@ -7,10 +7,10 @@ import Foundation
 
 extension URL {
 
-    public typealias ObjectDate = (
-        created: Date,
-        updated: Date
-    )
+    public struct ObjectDate {
+        let created: Date
+        let updated: Date
+    }
 
     var pathName: String {
         var url = self
@@ -43,7 +43,10 @@ extension URL {
         if let attributes = try? self.resourceValues(forKeys: [.creationDateKey, .contentModificationDateKey]) {
             if let created = attributes.creationDate,
                let updated = attributes.contentModificationDate {
-                return (created, updated)
+                return ObjectDate(
+                    created: created,
+                    updated: updated
+                )
             }
         }
         return nil

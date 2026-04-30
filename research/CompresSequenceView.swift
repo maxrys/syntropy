@@ -32,10 +32,10 @@ struct CompresSequenceView: View {
         _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/archive.zip")
         _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder.extension")
         _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder")
-    //  print("files:")           ; for object in info.files            { print("- absolute: \(object.absolute)\n  relative: \(object.relative)\n  created: \(object.date!.created)\n  updated: \(object.date!.updated)") }
-    //  print("links:")           ; for object in info.links            { print("- absolute: \(object.absolute)\n  relative: \(object.relative)\n  created: \(object.date!.created)\n  updated: \(object.date!.updated)") }
-    //  print("odirectories:")    ; for object in info.directories      { print("- absolute: \(object.absolute)\n  relative: \(object.relative)\n  created: \(object.date!.created)\n  updated: \(object.date!.updated)") }
-    //  print("emptyDirectories:"); for object in info.emptyDirectories { print("- absolute: \(object.absolute)\n  relative: \(object.relative)\n  created: \(object.date!.created)\n  updated: \(object.date!.updated)") }
+        Logger.customLog("\nFILES:")           ; for object in info.files            { Logger.customLog("- \(object.relative) | \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute)") }
+        Logger.customLog("\nLINKS:")           ; for object in info.links            { Logger.customLog("- \(object.relative) | \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute)") }
+        Logger.customLog("\nODIRECTORIES:")    ; for object in info.directories      { Logger.customLog("- \(object.relative) | \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute)") }
+        Logger.customLog("\nEMPTYDIRECTORIES:"); for object in info.emptyDirectories { Logger.customLog("- \(object.relative) | \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute)") }
         return info
     }()
 
