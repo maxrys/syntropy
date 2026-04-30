@@ -33,10 +33,10 @@ struct CompresSequenceView: View {
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/archive.zip")
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder.extension")
      // _ = info.addSource(path: "/Volumes/dev/xcode/syntropy/test/by_types/folder")
-        Logger.customLog("\nFILES:")           ; for object in info.files           .sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute.width(90)) | \(object.relative)") }
-        Logger.customLog("\nLINKS:")           ; for object in info.links           .sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute.width(90)) | \(object.relative)") }
-        Logger.customLog("\nODIRECTORIES:")    ; for object in info.directories     .sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute.width(90)) | \(object.relative)") }
-        Logger.customLog("\nEMPTYDIRECTORIES:"); for object in info.emptyDirectories.sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601) \(object.date!.updated.ISO8601) | \(object.absolute.width(90)) | \(object.relative)") }
+        Logger.customLog("\nFILES:")           ; for object in info.files           .sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601withTZ) \(object.date!.updated.ISO8601withTZ) | \(object.absolute.width(90)) | \(object.relative)") }
+        Logger.customLog("\nLINKS:")           ; for object in info.links           .sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601withTZ) \(object.date!.updated.ISO8601withTZ) | \(object.absolute.width(90)) | \(object.relative)") }
+        Logger.customLog("\nDIRECTORIES:")     ; for object in info.directories     .sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601withTZ) \(object.date!.updated.ISO8601withTZ) | \(object.absolute.width(90)) | \(object.relative)") }
+        Logger.customLog("\nEMPTYDIRECTORIES:"); for object in info.emptyDirectories.sorted(by: { (lhs, rhs) in lhs.absolute < rhs.absolute}) { Logger.customLog("- \(object.date!.created.ISO8601withTZ) \(object.date!.updated.ISO8601withTZ) | \(object.absolute.width(90)) | \(object.relative)") }
         return info
     }()
 
