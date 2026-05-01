@@ -11,7 +11,8 @@ struct DateModes: View {
     static let SELECTOR_CURRENT_ID: UInt = 1
     static let SELECTOR_CUSTOM_ID: UInt = 2
 
-    @State private var selected: UInt? = 0
+    @State private var mode: UInt? = 3
+    @State private var date = Date()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -19,11 +20,11 @@ struct DateModes: View {
             Text("Date")
                 .font(.headline)
 
-            RadioButton(ID: Self.SELECTOR_ORIGINAL_ID, self.$selected) {
+            RadioButton(ID: Self.SELECTOR_ORIGINAL_ID, self.$mode) {
                 Text("Original")
             }
 
-            RadioButton(ID: Self.SELECTOR_CURRENT_ID, self.$selected) {
+            RadioButton(ID: Self.SELECTOR_CURRENT_ID, self.$mode) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Current")
                     TimelineViewPolyfill(by: 1) {
@@ -33,11 +34,12 @@ struct DateModes: View {
                 }
             }
 
-            RadioButton(ID: Self.SELECTOR_CUSTOM_ID, self.$selected) {
+            RadioButton(ID: Self.SELECTOR_CUSTOM_ID, self.$mode) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Custom")
-                    if (self.selected == Self.SELECTOR_CUSTOM_ID) {
-                        Text("DATE FIELD")
+                    if (self.mode == Self.SELECTOR_CUSTOM_ID) {
+                        DatePicker("", selection: $date)
+                            .datePickerStyle(.automatic)
                     }
                 }
             }
@@ -56,6 +58,7 @@ struct DateModes: View {
 struct DateModes_Previews: PreviewProvider {
     static public var previews: some View {
         DateModes()
+            .frame(width: 300)
     }
 }
 
