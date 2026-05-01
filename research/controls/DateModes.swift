@@ -13,6 +13,7 @@ struct DateModes: View {
         case custom
     }
 
+    @State private var isPresentedCalendar: Bool = false
     @State private var mode: Mode? = .custom
     @State private var date: Date? = Date()
 
@@ -26,7 +27,7 @@ struct DateModes: View {
                 Text("Original")
             }
 
-            RadioButton(ID: .current, self.$mode) {
+            RadioButton(ID: .current, self.$mode, indicatorAlignment: self.mode == .current ? .top : .center) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Current")
                     if (self.mode == .current) {
@@ -39,12 +40,20 @@ struct DateModes: View {
             }
 
             RadioButton(ID: .custom, self.$mode) {
-                VStack(alignment: .leading, spacing: 5) {
+                HStack(spacing: 7) {
                     Text("Custom")
                     if (self.mode == .custom) {
-                        DatePickerCustom(
-                            value: self.$date
-                        )
+                        Button { self.isPresentedCalendar = true } label: {
+                            Image(systemName: "calendar")
+                                .foregroundPolyfill(.accentColor)
+                        }
+                        .buttonStyle(.plain)
+                        .pointerStyleLinkPolyfill()
+                        .popover(isPresented: self.$isPresentedCalendar) {
+                            DatePickerCustom(
+                                value: self.$date
+                            ).padding(20)
+                        }
                     }
                 }
             }

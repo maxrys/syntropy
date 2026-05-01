@@ -20,7 +20,7 @@ struct RadioButton<T: Equatable>: View {
         ID: T,
         _ selected: Binding<T?>,
         size: CGFloat = 20,
-        indicatorAlignment: VerticalAlignment = .top,
+        indicatorAlignment: VerticalAlignment = .center,
         isDisabled: Bool = false,
         @ViewBuilder content: () -> any View
     ) {
