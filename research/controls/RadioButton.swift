@@ -5,20 +5,20 @@
 
 import SwiftUI
 
-struct RadioButton: View {
+struct RadioButton<T: Equatable>: View {
 
     @Environment(\.colorScheme) private var colorScheme
-    @Binding private var selected: UInt?
+    @Binding private var selected: T?
 
-    private let ID: UInt
+    private let ID: T
     private let content: any View
     private let size: CGFloat
     private let indicatorAlignment: VerticalAlignment
     private let isDisabled: Bool
 
     init(
-        ID: UInt,
-        _ selected: Binding<UInt?>,
+        ID: T,
+        _ selected: Binding<T?>,
         size: CGFloat = 20,
         indicatorAlignment: VerticalAlignment = .top,
         isDisabled: Bool = false,
@@ -99,7 +99,7 @@ struct RadioButton: View {
 /* ########################## PREVIEW ########################## */
 /* ############################################################# */
 
-struct RadioButton_Previews: PreviewProvider {
+struct RadioButton_UInt_Previews: PreviewProvider {
     struct ViewWithState: View {
         static let DEMO_ID_0: UInt = 0
         static let DEMO_ID_1: UInt = 1
@@ -119,6 +119,41 @@ struct RadioButton_Previews: PreviewProvider {
                     }
                 }
                 RadioButton(ID: Self.DEMO_ID_2, self.$selected, isDisabled: true) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Item 3")
+                        Text("disabled").font(.system(size: 10))
+                    }
+                }
+            }.padding(20)
+        }
+    }
+    static public var previews: some View {
+        ViewWithState()
+    }
+}
+
+struct RadioButton_enum_Previews: PreviewProvider {
+    struct ViewWithState: View {
+        enum Mode {
+            case mode0
+            case mode1
+            case mode2
+        }
+        @State private var mode: Mode? = .mode0
+        public var body: some View {
+            VStack(alignment: .leading, spacing: 15) {
+                RadioButton(ID: .mode0, self.$mode) {
+                    Text("Item 1")
+                }
+                RadioButton(ID: .mode1, self.$mode) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Item 2")
+                        Text("some description 1").font(.system(size: 10))
+                        Text("some description 2").font(.system(size: 10))
+                        Text("some description 3").font(.system(size: 10))
+                    }
+                }
+                RadioButton(ID: .mode2, self.$mode, isDisabled: true) {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Item 3")
                         Text("disabled").font(.system(size: 10))

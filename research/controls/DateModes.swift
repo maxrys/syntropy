@@ -7,11 +7,13 @@ import SwiftUI
 
 struct DateModes: View {
 
-    static let SELECTOR_ORIGINAL_ID: UInt = 0
-    static let SELECTOR_CURRENT_ID: UInt = 1
-    static let SELECTOR_CUSTOM_ID: UInt = 2
+    enum Mode {
+        case original
+        case current
+        case custom
+    }
 
-    @State private var mode: UInt? = Self.SELECTOR_CUSTOM_ID
+    @State private var mode: Mode? = .custom
     @State private var date = Date()
 
     var body: some View {
@@ -20,24 +22,26 @@ struct DateModes: View {
             Text("Date")
                 .font(.headline)
 
-            RadioButton(ID: Self.SELECTOR_ORIGINAL_ID, self.$mode) {
+            RadioButton(ID: .original, self.$mode) {
                 Text("Original")
             }
 
-            RadioButton(ID: Self.SELECTOR_CURRENT_ID, self.$mode) {
+            RadioButton(ID: .current, self.$mode) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Current")
-                    TimelineViewPolyfill(by: 1) {
-                        Text("\(Date().ISO8601withTZ)")
-                            .font(.system(size: 10))
+                    if (self.mode == .current) {
+                        TimelineViewPolyfill(by: 1) {
+                            Text("\(Date().ISO8601withTZ)")
+                                .font(.system(size: 10))
+                        }
                     }
                 }
             }
 
-            RadioButton(ID: Self.SELECTOR_CUSTOM_ID, self.$mode) {
+            RadioButton(ID: .custom, self.$mode) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Custom")
-                    if (self.mode == Self.SELECTOR_CUSTOM_ID) {
+                    if (self.mode == .custom) {
                         DatePicker("", selection: $date)
                             .datePickerStyle(.automatic)
                     }
@@ -58,7 +62,6 @@ struct DateModes: View {
 struct DateModes_Previews: PreviewProvider {
     static public var previews: some View {
         DateModes()
-            .frame(width: 300)
     }
 }
 
