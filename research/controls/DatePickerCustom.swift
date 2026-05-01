@@ -54,55 +54,80 @@ struct DatePickerCustom: View {
         self.yearMaxValue = yearMaxValue
     }
 
-    var body: some View {
-        VStack(spacing: 10) {
+    private let columns = [
+        GridItem(.fixed( 80), spacing: 0, alignment: .trailing),
+        GridItem(.fixed(120), spacing: 0, alignment: .leading),
+    ]
 
-            Picker("Day", selection: self.$day) {
+    var body: some View {
+        LazyVGrid(columns: self.columns, spacing: 10) {
+
+            Text(NSLocalizedString("Day", comment: ""))
+                .font(.headline)
+
+            Picker("", selection: self.$day) {
                 ForEach(1 ... 31, id: \.self) { dayNumber in
                     Text("\(String(dayNumber))")
                 }
-            }.frame(width: 80)
+            }.frame(width: 60)
 
-            Picker("Month", selection: self.$month) {
+            Text(NSLocalizedString("Month", comment: ""))
+                .font(.headline)
+
+            Picker("", selection: self.$month) {
                 ForEach(1 ... 12, id: \.self) { monthNumber in
                     if let monthName = Self.MONTH_NAMES[monthNumber]
                          { Text("\(monthName)") }
                     else { Text("\(String(monthNumber))") }
                 }
-            }.frame(width: 150)
+            }.frame(width: 110)
 
-            Picker("Year", selection: self.$year) {
+            Text(NSLocalizedString("Year", comment: ""))
+                .font(.headline)
+
+            Picker("", selection: self.$year) {
                 ForEach(self.yearMinValue ... self.yearMaxValue, id: \.self) { yearNumber in
                     Text("\(String(yearNumber))")
                 }
-            }.frame(width: 100)
+            }.frame(width: 80)
 
-            Picker("Hour", selection: self.$hour) {
+            Text(NSLocalizedString("Hour", comment: ""))
+                .font(.headline)
+
+            Picker("", selection: self.$hour) {
                 ForEach(0 ... 23, id: \.self) { hourNumber in
                     Text("\(String(hourNumber))")
                 }
-            }.frame(width: 100)
+            }.frame(width: 60)
 
-            Picker("Minute", selection: self.$minute) {
+            Text(NSLocalizedString("Minute", comment: ""))
+                .font(.headline)
+
+            Picker("", selection: self.$minute) {
                 ForEach(0 ... 59, id: \.self) { minuteNumber in
                     Text("\(String(minuteNumber))")
                 }
-            }.frame(width: 100)
+            }.frame(width: 60)
 
-            Picker("Second", selection: self.$second) {
+            Text(NSLocalizedString("Second", comment: ""))
+                .font(.headline)
+
+            Picker("", selection: self.$second) {
                 ForEach(0 ... 59, id: \.self) { secondNumber in
                     Text("\(String(secondNumber))")
                 }
-            }.frame(width: 100)
+            }.frame(width: 60)
 
-            Picker("TimeZone", selection: self.$timeZone) {
+            Text(NSLocalizedString("TimeZone", comment: ""))
+                .font(.headline)
+
+            Picker("", selection: self.$timeZone) {
                 ForEach(0 ... 12, id: \.self) { timeZoneNumber in
                     Text("\(String(timeZoneNumber))")
                 }
-            }.frame(width: 100)
+            }.frame(width: 60)
 
         }
-
      // Text("\(self.value?.ISO8601withTZ)")
     }
 
