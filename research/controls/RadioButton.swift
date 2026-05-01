@@ -132,7 +132,7 @@ struct RadioButton_UInt_Previews: PreviewProvider {
     }
 }
 
-struct RadioButton_enum_Previews: PreviewProvider {
+struct RadioButton_Enum_Previews: PreviewProvider {
     struct ViewWithState: View {
         enum Mode {
             case mode0
