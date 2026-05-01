@@ -14,7 +14,7 @@ struct DateModes: View {
     }
 
     @State private var mode: Mode? = .custom
-    @State private var date = Date()
+    @State private var date: Date? = Date()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -42,8 +42,9 @@ struct DateModes: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Custom")
                     if (self.mode == .custom) {
-                        DatePicker("", selection: $date)
-                            .datePickerStyle(.automatic)
+                        DatePickerCustom(
+                            value: self.$date
+                        )
                     }
                 }
             }
