@@ -66,17 +66,11 @@ struct CompresSequenceView: View {
 
             HStack(spacing: 20) {
 
-                Toggle(isOn: self.$isRelativePath) {
-                    Text("isRelativePath")
-                }.disabled(self.task != nil)
-
-                Toggle(isOn: self.$isCompressed) {
-                    Text("isCompressed")
-                }.disabled(self.task != nil)
-
-                Toggle(isOn: self.$isIncludeEmptyDirs) {
-                    Text("isIncludeEmptyDirs")
-                }.disabled(self.task != nil)
+                VStack(alignment: .leading, spacing: 10) {
+                    Toggle(isOn: self.$isRelativePath    ) { Text("is Relative Path"            ) }.disabled(self.task != nil)
+                    Toggle(isOn: self.$isCompressed      ) { Text("is Compressed"               ) }.disabled(self.task != nil)
+                    Toggle(isOn: self.$isIncludeEmptyDirs) { Text("is Include Empty Directories") }.disabled(self.task != nil)
+                }
 
                 Picker("Throttling", selection: self.$throttlingIndex) {
                     ForEach(self.throttlingValues.indices, id: \.self) { index in
@@ -120,12 +114,10 @@ struct CompresSequenceView: View {
                         Text(reportInfo.path       ).id(Double(index) + 0.1)
                         Text(reportInfo.description).id(Double(index) + 0.2)
                     }
-                }
-            }
+                }.padding(20)
+            }.background(Color.white)
 
         }
-        .padding(20)
-        .background(Color.white)
         .onDisappear {
             self.onClickCancel()
         }
@@ -175,4 +167,5 @@ struct CompresSequenceView: View {
 
 #Preview {
     CompresSequenceView()
+        .padding(20)
 }
