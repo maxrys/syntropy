@@ -89,10 +89,10 @@ struct CompresSequenceView: View {
 
             VStack(spacing: 5) {
 
-                ProgressCustom(value: self.progressTotal)
+                ProgressSimple(value: self.progressTotal)
                 Text("Progress: \(Int(self.progressTotal * 100)) %")
 
-                ProgressCustom(value: self.progressLocal)
+                ProgressSimple(value: self.progressLocal)
                 Text("Progress: \(Int(self.progressLocal * 100)) %")
 
             }
