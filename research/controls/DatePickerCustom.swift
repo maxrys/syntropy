@@ -128,7 +128,6 @@ struct DatePickerCustom: View {
             }.frame(width: 60)
 
         }
-     // Text("\(self.value?.ISO8601withTZ)")
     }
 
 }
