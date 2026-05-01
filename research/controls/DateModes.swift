@@ -11,7 +11,7 @@ struct DateModes: View {
     static let SELECTOR_CURRENT_ID: UInt = 1
     static let SELECTOR_CUSTOM_ID: UInt = 2
 
-    @State private var mode: UInt? = 3
+    @State private var mode: UInt? = Self.SELECTOR_CUSTOM_ID
     @State private var date = Date()
 
     var body: some View {
