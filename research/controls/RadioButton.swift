@@ -46,11 +46,11 @@ struct RadioButton: View {
                         height: self.size
                     )
                     .overlayPolyfill {
-                        self.Border()
+                        self.BorderView()
                     }
                     .overlayPolyfill {
                         if (self.selected == self.ID) {
-                            self.Indicator()
+                            self.IndicatorView()
                         }
                     }
                     .clipShape   (Circle())
@@ -69,7 +69,7 @@ struct RadioButton: View {
         }
     }
 
-    @ViewBuilder private func Border() -> some View {
+    @ViewBuilder private func BorderView() -> some View {
         Circle()
             .stroke(
                 self.colorScheme == .dark ?
@@ -83,7 +83,7 @@ struct RadioButton: View {
             )
     }
 
-    @ViewBuilder private func Indicator() -> some View {
+    @ViewBuilder private func IndicatorView() -> some View {
         Circle()
             .fill(Color.accentColor)
             .frame(
