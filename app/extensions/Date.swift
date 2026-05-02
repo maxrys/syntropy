@@ -13,7 +13,7 @@ extension Date {
         Double(UInt(Self().timeIntervalSince1970 * speed) % max)
     }
 
-    var ISO8601Mono: String {
+    var formatISO8601Mono: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd_HHmmss"
         formatter.locale = Locale(identifier: "en_US_POSIX")
