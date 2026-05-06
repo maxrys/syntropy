@@ -46,17 +46,17 @@ struct DatePickerCustom: View {
         }
     }
 
-    private var hourItems: [Int: String] {
+    static private let hourItems: [Int: String] = {
         (0 ... 23).reduce(into: [Int: String]()) { result, value in
             result[value] = value < 10 ? "0\(value)" : "\(value)"
         }
-    }
+    }()
 
-    private var minuteAndSecondItems: [Int: String] {
+    static private let minuteAndSecondItems: [Int: String] = {
         (0 ... 59).reduce(into: [Int: String]()) { result, value in
             result[value] = value < 10 ? "0\(value)" : "\(value)"
         }
-    }
+    }()
 
     var body: some View {
         HStack(spacing: 0) {
@@ -100,7 +100,7 @@ struct DatePickerCustom: View {
                 HStack(spacing: 0) {
                     FieldList<Int>(
                         value: self.value.date.hourUTC,
-                        items: self.hourItems,
+                        items: Self.hourItems,
                         onChange: { value in
                             self.value.date.hourUTC = value
                         }
@@ -108,7 +108,7 @@ struct DatePickerCustom: View {
 
                     FieldList<Int>(
                         value: self.value.date.minuteUTC,
-                        items: self.minuteAndSecondItems,
+                        items: Self.minuteAndSecondItems,
                         onChange: { value in
                             self.value.date.minuteUTC = value
                         }
@@ -116,7 +116,7 @@ struct DatePickerCustom: View {
 
                     FieldList<Int>(
                         value: self.value.date.secondUTC,
-                        items: self.minuteAndSecondItems,
+                        items: Self.minuteAndSecondItems,
                         onChange: { value in
                             self.value.date.secondUTC = value
                         }

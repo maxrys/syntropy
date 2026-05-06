@@ -13,12 +13,18 @@ struct DateMode: View {
         case custom
     }
 
+    @Binding private var mode: Mode?
+    @Binding private var dateWithTZ: DatePickerCustom.Value
+
     @State private var isPresentedCalendar: Bool = false
-    @State private var mode: Mode? = .custom
-    @State private var dateWithTZ = DatePickerCustom.Value(
-        date: Date(),
-        zone: "UTC"
-    )
+
+    init(
+        mode: Binding<Mode?>,
+        dateWithTZ: Binding<DatePickerCustom.Value>
+    ) {
+        self._mode       = mode
+        self._dateWithTZ = dateWithTZ
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -78,11 +84,23 @@ struct DateMode: View {
 /* ########################## PREVIEW ########################## */
 /* ############################################################# */
 
-struct DateModes_Previews: PreviewProvider {
+struct DateMode_Previews: PreviewProvider {
+    struct ViewWithState: View {
+        @State private var mode: DateMode.Mode? = .original
+        @State private var dateWithTZ = DatePickerCustom.Value(
+            date: Date(),
+            zone: "UTC"
+        )
+        public var body: some View {
+            DateMode(
+                mode      : self.$mode,
+                dateWithTZ: self.$dateWithTZ
+            )
+            .padding(20)
+            .frame(width: 250, alignment: .leading)
+        }
+    }
     static public var previews: some View {
-        VStack(alignment: .leading) {
-            DateMode().padding(20)
-        }.frame(width: 250, alignment: .leading)
+        ViewWithState()
     }
 }
-

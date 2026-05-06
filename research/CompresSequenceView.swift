@@ -16,11 +16,17 @@ struct CompresSequenceView: View {
     @State private var progressTotal: Double = 0.0
     @State private var progressLocal: Double = 0.0
     @State private var task: Task<Void, Never>? = nil
-    @State private var isRelativePath: Bool = true
-    @State private var isIncludeEmptyDirs: Bool = true
-    @State private var isCompressed: Bool = true
-    @State private var throttlingIndex: Int = 0
     @State private var report: [(path: String, description: String)] = []
+
+    @State private var preset_isRelativePath: Bool = true
+    @State private var preset_isIncludeEmptyDirs: Bool = true
+    @State private var preset_isCompressed: Bool = true
+    @State private var preset_throttlingIndex: Int = 0
+    @State private var preset_dateMode: DateMode.Mode? = .original
+    @State private var preset_dateWithTZ = DatePickerCustom.Value(
+        date: Date(),
+        zone: "UTC"
+    )
 
     private let throttlingValues: [Double] = [0, 0.0001, 0.001, 0.01, 0.1]
 
@@ -48,13 +54,14 @@ struct CompresSequenceView: View {
 
     private var preset: CompresPreset {
         CompresPreset(
-            isRelativePath    : self.isRelativePath,
-            isIncludeEmptyDirs: self.isIncludeEmptyDirs,
+            isRelativePath    : self.preset_isRelativePath,
+            isIncludeEmptyDirs: self.preset_isIncludeEmptyDirs,
             isFollowLinks     : true,
-            compression       : self.isCompressed ? .deflate : .none,
-            throttling        : self.throttlingValues[self.throttlingIndex],
+            compression       : self.preset_isCompressed ? .deflate : .none,
+            throttling        : self.throttlingValues[self.preset_throttlingIndex],
             excludePattern    : nil,
-            date              : .current
+            dateMode          : self.preset_dateMode,
+            dateWithTZ        : self.preset_dateWithTZ
         )
     }
 
@@ -67,15 +74,16 @@ struct CompresSequenceView: View {
             HStack(spacing: 20) {
 
                 VStack(alignment: .leading, spacing: 10) {
-                    Toggle(isOn: self.$isRelativePath    ) { Text("is Relative Path"            ) }.disabled(self.task != nil)
-                    Toggle(isOn: self.$isCompressed      ) { Text("is Compressed"               ) }.disabled(self.task != nil)
-                    Toggle(isOn: self.$isIncludeEmptyDirs) { Text("is Include Empty Directories") }.disabled(self.task != nil)
+                    Toggle(isOn: self.$preset_isRelativePath    ) { Text("is Relative Path"            ) }.disabled(self.task != nil)
+                    Toggle(isOn: self.$preset_isIncludeEmptyDirs) { Text("is Include Empty Directories") }.disabled(self.task != nil)
+                    Toggle(isOn: self.$preset_isCompressed      ) { Text("is Compressed"               ) }.disabled(self.task != nil)
                 }
 
-                DateMode()
+                DateMode(mode: self.$preset_dateMode, dateWithTZ: self.$preset_dateWithTZ)
                     .frame(width: 172, alignment: .leading)
+                    .disabled(self.task != nil)
 
-                Picker("Throttling", selection: self.$throttlingIndex) {
+                Picker("Throttling", selection: self.$preset_throttlingIndex) {
                     ForEach(self.throttlingValues.indices, id: \.self) { index in
                         Text("\(self.throttlingValues[index])").id(index)
                     }
