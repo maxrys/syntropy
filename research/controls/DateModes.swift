@@ -32,7 +32,7 @@ struct DateModes: View {
                     Text("Current")
                     if (self.mode == .current) {
                         TimelineViewPolyfill(by: 1) {
-                            Text("\(Date().ISO8601withTZ)")
+                            Text("\(Date().formatISO8601tz)")
                                 .font(.system(size: 10))
                         }
                     }
