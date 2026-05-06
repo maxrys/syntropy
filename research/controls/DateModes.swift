@@ -15,7 +15,10 @@ struct DateModes: View {
 
     @State private var isPresentedCalendar: Bool = false
     @State private var mode: Mode? = .custom
-    @State private var date: Date? = Date()
+    @State private var dateWithTZ = DatePickerCustom.Value(
+        date: Date(),
+        zone: "UTC"
+    )
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -40,20 +43,26 @@ struct DateModes: View {
             }
 
             RadioButton(ID: .custom, self.$mode) {
-                HStack(spacing: 7) {
-                    Text("Custom")
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(spacing: 7) {
+                        Text("Custom")
+                        if (self.mode == .custom) {
+                            Button { self.isPresentedCalendar = true } label: {
+                                Image(systemName: "calendar")
+                                    .foregroundPolyfill(.accentColor)
+                            }
+                            .buttonStyle(.plain)
+                            .pointerStyleLinkPolyfill()
+                            .popover(isPresented: self.$isPresentedCalendar) {
+                                DatePickerCustom(
+                                    value: self.$dateWithTZ
+                                ).padding(20)
+                            }
+                        }
+                    }
                     if (self.mode == .custom) {
-                        Button { self.isPresentedCalendar = true } label: {
-                            Image(systemName: "calendar")
-                                .foregroundPolyfill(.accentColor)
-                        }
-                        .buttonStyle(.plain)
-                        .pointerStyleLinkPolyfill()
-                        .popover(isPresented: self.$isPresentedCalendar) {
-                            DatePickerCustom(
-                                value: self.$date
-                            ).padding(20)
-                        }
+                        Text("\(self.dateWithTZ.result.formatISO8601tzUTC)")
+                            .font(.system(size: 10))
                     }
                 }
             }

@@ -3,130 +3,163 @@
 /* ### Copyright © 2026 Maxim Rysevets. All rights reserved. ### */
 /* ############################################################# */
 
+import os
 import SwiftUI
 
 struct DatePickerCustom: View {
 
-    static public let MONTH_NAMES = [
-         1: "January",
-         2: "February",
-         3: "March",
-         4: "April",
-         5: "May",
-         6: "June",
-         7: "July",
-         8: "August",
-         9: "September",
-        10: "October",
-        11: "November",
-        12: "December",
-    ]
+    struct Value: Equatable {
+        var date: Date
+        var zone: String
+        var result: Date {
+            if let offsetNumeric = Date.TIME_ZONES_OFFSSET[self.zone]
+                 { return self.date.toNewTimeZone(offset: offsetNumeric) }
+            else { return self.date }
+        }
+    }
 
     @Environment(\.colorScheme) private var colorScheme
-
-    @Binding private var value: Date?
-
-    @State private var day: Int    /* 1 ... 31 */
-    @State private var month: Int  /* 1 ... 12 */
-    @State private var year: Int   /* 1970 ... 2050 */
-    @State private var hour: Int   /* 0 ... 23 */
-    @State private var minute: Int /* 0 ... 59 */
-    @State private var second: Int /* 0 ... 59 */
-    @State private var timeZone: Int
+    @Binding private var value: Value
 
     private let yearMinValue: Int
     private let yearMaxValue: Int
 
     init(
-        value: Binding<Date?>,
+        value: Binding<Value>,
         yearMinValue: Int = 1970,
         yearMaxValue: Int = 2050
     ) {
-        self._value = value
-        self.day      = Calendar.current.component(.day     , from: value.wrappedValue ?? Date())
-        self.month    = Calendar.current.component(.month   , from: value.wrappedValue ?? Date())
-        self.year     = Calendar.current.component(.year    , from: value.wrappedValue ?? Date())
-        self.hour     = Calendar.current.component(.hour    , from: value.wrappedValue ?? Date())
-        self.minute   = Calendar.current.component(.minute  , from: value.wrappedValue ?? Date())
-        self.second   = Calendar.current.component(.second  , from: value.wrappedValue ?? Date())
-        self.timeZone = 0
         self.yearMinValue = yearMinValue
         self.yearMaxValue = yearMaxValue
+        self._value = value
     }
 
-    private let columns = [
-        GridItem(.fixed( 80), spacing: 0, alignment: .trailing),
-        GridItem(.fixed(120), spacing: 0, alignment: .leading),
-    ]
+    private var dayItems: [Int: String] {
+        let daysInMonth = Date.daysInMonth(month: self.value.date.monthUTC, year: self.value.date.yearUTC)
+        return (1 ... (daysInMonth ?? 31)).reduce(into: [Int: String]()) { result, value in
+            result[value] = value < 10 ? "\u{2002}\(value)" : "\(value)"
+        }
+    }
+
+    private var yearItems: [Int: String] {
+        (self.yearMinValue ... self.yearMaxValue).reduce(into: [Int: String]()) { result, value in
+            result[value] = "\(value)"
+        }
+    }
+
+    private var hourItems: [Int: String] {
+        (0 ... 23).reduce(into: [Int: String]()) { result, value in
+            result[value] = value < 10 ? "0\(value)" : "\(value)"
+        }
+    }
+
+    private var minuteAndSecondItems: [Int: String] {
+        (0 ... 59).reduce(into: [Int: String]()) { result, value in
+            result[value] = value < 10 ? "0\(value)" : "\(value)"
+        }
+    }
 
     var body: some View {
-        LazyVGrid(columns: self.columns, spacing: 10) {
+        HStack(spacing: 0) {
 
-            Text(NSLocalizedString("Day", comment: ""))
-                .font(.headline)
+            VStack(alignment: .trailing, spacing: 14) {
+                Text(NSLocalizedString("Date"    , comment: ""))
+                Text(NSLocalizedString("Time"    , comment: ""))
+                Text(NSLocalizedString("TimeZone", comment: ""))
+            }
+            .font(.headline)
+            .lineLimit(1)
 
-            Picker("", selection: self.$day) {
-                ForEach(1 ... 31, id: \.self) { dayNumber in
-                    Text("\(String(dayNumber))")
+            VStack(alignment: .leading, spacing: 10) {
+
+                HStack(spacing: 0) {
+                    FieldList<Int>(
+                        value: self.value.date.dayUTC,
+                        items: self.dayItems,
+                        onChange: { value in
+                            self.value.date.dayUTC = value
+                        }
+                    ).frame(width: 60)
+
+                    FieldList<Int>(
+                        value: self.value.date.monthUTC,
+                        items: Date.MONTH_NAMES,
+                        onChange: { value in
+                            self.updateMonth(value)
+                        }
+                    ).frame(width: 120)
+
+                    FieldList<Int>(
+                        value: self.value.date.yearUTC,
+                        items: self.yearItems,
+                        onChange: { value in
+                            self.updateYear(value)
+                        }
+                    ).frame(width: 72)
                 }
-            }.frame(width: 60)
 
-            Text(NSLocalizedString("Month", comment: ""))
-                .font(.headline)
+                HStack(spacing: 0) {
+                    FieldList<Int>(
+                        value: self.value.date.hourUTC,
+                        items: self.hourItems,
+                        onChange: { value in
+                            self.value.date.hourUTC = value
+                        }
+                    ).frame(width: 60)
 
-            Picker("", selection: self.$month) {
-                ForEach(1 ... 12, id: \.self) { monthNumber in
-                    if let monthName = Self.MONTH_NAMES[monthNumber]
-                         { Text("\(monthName)") }
-                    else { Text("\(String(monthNumber))") }
+                    FieldList<Int>(
+                        value: self.value.date.minuteUTC,
+                        items: self.minuteAndSecondItems,
+                        onChange: { value in
+                            self.value.date.minuteUTC = value
+                        }
+                    ).frame(width: 60)
+
+                    FieldList<Int>(
+                        value: self.value.date.secondUTC,
+                        items: self.minuteAndSecondItems,
+                        onChange: { value in
+                            self.value.date.secondUTC = value
+                        }
+                    ).frame(width: 60)
                 }
-            }.frame(width: 110)
 
-            Text(NSLocalizedString("Year", comment: ""))
-                .font(.headline)
+                FieldGrouppedList<Int, String>(
+                    value: self.value.zone,
+                    list: Date.TIME_ZONES_GROUPPED_LIST,
+                    onChange: { value in
+                        self.value.zone = value
+                    }
+                ).frame(width: 180)
 
-            Picker("", selection: self.$year) {
-                ForEach(self.yearMinValue ... self.yearMaxValue, id: \.self) { yearNumber in
-                    Text("\(String(yearNumber))")
-                }
-            }.frame(width: 80)
+            }
 
-            Text(NSLocalizedString("Hour", comment: ""))
-                .font(.headline)
+        }
+    }
 
-            Picker("", selection: self.$hour) {
-                ForEach(0 ... 23, id: \.self) { hourNumber in
-                    Text("\(String(hourNumber))")
-                }
-            }.frame(width: 60)
+    private func updateMonth(_ newMonth: Int) {
+        var resultDate = self.value.date
+        if let daysInMonth = Date.daysInMonth(month: newMonth, year: resultDate.yearUTC) {
+            if (resultDate.dayUTC > daysInMonth) {
+                resultDate.dayUTC = daysInMonth
+            }
+        }
+        resultDate.monthUTC = newMonth
+        if (resultDate != self.value.date) {
+            self.value.date = resultDate
+        }
+    }
 
-            Text(NSLocalizedString("Minute", comment: ""))
-                .font(.headline)
-
-            Picker("", selection: self.$minute) {
-                ForEach(0 ... 59, id: \.self) { minuteNumber in
-                    Text("\(String(minuteNumber))")
-                }
-            }.frame(width: 60)
-
-            Text(NSLocalizedString("Second", comment: ""))
-                .font(.headline)
-
-            Picker("", selection: self.$second) {
-                ForEach(0 ... 59, id: \.self) { secondNumber in
-                    Text("\(String(secondNumber))")
-                }
-            }.frame(width: 60)
-
-            Text(NSLocalizedString("TimeZone", comment: ""))
-                .font(.headline)
-
-            Picker("", selection: self.$timeZone) {
-                ForEach(0 ... 12, id: \.self) { timeZoneNumber in
-                    Text("\(String(timeZoneNumber))")
-                }
-            }.frame(width: 60)
-
+    private func updateYear(_ newYear: Int) {
+        var resultDate = self.value.date
+        if let daysInMonth = Date.daysInMonth(month: resultDate.monthUTC, year: newYear) {
+            if (resultDate.dayUTC > daysInMonth) {
+                resultDate.dayUTC = daysInMonth
+            }
+        }
+        resultDate.yearUTC = newYear
+        if (resultDate != self.value.date) {
+            self.value.date = resultDate
         }
     }
 
@@ -141,8 +174,15 @@ struct DatePickerCustom: View {
 struct DatePickerCustom_Previews: PreviewProvider {
     static public var previews: some View {
         DatePickerCustom(
-            value: .constant(Date())
-        ).padding(20)
+            value: .constant(
+                DatePickerCustom.Value(
+                    date: Date(iso8601: "2000-01-01 00:00:00")!,
+                    zone: "UTC"
+                )
+            )
+        )
+        .padding(20)
+        .frame(width: 400)
     }
 }
 
