@@ -99,6 +99,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
 
             let sourcePathAbsolute = self.sequence.sourcesInfo.files[self.index].absolute
             let sourcePathRelative = self.sequence.sourcesInfo.files[self.index].relative
+            let dateInfo           = self.sequence.sourcesInfo.files[self.index].date
 
             let internalPath = {
                 if (self.sequence.preset.isRelativePath)
@@ -106,10 +107,17 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                 else { return sourcePathAbsolute }
             }()
 
+            var dateModifFinal: Date = Date()
+
+            if self.sequence.preset.dateMode == .current                { dateModifFinal = Date() }
+            if self.sequence.preset.dateMode == .custom                 { dateModifFinal = self.sequence.preset.dateWithTZ.result }
+            if self.sequence.preset.dateMode == .original, let dateInfo { dateModifFinal = dateInfo.updated }
+
             do {
                 try await self.addFile(
                     from: sourcePathAbsolute,
-                    as: internalPath
+                    as: internalPath,
+                    modificationDate: dateModifFinal
                 )
                 return CompresSequence.Element(
                     status    : .success,
@@ -133,7 +141,11 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
         return nil
     }
 
-    private func addFile(from sourcePath: String, as internalPath: String) async throws {
+    private func addFile(
+        from sourcePath: String,
+        as internalPath: String,
+        modificationDate: Date
+    ) async throws {
         let file = try FileHandle(forReadingFrom: URL(fileURLWithPath: sourcePath))
         let fileSize = Int64(try file.seekToEnd())
         defer { try? file.close() }
@@ -142,7 +154,7 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
             with: internalPath,
             type: .file,
             uncompressedSize: fileSize,
-         // modificationDate: Date = Date(),
+            modificationDate: modificationDate,
          // permissions: UInt16? = nil,
             compressionMethod: self.sequence.preset.compression,
          // bufferSize: Int = defaultWriteChunkSize,
