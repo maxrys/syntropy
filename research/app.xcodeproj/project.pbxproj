@@ -25,7 +25,7 @@
 		50D2903F2F86678F006A7304 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D2903E2F86678F006A7304 /* Numeric.swift */; };
 		50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A32FA0A77E00DFCC8F /* _const.swift */; };
 		50F244A62FA0B3E800DFCC8F /* CompresSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A52FA0B3E600DFCC8F /* CompresSource.swift */; };
-		50F244AA2FA379FC00DFCC8F /* DateModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A92FA379FC00DFCC8F /* DateModes.swift */; };
+		50F244AA2FA379FC00DFCC8F /* DateMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A92FA379FC00DFCC8F /* DateMode.swift */; };
 		50F244AD2FA384ED00DFCC8F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AC2FA384EC00DFCC8F /* RadioButton.swift */; };
 		50F244AF2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */; };
 		50F244B32FA38D5C00DFCC8F /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244B22FA38D5C00DFCC8F /* Timer.swift */; };
@@ -61,7 +61,7 @@
 		50D2903E2F86678F006A7304 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		50F244A32FA0A77E00DFCC8F /* _const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _const.swift; sourceTree = "<group>"; };
 		50F244A52FA0B3E600DFCC8F /* CompresSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresSource.swift; sourceTree = "<group>"; };
-		50F244A92FA379FC00DFCC8F /* DateModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModes.swift; sourceTree = "<group>"; };
+		50F244A92FA379FC00DFCC8F /* DateMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMode.swift; sourceTree = "<group>"; };
 		50F244AC2FA384EC00DFCC8F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewPolyfill.swift; sourceTree = "<group>"; };
 		50F244B22FA38D5C00DFCC8F /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		5056A82E2F977406009B89C3 /* controls */ = {
 			isa = PBXGroup;
 			children = (
-				50F244A92FA379FC00DFCC8F /* DateModes.swift */,
+				50F244A92FA379FC00DFCC8F /* DateMode.swift */,
 				50F244FA2FAB4A8600DFCC8F /* DatePickerCustom.swift */,
 				50F244FB2FAB4A8600DFCC8F /* FieldGrouppedList.swift */,
 				50F244FC2FAB4A8600DFCC8F /* FieldList.swift */,
@@ -298,7 +298,7 @@
 				50F244AF2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift in Sources */,
 				50F244A62FA0B3E800DFCC8F /* CompresSource.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
-				50F244AA2FA379FC00DFCC8F /* DateModes.swift in Sources */,
+				50F244AA2FA379FC00DFCC8F /* DateMode.swift in Sources */,
 				50F244AD2FA384ED00DFCC8F /* RadioButton.swift in Sources */,
 				50D290062F84FE41006A7304 /* CompresSequenceView.swift in Sources */,
 				5056A8302F9774ED009B89C3 /* ProgressSimple.swift in Sources */,

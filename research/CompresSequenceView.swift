@@ -72,13 +72,15 @@ struct CompresSequenceView: View {
                     Toggle(isOn: self.$isIncludeEmptyDirs) { Text("is Include Empty Directories") }.disabled(self.task != nil)
                 }
 
-                DateModes()
+                DateMode()
+                    .frame(width: 250)
 
                 Picker("Throttling", selection: self.$throttlingIndex) {
                     ForEach(self.throttlingValues.indices, id: \.self) { index in
                         Text("\(self.throttlingValues[index])").id(index)
                     }
-                }.frame(width: 160)
+                }
+                .frame(width: 160)
                 .disabled(self.task != nil)
 
             }

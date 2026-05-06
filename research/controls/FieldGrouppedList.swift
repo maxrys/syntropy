@@ -3,7 +3,6 @@
 /* ### Copyright © 2026 Maxim Rysevets. All rights reserved. ### */
 /* ############################################################# */
 
-import os
 import SwiftUI
 
 struct FieldGrouppedList<GroupID, ItemID>: View, @MainActor Equatable where GroupID: Hashable & Equatable & Comparable, ItemID: Hashable & Equatable & Comparable {

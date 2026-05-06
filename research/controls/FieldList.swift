@@ -3,7 +3,6 @@
 /* ### Copyright © 2026 Maxim Rysevets. All rights reserved. ### */
 /* ############################################################# */
 
-import os
 import SwiftUI
 
 struct FieldList<ItemID>: View, @MainActor Equatable where ItemID: Hashable & Equatable & Comparable {

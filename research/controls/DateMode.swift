@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct DateModes: View {
+struct DateMode: View {
 
     enum Mode {
         case original
@@ -80,7 +80,7 @@ struct DateModes: View {
 
 struct DateModes_Previews: PreviewProvider {
     static public var previews: some View {
-        DateModes()
+        DateMode()
     }
 }
 
