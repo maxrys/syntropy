@@ -28,9 +28,9 @@
 		50F244AA2FA379FC00DFCC8F /* DateModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A92FA379FC00DFCC8F /* DateModes.swift */; };
 		50F244AD2FA384ED00DFCC8F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AC2FA384EC00DFCC8F /* RadioButton.swift */; };
 		50F244AF2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */; };
-		50F244B12FA38D4B00DFCC8F /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244B02FA38D4B00DFCC8F /* ValueState.swift */; };
 		50F244B32FA38D5C00DFCC8F /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244B22FA38D5C00DFCC8F /* Timer.swift */; };
 		50F244C92FA4D81F00DFCC8F /* DatePickerCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244C82FA4D81C00DFCC8F /* DatePickerCustom.swift */; };
+		50F244F32FAB3C3B00DFCC8F /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244F22FAB3C3B00DFCC8F /* ValueState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,9 +56,9 @@
 		50F244A92FA379FC00DFCC8F /* DateModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModes.swift; sourceTree = "<group>"; };
 		50F244AC2FA384EC00DFCC8F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewPolyfill.swift; sourceTree = "<group>"; };
-		50F244B02FA38D4B00DFCC8F /* ValueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueState.swift; sourceTree = "<group>"; };
 		50F244B22FA38D5C00DFCC8F /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		50F244C82FA4D81C00DFCC8F /* DatePickerCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCustom.swift; sourceTree = "<group>"; };
+		50F244F22FAB3C3B00DFCC8F /* ValueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 				50D28FFF2F845A82006A7304 /* CompresSequence.swift */,
 				50F244A52FA0B3E600DFCC8F /* CompresSource.swift */,
 				50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */,
-				50F244B02FA38D4B00DFCC8F /* ValueState.swift */,
+				50F244F22FAB3C3B00DFCC8F /* ValueState.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -213,9 +213,9 @@
 			files = (
 				50993B6C2D33C4C900195667 /* app.swift in Sources */,
 				50F244C92FA4D81F00DFCC8F /* DatePickerCustom.swift in Sources */,
+				50F244F32FAB3C3B00DFCC8F /* ValueState.swift in Sources */,
 				50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */,
 				50D28FE92F83A2B3006A7304 /* Logger.swift in Sources */,
-				50F244B12FA38D4B00DFCC8F /* ValueState.swift in Sources */,
 				50D28FEF2F83C4A1006A7304 /* String.swift in Sources */,
 				50D290082F84FEDE006A7304 /* FileManagerView.swift in Sources */,
 				50D28FEB2F83B2CF006A7304 /* URL.swift in Sources */,

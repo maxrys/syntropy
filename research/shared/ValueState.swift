@@ -3,14 +3,19 @@
 /* ### Copyright © 2026 Maxim Rysevets. All rights reserved. ### */
 /* ############################################################# */
 
-import Combine
+import Foundation
 
 final class ValueState<T>: ObservableObject {
 
-    @Published var value: T
+    @Published public var value: T {
+        willSet { self.onChange(newValue) }
+    }
 
-    init(_ value: T) {
-        self.value = value
+    private let onChange: (T) -> Void
+
+    init(_ value: T, _ onChange: @escaping (T) -> Void = { _ in }) {
+        self.value    = value
+        self.onChange = onChange
     }
 
 }
