@@ -73,7 +73,7 @@ struct CompresSequenceView: View {
                 }
 
                 DateMode()
-                    .frame(width: 250)
+                    .frame(width: 172, alignment: .leading)
 
                 Picker("Throttling", selection: self.$throttlingIndex) {
                     ForEach(self.throttlingValues.indices, id: \.self) { index in

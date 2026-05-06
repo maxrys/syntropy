@@ -67,7 +67,7 @@ struct DateMode: View {
                 }
             }
 
-        }.padding(20)
+        }
     }
 
 }
@@ -80,7 +80,9 @@ struct DateMode: View {
 
 struct DateModes_Previews: PreviewProvider {
     static public var previews: some View {
-        DateMode()
+        VStack(alignment: .leading) {
+            DateMode().padding(20)
+        }.frame(width: 250, alignment: .leading)
     }
 }
 
