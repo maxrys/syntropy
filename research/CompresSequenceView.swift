@@ -22,11 +22,7 @@ struct CompresSequenceView: View {
     @State private var preset_isIncludeEmptyDirs: Bool = true
     @State private var preset_isCompressed: Bool = true
     @State private var preset_throttlingIndex: Int = 0
-    @State private var preset_dateMode: DateMode.Mode? = .original
-    @State private var preset_dateWithTZ = DatePickerCustom.Value(
-        date: Date(),
-        zone: "UTC"
-    )
+    @State private var preset_updatedMode: DateMode.Mode = .original
 
     private let throttlingValues: [Double] = [0, 0.0001, 0.001, 0.01, 0.1]
 
@@ -58,14 +54,10 @@ struct CompresSequenceView: View {
             isIncludeEmptyDirs: self.preset_isIncludeEmptyDirs,
             isFollowLinks     : true,
             compression       : self.preset_isCompressed ? .deflate : .none,
+            updatedMode       : self.preset_updatedMode,
             throttling        : self.throttlingValues[self.preset_throttlingIndex],
-            excludePattern    : nil,
-            dateMode          : self.preset_dateMode,
-            dateWithTZ        : self.preset_dateWithTZ
+            excludePattern    : nil
         )
-    }
-
-    init() {
     }
 
     var body: some View {
@@ -79,7 +71,7 @@ struct CompresSequenceView: View {
                     Toggle(isOn: self.$preset_isCompressed      ) { Text("is Compressed"               ) }.disabled(self.task != nil)
                 }
 
-                DateMode(mode: self.$preset_dateMode, dateWithTZ: self.$preset_dateWithTZ)
+                DateMode(mode: self.$preset_updatedMode)
                     .frame(width: 172, alignment: .leading)
                     .disabled(self.task != nil)
 

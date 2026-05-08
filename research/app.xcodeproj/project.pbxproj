@@ -26,7 +26,6 @@
 		50F244A42FA0A77E00DFCC8F /* _const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A32FA0A77E00DFCC8F /* _const.swift */; };
 		50F244A62FA0B3E800DFCC8F /* CompresSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A52FA0B3E600DFCC8F /* CompresSource.swift */; };
 		50F244AA2FA379FC00DFCC8F /* DateMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244A92FA379FC00DFCC8F /* DateMode.swift */; };
-		50F244AD2FA384ED00DFCC8F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AC2FA384EC00DFCC8F /* RadioButton.swift */; };
 		50F244AF2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */; };
 		50F244B32FA38D5C00DFCC8F /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244B22FA38D5C00DFCC8F /* Timer.swift */; };
 		50F244F32FAB3C3B00DFCC8F /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F244F22FAB3C3B00DFCC8F /* ValueState.swift */; };
@@ -39,6 +38,8 @@
 		50F2450C2FAB4D1B00DFCC8F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FEC2F83B66E006A7304 /* Date.swift */; };
 		50F2450D2FAB4D3400DFCC8F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FE82F83A279006A7304 /* Logger.swift */; };
 		50F2450E2FAB4D5500DFCC8F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FF22F8426C9006A7304 /* Double.swift */; };
+		50F245142FAE1A9300DFCC8F /* RadioButtonSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F245132FAE1A9300DFCC8F /* RadioButtonSimple.swift */; };
+		50F245162FAE1AB800DFCC8F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F245152FAE1AB800DFCC8F /* RadioButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +63,6 @@
 		50F244A32FA0A77E00DFCC8F /* _const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _const.swift; sourceTree = "<group>"; };
 		50F244A52FA0B3E600DFCC8F /* CompresSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompresSource.swift; sourceTree = "<group>"; };
 		50F244A92FA379FC00DFCC8F /* DateMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMode.swift; sourceTree = "<group>"; };
-		50F244AC2FA384EC00DFCC8F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewPolyfill.swift; sourceTree = "<group>"; };
 		50F244B22FA38D5C00DFCC8F /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		50F244F22FAB3C3B00DFCC8F /* ValueState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueState.swift; sourceTree = "<group>"; };
@@ -73,6 +73,8 @@
 		50F244FC2FAB4A8600DFCC8F /* FieldList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldList.swift; sourceTree = "<group>"; };
 		50F245042FAB4CF100DFCC8F /* test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50F245062FAB4CF100DFCC8F /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		50F245132FAE1A9300DFCC8F /* RadioButtonSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonSimple.swift; sourceTree = "<group>"; };
+		50F245152FAE1AB800DFCC8F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +104,8 @@
 				50F244FB2FAB4A8600DFCC8F /* FieldGrouppedList.swift */,
 				50F244FC2FAB4A8600DFCC8F /* FieldList.swift */,
 				5056A82F2F97741B009B89C3 /* ProgressSimple.swift */,
-				50F244AC2FA384EC00DFCC8F /* RadioButton.swift */,
+				50F245152FAE1AB800DFCC8F /* RadioButton.swift */,
+				50F245132FAE1A9300DFCC8F /* RadioButtonSimple.swift */,
 			);
 			path = controls;
 			sourceTree = "<group>";
@@ -287,9 +290,11 @@
 				50D290392F85AB16006A7304 /* CompresPreset.swift in Sources */,
 				50D28FED2F83B66E006A7304 /* Date.swift in Sources */,
 				50D2903F2F86678F006A7304 /* Numeric.swift in Sources */,
+				50F245142FAE1A9300DFCC8F /* RadioButtonSimple.swift in Sources */,
 				5056A8322F9775E6009B89C3 /* View.swift in Sources */,
 				5056A8362F9778D1009B89C3 /* Color.swift in Sources */,
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
+				50F245162FAE1AB800DFCC8F /* RadioButton.swift in Sources */,
 				50F244FD2FAB4A8600DFCC8F /* FieldGrouppedList.swift in Sources */,
 				50F244FE2FAB4A8600DFCC8F /* FieldList.swift in Sources */,
 				50F244FF2FAB4A8600DFCC8F /* DatePickerCustom.swift in Sources */,
@@ -299,7 +304,6 @@
 				50F244A62FA0B3E800DFCC8F /* CompresSource.swift in Sources */,
 				50D28FF32F8426D0006A7304 /* Double.swift in Sources */,
 				50F244AA2FA379FC00DFCC8F /* DateMode.swift in Sources */,
-				50F244AD2FA384ED00DFCC8F /* RadioButton.swift in Sources */,
 				50D290062F84FE41006A7304 /* CompresSequenceView.swift in Sources */,
 				5056A8302F9774ED009B89C3 /* ProgressSimple.swift in Sources */,
 				50F244B32FA38D5C00DFCC8F /* Timer.swift in Sources */,

@@ -10,7 +10,7 @@ struct DatePickerCustom: View {
     struct Value: Equatable {
         var date: Date
         var zone: String
-        var result: Date {
+        var offsetted: Date {
             if let offsetNumeric = Date.TIME_ZONES_OFFSSET[self.zone]
                  { return self.date.toNewTimeZone(offset: offsetNumeric) }
             else { return self.date }

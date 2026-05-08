@@ -107,17 +107,17 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                 else { return sourcePathAbsolute }
             }()
 
-            var dateModifFinal: Date = Date()
+            var modificationDate: Date = Date()
 
-            if self.sequence.preset.dateMode == .current                { dateModifFinal = Date() }
-            if self.sequence.preset.dateMode == .custom                 { dateModifFinal = self.sequence.preset.dateWithTZ.result }
-            if self.sequence.preset.dateMode == .original, let dateInfo { dateModifFinal = dateInfo.updated }
+            if case .current           = self.sequence.preset.updatedMode               { modificationDate = Date() }
+            if case .original          = self.sequence.preset.updatedMode, let dateInfo { modificationDate = dateInfo.updated }
+            if case .custom(let value) = self.sequence.preset.updatedMode               { modificationDate = value.offsetted }
 
             do {
                 try await self.addFile(
                     from: sourcePathAbsolute,
                     as: internalPath,
-                    modificationDate: dateModifFinal
+                    modificationDate: modificationDate
                 )
                 return CompresSequence.Element(
                     status    : .success,

@@ -7,23 +7,22 @@ import SwiftUI
 
 struct DateMode: View {
 
-    enum Mode {
+    enum Mode: Equatable {
         case original
         case current
-        case custom
+        case custom(DatePickerCustom.Value)
     }
 
-    @Binding private var mode: Mode?
-    @Binding private var dateWithTZ: DatePickerCustom.Value
+    @Binding private var mode: Mode
 
     @State private var isPresentedCalendar: Bool = false
+    @State private var customValue = DatePickerCustom.Value(
+        date: Date(),
+        zone: "UTC"
+    )
 
-    init(
-        mode: Binding<Mode?>,
-        dateWithTZ: Binding<DatePickerCustom.Value>
-    ) {
-        self._mode       = mode
-        self._dateWithTZ = dateWithTZ
+    init(mode: Binding<Mode>) {
+        self._mode = mode
     }
 
     var body: some View {
@@ -32,14 +31,20 @@ struct DateMode: View {
             Text("Date")
                 .font(.headline)
 
-            RadioButton(ID: .original, self.$mode) {
+            RadioButtonSimple(
+                isSelected: { if case .original = self.mode { true } else { false } }(),
+                onSelect: { self.mode = .original }
+            ) {
                 Text("Original")
             }
 
-            RadioButton(ID: .current, self.$mode, indicatorAlignment: self.mode == .current ? .top : .center) {
+            RadioButtonSimple(
+                isSelected: { if case .current = self.mode { true } else { false } }(),
+                onSelect: { self.mode = .current }
+            ) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Current")
-                    if (self.mode == .current) {
+                    if case .current = self.mode {
                         TimelineViewPolyfill(by: 1) {
                             Text("\(Date().formatISO8601tz)")
                                 .font(.system(size: 10))
@@ -48,31 +53,36 @@ struct DateMode: View {
                 }
             }
 
-            RadioButton(ID: .custom, self.$mode) {
+            RadioButtonSimple(
+                isSelected: { if case .custom = self.mode { true } else { false } }(),
+                onSelect: { self.mode = .custom(self.customValue) }
+            ) {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack(spacing: 7) {
                         Text("Custom")
-                        if (self.mode == .custom) {
+                        if case .custom = self.mode {
                             Button { self.isPresentedCalendar = true } label: {
                                 Image(systemName: "calendar")
                                     .foregroundPolyfill(.accentColor)
                             }
                             .buttonStyle(.plain)
                             .pointerStyleLinkPolyfill()
-                            .popover(isPresented: self.$isPresentedCalendar) {
+                            .popover(isPresented: self.$isPresentedCalendar, arrowEdge: .top) {
                                 DatePickerCustom(
-                                    value: self.$dateWithTZ
+                                    value: self.$customValue
                                 ).padding(20)
                             }
                         }
                     }
-                    if (self.mode == .custom) {
-                        Text("\(self.dateWithTZ.result.formatISO8601tzUTC)")
+                    if case .custom = self.mode {
+                        Text("\(self.customValue.offsetted.formatISO8601tzUTC)")
                             .font(.system(size: 10))
                     }
                 }
             }
 
+        }.onChange(of: self.customValue) { value in
+            self.mode = .custom(value)
         }
     }
 
@@ -86,18 +96,11 @@ struct DateMode: View {
 
 struct DateMode_Previews: PreviewProvider {
     struct ViewWithState: View {
-        @State private var mode: DateMode.Mode? = .original
-        @State private var dateWithTZ = DatePickerCustom.Value(
-            date: Date(),
-            zone: "UTC"
-        )
+        @State private var mode: DateMode.Mode = .original
         public var body: some View {
-            DateMode(
-                mode      : self.$mode,
-                dateWithTZ: self.$dateWithTZ
-            )
-            .padding(20)
-            .frame(width: 250, alignment: .leading)
+            DateMode(mode: self.$mode)
+                .padding(20)
+                .frame(width: 250, alignment: .leading)
         }
     }
     static public var previews: some View {

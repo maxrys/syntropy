@@ -6,15 +6,14 @@
 import Foundation
 import ZIPFoundation
 
-struct CompresPreset {
+struct CompresPreset: Equatable {
 
     let isRelativePath: Bool
     let isIncludeEmptyDirs: Bool
     let isFollowLinks: Bool
     let compression: CompressionMethod
+    let updatedMode: DateMode.Mode
     let throttling: Double?
     let excludePattern: String?
-    let dateMode: DateMode.Mode?
-    let dateWithTZ: DatePickerCustom.Value
 
 }
