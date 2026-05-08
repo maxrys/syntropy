@@ -47,14 +47,14 @@ final class CompresSequence: AsyncSequence {
     private func addEmptyDirsIfRequired() {
         if (preset.isIncludeEmptyDirs) {
             if (!self.sourcesInfo.emptyDirectories.isEmpty) {
-                for emptyDir in self.sourcesInfo.emptyDirectories {
+                for dirInfo in self.sourcesInfo.emptyDirectories {
                     var modificationDate: Date = Date()
-                    if case .current           = self.preset.updatedMode                               { modificationDate = Date() }
-                    if case .original          = self.preset.updatedMode, let dateInfo = emptyDir.date { modificationDate = dateInfo.updated }
-                    if case .custom(let value) = self.preset.updatedMode                               { modificationDate = value.offsetted }
+                    if case .current           = self.preset.updatedMode                              { modificationDate = Date() }
+                    if case .original          = self.preset.updatedMode, let dateInfo = dirInfo.date { modificationDate = dateInfo.updated }
+                    if case .custom(let value) = self.preset.updatedMode                              { modificationDate = value.offsetted }
                     if (self.preset.isRelativePath)
-                         { try? self.archive.addEntry(with: emptyDir.relative, type: .directory, uncompressedSize: Int64(0), modificationDate: modificationDate) { _, _ -> Data in Data() } }
-                    else { try? self.archive.addEntry(with: emptyDir.absolute, type: .directory, uncompressedSize: Int64(0), modificationDate: modificationDate) { _, _ -> Data in Data() } }
+                         { try? self.archive.addEntry(with: dirInfo.relative, type: .directory, uncompressedSize: Int64(0), modificationDate: modificationDate) { _, _ -> Data in Data() } }
+                    else { try? self.archive.addEntry(with: dirInfo.absolute, type: .directory, uncompressedSize: Int64(0), modificationDate: modificationDate) { _, _ -> Data in Data() } }
                 }
             }
         }
@@ -101,42 +101,41 @@ final class CompresSequenceIterator: AsyncIteratorProtocol {
                 max: self.total
             )
 
-            let sourcePathAbsolute = self.sequence.sourcesInfo.files[self.index].absolute
-            let sourcePathRelative = self.sequence.sourcesInfo.files[self.index].relative
+            let fileInfo = self.sequence.sourcesInfo.files[self.index]
+
             let internalPath = {
                 if (self.sequence.preset.isRelativePath)
-                     { return sourcePathRelative }
-                else { return sourcePathAbsolute }
+                     { return fileInfo.relative }
+                else { return fileInfo.absolute }
             }()
 
-            let dateInfo = self.sequence.sourcesInfo.files[self.index].date
             var modificationDate: Date = Date()
-            if case .current           = self.sequence.preset.updatedMode               { modificationDate = Date() }
-            if case .original          = self.sequence.preset.updatedMode, let dateInfo { modificationDate = dateInfo.updated }
-            if case .custom(let value) = self.sequence.preset.updatedMode               { modificationDate = value.offsetted }
+            if case .current           = self.sequence.preset.updatedMode                               { modificationDate = Date() }
+            if case .original          = self.sequence.preset.updatedMode, let dateInfo = fileInfo.date { modificationDate = dateInfo.updated }
+            if case .custom(let value) = self.sequence.preset.updatedMode                               { modificationDate = value.offsetted }
 
             do {
                 try await self.addFile(
-                    from: sourcePathAbsolute,
+                    from: fileInfo.absolute,
                     as: internalPath,
                     modificationDate: modificationDate
                 )
                 return CompresSequence.Element(
                     status    : .success,
                     index     : self.index,
-                    sourcePath: sourcePathAbsolute
+                    sourcePath: fileInfo.absolute
                 )
             } catch is CancellationError {
                 return CompresSequence.Element(
                     status    : .cancelledByUser,
                     index     : self.index,
-                    sourcePath: sourcePathAbsolute
+                    sourcePath: fileInfo.absolute
                 )
             } catch let error as NSError {
                 return CompresSequence.Element(
                     status    : .failure(code: error.code, text: error.localizedDescription),
                     index     : self.index,
-                    sourcePath: sourcePathAbsolute
+                    sourcePath: fileInfo.absolute
                 )
             }
         }
