@@ -8,27 +8,25 @@ import SwiftUI
 struct RadioButtonSimple: View {
 
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.isEnabled) private var isEnabled
 
     private let isSelected: Bool
     private let onSelect: () -> Void
     private let content: any View
     private let size: CGFloat
     private let indicatorAlignment: VerticalAlignment
-    private let isDisabled: Bool
 
     init(
         isSelected: Bool,
         onSelect: @escaping () -> Void,
         size: CGFloat = 20,
         indicatorAlignment: VerticalAlignment = .center,
-        isDisabled: Bool = false,
         @ViewBuilder content: () -> any View
     ) {
         self.isSelected = isSelected
         self.onSelect = onSelect
         self.size = size
         self.indicatorAlignment = indicatorAlignment
-        self.isDisabled = isDisabled
         self.content = content()
     }
 
@@ -58,13 +56,13 @@ struct RadioButtonSimple: View {
                     .focusEffect (Circle())
             }
             .buttonStyle(.plain)
-            .disabled(self.isDisabled)
-            .pointerStyleLinkPolyfill()
+            .disabled(!self.isEnabled)
+            .pointerStyleLinkPolyfill(self.isEnabled)
 
             AnyView(
                 self.content
             ).opacity(
-                self.isDisabled ? 0.3 : 1.0
+                self.isEnabled ? 1.0 : 0.3
             )
         }
     }
@@ -118,12 +116,12 @@ struct RadioButtonSimple_Previews: PreviewProvider {
                         Text("some description 3").font(.system(size: 10))
                     }
                 }
-                RadioButtonSimple(isSelected: self.selected == Self.DEMO_ID_2, onSelect: { self.selected = Self.DEMO_ID_2 }, isDisabled: true) {
+                RadioButtonSimple(isSelected: self.selected == Self.DEMO_ID_2, onSelect: { self.selected = Self.DEMO_ID_2 }) {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Item 3")
                         Text("disabled").font(.system(size: 10))
                     }
-                }
+                }.disabled(true)
             }.padding(20)
         }
     }

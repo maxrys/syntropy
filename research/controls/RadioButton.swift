@@ -8,27 +8,25 @@ import SwiftUI
 struct RadioButton<T: Equatable>: View {
 
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.isEnabled) private var isEnabled
     @Binding private var selected: T?
 
     private let ID: T
     private let content: any View
     private let size: CGFloat
     private let indicatorAlignment: VerticalAlignment
-    private let isDisabled: Bool
 
     init(
         ID: T,
         _ selected: Binding<T?>,
         size: CGFloat = 20,
         indicatorAlignment: VerticalAlignment = .center,
-        isDisabled: Bool = false,
         @ViewBuilder content: () -> any View
     ) {
         self.ID = ID
         self._selected = selected
         self.size = size
         self.indicatorAlignment = indicatorAlignment
-        self.isDisabled = isDisabled
         self.content = content()
     }
 
@@ -58,13 +56,13 @@ struct RadioButton<T: Equatable>: View {
                     .focusEffect (Circle())
             }
             .buttonStyle(.plain)
-            .disabled(self.isDisabled)
-            .pointerStyleLinkPolyfill()
+            .disabled(!self.isEnabled)
+            .pointerStyleLinkPolyfill(self.isEnabled)
 
             AnyView(
                 self.content
             ).opacity(
-                self.isDisabled ? 0.3 : 1.0
+                self.isEnabled ? 1.0 : 0.3
             )
         }
     }
@@ -118,12 +116,12 @@ struct RadioButton_UInt_Previews: PreviewProvider {
                         Text("some description 3").font(.system(size: 10))
                     }
                 }
-                RadioButton(ID: Self.DEMO_ID_2, self.$selected, isDisabled: true) {
+                RadioButton(ID: Self.DEMO_ID_2, self.$selected) {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Item 3")
                         Text("disabled").font(.system(size: 10))
                     }
-                }
+                }.disabled(true)
             }.padding(20)
         }
     }
@@ -153,12 +151,12 @@ struct RadioButton_Enum_Previews: PreviewProvider {
                         Text("some description 3").font(.system(size: 10))
                     }
                 }
-                RadioButton(ID: .mode2, self.$mode, isDisabled: true) {
+                RadioButton(ID: .mode2, self.$mode) {
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Item 3")
                         Text("disabled").font(.system(size: 10))
                     }
-                }
+                }.disabled(true)
             }.padding(20)
         }
     }
