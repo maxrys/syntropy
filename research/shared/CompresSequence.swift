@@ -48,13 +48,25 @@ final class CompresSequence: AsyncSequence {
         if (preset.isIncludeEmptyDirs) {
             if (!self.sourcesInfo.emptyDirectories.isEmpty) {
                 for dirInfo in self.sourcesInfo.emptyDirectories {
+
                     var modificationDate: Date = Date()
                     if case .current           = self.preset.updatedMode                              { modificationDate = Date() }
                     if case .original          = self.preset.updatedMode, let dateInfo = dirInfo.date { modificationDate = dateInfo.updated }
                     if case .custom(let value) = self.preset.updatedMode                              { modificationDate = value.offsetted }
-                    if (self.preset.isRelativePath)
-                         { try? self.archive.addEntry(with: dirInfo.relative, type: .directory, uncompressedSize: Int64(0), modificationDate: modificationDate) { _, _ -> Data in Data() } }
-                    else { try? self.archive.addEntry(with: dirInfo.absolute, type: .directory, uncompressedSize: Int64(0), modificationDate: modificationDate) { _, _ -> Data in Data() } }
+
+                    let internalPath = {
+                        if (self.preset.isRelativePath)
+                             { return dirInfo.relative }
+                        else { return dirInfo.absolute }
+                    }()
+
+                    try? self.archive.addEntry(
+                        with: dirInfo.relative,
+                        type: .directory,
+                        uncompressedSize: Int64(0),
+                        modificationDate: modificationDate) { _, _ in
+                            Data()
+                        }
                 }
             }
         }
