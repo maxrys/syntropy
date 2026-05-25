@@ -9,12 +9,6 @@ extension NSMenu {
 
     static public var main: Self {
 
-        let appLocalizedName = Bundle.main.object(
-            forInfoDictionaryKey: "CFBundleDisplayName"
-        ) as? String ?? NSLocalizedString(
-            ProcessInfo.processInfo.processName, comment: ""
-        )
-
         let result = Self(
             title: "Main Menu"
         )
@@ -24,14 +18,14 @@ extension NSMenu {
         let appMenu = Self()
 
         appMenu.addItem(
-            withTitle: String(format: NSLocalizedString("About %@" , comment: ""), appLocalizedName),
+            withTitle: String(format: NSLocalizedString("About %@" , comment: ""), NSApplication.appNameLocalized),
             action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)),
             keyEquivalent: ""
         )
 
         appMenu.addItem(
             withTitle: NSLocalizedString("Settings" , comment: ""),
-            action: #selector(App.appDelegate.showWindowSettings),
+            action: #selector(ThisApp.appDelegate.showWindowSettings),
             keyEquivalent: ""
         )
 
@@ -40,7 +34,7 @@ extension NSMenu {
         )
 
         appMenu.addItem(
-            withTitle: String(format: NSLocalizedString("Quit %@" , comment: ""), appLocalizedName),
+            withTitle: String(format: NSLocalizedString("Quit %@" , comment: ""), NSApplication.appNameLocalized),
             action: #selector(NSApplication.terminate(_:)),
             keyEquivalent: "q"
         )

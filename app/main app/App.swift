@@ -6,20 +6,16 @@
 import os
 import SwiftUI
 
-@main final class App: NSApplicationMultiLaunch, NSWindowDelegate {
+@main final class ThisApp: NSApplicationMultiLaunch, NSWindowDelegate {
 
-    @MainActor static public var appDelegate: App!
+    @MainActor static public var appDelegate: ThisApp!
 
     static func main() {
         let app = NSApplication.shared
-        Self.appDelegate = App()
+        Self.appDelegate = ThisApp()
         app.delegate = Self.appDelegate
         app.run()
     }
-
-    static public var appVersion      : String? { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String }
-    static public var appBundleVersion: String? { Bundle.main.infoDictionary?["CFBundleVersion"           ] as? String }
-    static public var appCopyright    : String? { Bundle.main.infoDictionary?["NSHumanReadableCopyright"  ] as? String }
 
     func applicationSupportsSecureRestorableState       (_    app: NSApplication) -> Bool { true }
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
