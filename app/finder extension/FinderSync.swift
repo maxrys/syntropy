@@ -4,13 +4,15 @@
 /* ############################################################# */
 
 import os
+import Combine
 import FinderSync
 
 class FinderSync: FIFinderSync {
 
     static let MENU_TITLE_LOCALIZED = NSLocalizedString("Syntropy Archiver", comment: "")
 
-    var selectedURLs: [URL] {
+    private var mountsCancellable: AnyCancellable?
+    private var selectedURLs: [URL] {
         if let urls = FIFinderSyncController.default().selectedItemURLs() {
             return urls
         }
@@ -40,12 +42,20 @@ class FinderSync: FIFinderSync {
     override init() {
         super.init()
         self.updateWatchedVolumes()
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(self.updateWatchedVolumes), name: NSWorkspace.didMountNotification  , object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(self.updateWatchedVolumes), name: NSWorkspace.didUnmountNotification, object: nil)
+        let nc = NSWorkspace.shared.notificationCenter
+        self.mountsCancellable = nc.publisher(for: NSWorkspace.didMountNotification)
+            .merge(with: nc.publisher(for: NSWorkspace.didUnmountNotification))
+            .sink { [weak self] _ in
+                self?.updateWatchedVolumes()
+            }
         Logger.customLog("FinderSync Extension launched from: \(Bundle.main.bundlePath)")
     }
 
-    @objc func updateWatchedVolumes() {
+    deinit {
+        mountsCancellable?.cancel()
+    }
+
+    func updateWatchedVolumes() {
         var urls: Set<URL> = []
         urls.insert(URL(fileURLWithPath: "/"))
         if let volumes = FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil, options: []) {
