@@ -96,7 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5056A82E2F977406009B89C3 /* controls */ = {
+		5055074D2FC6DB0F007DB93D /* main app */ = {
+			isa = PBXGroup;
+			children = (
+				50993B6B2D33C4C900195667 /* app.swift */,
+				50D290052F84FE3F006A7304 /* CompresSequenceView.swift */,
+				50D290072F84FEDC006A7304 /* FileManagerView.swift */,
+			);
+			path = "main app";
+			sourceTree = "<group>";
+		};
+		5056A82E2F977406009B89C3 /* components */ = {
 			isa = PBXGroup;
 			children = (
 				50F244A92FA379FC00DFCC8F /* DateMode.swift */,
@@ -107,10 +117,10 @@
 				50F245152FAE1AB800DFCC8F /* RadioButton.swift */,
 				50F245132FAE1A9300DFCC8F /* RadioButtonSimple.swift */,
 			);
-			path = controls;
+			path = components;
 			sourceTree = "<group>";
 		};
-		507501382EF19BAC00624409 /* shared */ = {
+		507501382EF19BAC00624409 /* types */ = {
 			isa = PBXGroup;
 			children = (
 				50F244A32FA0A77E00DFCC8F /* _const.swift */,
@@ -121,19 +131,17 @@
 				50F244AE2FA38D3C00DFCC8F /* TimelineViewPolyfill.swift */,
 				50F244F22FAB3C3B00DFCC8F /* ValueState.swift */,
 			);
-			path = shared;
+			path = types;
 			sourceTree = "<group>";
 		};
 		50993B5F2D33C4C900195667 = {
 			isa = PBXGroup;
 			children = (
 				50993B742D33C4CD00195667 /* app.entitlements */,
-				507501382EF19BAC00624409 /* shared */,
+				507501382EF19BAC00624409 /* types */,
 				50D28FE72F83A26F006A7304 /* extension */,
-				5056A82E2F977406009B89C3 /* controls */,
-				50993B6B2D33C4C900195667 /* app.swift */,
-				50D290052F84FE3F006A7304 /* CompresSequenceView.swift */,
-				50D290072F84FEDC006A7304 /* FileManagerView.swift */,
+				5056A82E2F977406009B89C3 /* components */,
+				5055074D2FC6DB0F007DB93D /* main app */,
 				50F2450B2FAB4CFC00DFCC8F /* test */,
 				50993B692D33C4C900195667 /* Products */,
 			);
