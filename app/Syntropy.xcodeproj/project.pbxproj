@@ -188,9 +188,9 @@
 		503D1B132F31FADE005B8A98 = {
 			isa = PBXGroup;
 			children = (
-				503D1B332F31FD1A005B8A98 /* shared */,
+				503D1B332F31FD1A005B8A98 /* types */,
 				503D1B322F31FD0C005B8A98 /* extensions */,
-				503D1B442F320085005B8A98 /* controls */,
+				503D1B442F320085005B8A98 /* components */,
 				503D1B302F31FCE5005B8A98 /* main app */,
 				503D1B5D2F32016E005B8A98 /* settings */,
 				50D28FBA2F7F967B006A7304 /* process */,
@@ -256,7 +256,7 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
-		503D1B332F31FD1A005B8A98 /* shared */ = {
+		503D1B332F31FD1A005B8A98 /* types */ = {
 			isa = PBXGroup;
 			children = (
 				503D1B422F320014005B8A98 /* _const.swift */,
@@ -269,10 +269,10 @@
 				50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */,
 				50D28FD12F82E915006A7304 /* ValueState.swift */,
 			);
-			path = shared;
+			path = types;
 			sourceTree = "<group>";
 		};
-		503D1B442F320085005B8A98 /* controls */ = {
+		503D1B442F320085005B8A98 /* components */ = {
 			isa = PBXGroup;
 			children = (
 				5007276A2F8A43DC0058A547 /* FieldSearchCustom */,
@@ -280,7 +280,7 @@
 				503D1B482F32009C005B8A98 /* TabCustom */,
 				503D1B512F3200C0005B8A98 /* ToolbarCustom */,
 			);
-			path = controls;
+			path = components;
 			sourceTree = "<group>";
 		};
 		503D1B482F32009C005B8A98 /* TabCustom */ = {
