@@ -37,7 +37,7 @@ import SwiftUI
         if let windowMain = NSWindow.customWindows[WINDOW_MAIN_ID] {
             windowMain.show()
         } else {
-            _ = NSWindow.makeAndShowFromSwiftUIView(
+            _ = NSWindow.makeNewOrShowExisting(
                 ID   : WINDOW_MAIN_ID,
                 title: WINDOW_MAIN_TITLE_LOCALIZED,
                 size: CGSize(width: 600, height: 300),
@@ -73,7 +73,7 @@ import SwiftUI
         if let windowSettings = NSWindow.customWindows[WINDOW_SETTINGS_ID] {
             windowSettings.show()
         } else {
-            _ = NSWindow.makeAndShowFromSwiftUIView(
+            _ = NSWindow.makeNewOrShowExisting(
                 ID   : WINDOW_SETTINGS_ID,
                 title: WINDOW_SETTINGS_TITLE_LOCALIZED,
                 size: CGSize(width: 600, height: 300),
@@ -91,7 +91,7 @@ import SwiftUI
         } else {
             switch appURL.operationType {
                 case .compres:
-                    _ = NSWindow.makeAndShowFromSwiftUIView(
+                    _ = NSWindow.makeNewOrShowExisting(
                         ID: ID,
                         title: WINDOW_PROCESS_COMPRES_TITLE_LOCALIZED,
                         styleMask: [.titled, .closable],
@@ -103,7 +103,7 @@ import SwiftUI
                         )
                     )
                 case .extract:
-                 // _ = NSWindow.makeAndShowFromSwiftUIView(
+                 // _ = NSWindow.makeNewOrShowExisting(
                  //     ID: ID,
                  //     title: WINDOW_PROCESS_EXTRACT_TITLE_LOCALIZED,
                  //     styleMask: [.titled, .closable],
