@@ -95,6 +95,7 @@ class FinderSync: FIFinderSync {
         if (menuItem.tag == 0) {
             if let appURLdata = AppIncomingURL(operationType: .compres, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 if let resultURL = URL(string: URL.SCHEME_FOR_PROCESS + "://json?data=" + appURLdata) {
+                    Logger.customLog("Open URL: \(resultURL)")
                     NSWorkspace.shared.open(
                         resultURL
                     )
@@ -104,6 +105,7 @@ class FinderSync: FIFinderSync {
         if (menuItem.tag == 1) {
             if let appURLdata = AppIncomingURL(operationType: .extract, combinedPaths).encode()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 if let resultURL = URL(string: URL.SCHEME_FOR_PROCESS + "://json?data=" + appURLdata) {
+                    Logger.customLog("Open URL: \(resultURL)")
                     NSWorkspace.shared.open(
                         resultURL
                     )
