@@ -10,6 +10,7 @@
 		5007276B2F8A43DC0058A547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 500727692F8A43DC0058A547 /* Assets.xcassets */; };
 		5007276C2F8A43DC0058A547 /* FieldSearchCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500727672F8A43DC0058A547 /* FieldSearchCustom.swift */; };
 		5007276D2F8A43DC0058A547 /* FieldSearchCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500727682F8A43DC0058A547 /* FieldSearchCustomColors.swift */; };
+		503C965D2FEE813E00972B60 /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503C965C2FEE813E00972B60 /* Previewer.swift */; };
 		503D1B2D2F31FCD6005B8A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */; };
 		503D1B2E2F31FCD6005B8A98 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B2A2F31FCD6005B8A98 /* App.swift */; };
 		503D1B2F2F31FCD6005B8A98 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503D1B2C2F31FCD6005B8A98 /* MainScene.swift */; };
@@ -100,6 +101,7 @@
 		500727672F8A43DC0058A547 /* FieldSearchCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSearchCustom.swift; sourceTree = "<group>"; };
 		500727682F8A43DC0058A547 /* FieldSearchCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSearchCustomColors.swift; sourceTree = "<group>"; };
 		500727692F8A43DC0058A547 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		503C965C2FEE813E00972B60 /* Previewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Previewer.swift; sourceTree = "<group>"; };
 		503D1B1C2F31FADE005B8A98 /* Syntropy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syntropy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		503D1B2A2F31FCD6005B8A98 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		503D1B2B2F31FCD6005B8A98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				50F2449E2F9CBB8F00DFCC8F /* CompresSequence.swift */,
 				50D28FB72F7E60BA006A7304 /* FinderContextType.swift */,
 				50D28FBB2F7FA07E006A7304 /* OperationType.swift */,
+				503C965C2FEE813E00972B60 /* Previewer.swift */,
 				503D1B3B2F31FF47005B8A98 /* ResultBuilder.swift */,
 				50D28FCF2F82DB0C006A7304 /* TimelineViewPolyfill.swift */,
 				50D28FD12F82E915006A7304 /* ValueState.swift */,
@@ -472,6 +475,7 @@
 				503D1B522F3200C0005B8A98 /* ToolbarCustom_FieldSearch.swift in Sources */,
 				50D28FCC2F82DA0D006A7304 /* ProgressCustom.swift in Sources */,
 				503D1B5E2F320193005B8A98 /* Extraction.swift in Sources */,
+				503C965D2FEE813E00972B60 /* Previewer.swift in Sources */,
 				503D1B5F2F320193005B8A98 /* Compression.swift in Sources */,
 				50D28FB82F7E60BC006A7304 /* FinderContextType.swift in Sources */,
 				503D1B602F320193005B8A98 /* Settings.swift in Sources */,
