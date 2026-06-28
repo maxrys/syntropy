@@ -20,7 +20,7 @@ struct TabCustom_Item: TabCustom_Item_Protocol {
     init(
         title: String,
         icon: Image? = nil,
-        iconSize: CGSize? = nil,
+        iconSize: CGSize? = CGSize(width: 15, height: 15),
         axis: Axis = .horizontal,
         spacing: CGFloat = 7,
         @ViewBuilder content: () -> any View

@@ -53,6 +53,10 @@ struct TabCustom: View {
             .padding(self.padding)
             .frame(maxWidth: .infinity)
             .background(self.colorHeadBackground)
+            .overlayPolyfill(alignment: .bottom) {
+                ShadowLine(opacityDark: 0.7)
+                    .offset(y: 5)
+            }
 
             /* MARK: Tab Body */
 
@@ -152,9 +156,9 @@ fileprivate struct TabCustom_HeadTitle: View {
 #Preview {
     Previewer {
         TabCustom {
-            TabCustom_Item(title: NSLocalizedString("Title 1", comment: ""), icon: Image(systemName: "1.square"), iconSize: CGSize(width: 15, height: 15)) { Text("Tab 1 Content").padding(20) }
-            TabCustom_Item(title: NSLocalizedString("Title 2", comment: ""), icon: Image(systemName: "2.square"), iconSize: CGSize(width: 15, height: 15)) { Text("Tab 2 Content").padding(20) }; TabCustom_Spacer()
-            TabCustom_Item(title: NSLocalizedString("Title 3", comment: ""), icon: Image(systemName: "3.square"), iconSize: CGSize(width: 15, height: 15)) { Text("Tab 3 Content").padding(20) }
+            TabCustom_Item(title: NSLocalizedString("Title 1", comment: ""), icon: Image(systemName: "1.square")) { Text("Tab 1 Content").padding(20) }
+            TabCustom_Item(title: NSLocalizedString("Title 2", comment: ""), icon: Image(systemName: "2.square")) { Text("Tab 2 Content").padding(20) }; TabCustom_Spacer()
+            TabCustom_Item(title: NSLocalizedString("Title 3", comment: ""), icon: Image(systemName: "3.square")) { Text("Tab 3 Content").padding(20) }
         }.frame(maxWidth: 400)
     }
 }
