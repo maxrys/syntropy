@@ -12,14 +12,20 @@ struct Settings: View {
             TabCustom_Item(
                 title: NSLocalizedString("Extraction", comment: ""),
                 icon: Image(systemName: "tray.and.arrow.up"),
+                iconSize: CGSize(width: 25, height: 25),
+                axis: .vertical,
                 content: { Settings_Extraction() })
             TabCustom_Item(
                 title: NSLocalizedString("Compression", comment: ""),
                 icon: Image(systemName: "tray.and.arrow.down"),
+                iconSize: CGSize(width: 25, height: 25),
+                axis: .vertical,
                 content: { Settings_Compression() })
             TabCustom_Item(
                 title: NSLocalizedString("Presets", comment: ""),
                 icon: Image(systemName: "rectangle.grid.3x1"),
+                iconSize: CGSize(width: 25, height: 25),
+                axis: .vertical,
                 content: { Settings_Presets() }
             )
         }
@@ -39,5 +45,5 @@ struct Settings: View {
 
 #Preview {
     Settings()
-        .frame(width: 300, height: 300)
+        .frame(width: 400, height: 300)
 }
