@@ -58,7 +58,7 @@ struct ShadowLine: View {
 /* ############################################################# */
 
 #Preview {
-    Previewer(isHorizontal: false, spacing: 0) {
+    Previewer(spacing: 0) {
         HStack (spacing: 0) {
             ShadowLine(length: 30, angle: .`0_degrees`, opacity: 0.1, opacityDark: 1.0)
             ShadowLine(length: 30, angle: .`0_degrees`, opacity: 0.2, opacityDark: 0.9)

@@ -84,7 +84,7 @@ struct FieldSearchCustom: View {
 
 struct FieldSearchCustom_Previews: PreviewProvider {
     static var previews: some View {
-        Previewer (padding: 20) {
+        Previewer(padding: 20) {
             FieldSearchCustom(
                 text: .constant("")
             )
