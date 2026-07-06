@@ -7,10 +7,14 @@ import SwiftUI
 
 extension Date {
 
+    static var now: TimeInterval {
+        Self().timeIntervalSince1970
+    }
+
     static var defaultFPS = 1.0 / 24
 
     static func spin(max: UInt, speed: Double) -> Double {
-        Double(UInt(Self().timeIntervalSince1970 * speed) % max)
+        Double(UInt(Self.now * speed) % max)
     }
 
     var formatISO8601Mono: String {
@@ -18,7 +22,7 @@ extension Date {
         formatter.dateFormat = "yyyyMMdd_HHmmss"
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let mSec = Int(Self().timeIntervalSince1970.fractionalPart * 1_000)
+        let mSec = Int(Self.now.fractionalPart * 1_000)
         return formatter.string(from: self) + "-\(mSec)"
     }
 
