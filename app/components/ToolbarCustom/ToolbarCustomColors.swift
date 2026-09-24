@@ -7,15 +7,15 @@ import SwiftUI
 
 extension Color {
 
-    struct ToolbarCustomColorSet {
-        public let icon           = Color.black.opacity(0.5)
-        public let iconDark       = Color.white.opacity(0.6)
-        public let iconBorder     = Color.black.opacity(0.05)
-        public let iconBorderDark = Color.white.opacity(0.05)
-        public let title          = Color.black.opacity(0.5)
-        public let titleDark      = Color.white.opacity(0.6)
+    enum ToolbarCustomColorSet {
+        static let icon           = Color.black.opacity(0.5)
+        static let iconDark       = Color.white.opacity(0.6)
+        static let iconBorder     = Color.black.opacity(0.05)
+        static let iconBorderDark = Color.white.opacity(0.05)
+        static let title          = Color.black.opacity(0.5)
+        static let titleDark      = Color.white.opacity(0.6)
     }
 
-    static let toolbar = ToolbarCustomColorSet()
+    static let toolbar = ToolbarCustomColorSet.self
 
 }
