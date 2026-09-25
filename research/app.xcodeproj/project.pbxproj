@@ -39,7 +39,6 @@
 		50F2450D2FAB4D3400DFCC8F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FE82F83A279006A7304 /* Logger.swift */; };
 		50F2450E2FAB4D5500DFCC8F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FF22F8426C9006A7304 /* Double.swift */; };
 		50F245142FAE1A9300DFCC8F /* RadioButtonSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F245132FAE1A9300DFCC8F /* RadioButtonSimple.swift */; };
-		50F245162FAE1AB800DFCC8F /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F245152FAE1AB800DFCC8F /* RadioButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +73,6 @@
 		50F245042FAB4CF100DFCC8F /* test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50F245062FAB4CF100DFCC8F /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		50F245132FAE1A9300DFCC8F /* RadioButtonSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonSimple.swift; sourceTree = "<group>"; };
-		50F245152FAE1AB800DFCC8F /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +112,6 @@
 				50F244FB2FAB4A8600DFCC8F /* FieldGrouppedList.swift */,
 				50F244FC2FAB4A8600DFCC8F /* FieldList.swift */,
 				5056A82F2F97741B009B89C3 /* ProgressSimple.swift */,
-				50F245152FAE1AB800DFCC8F /* RadioButton.swift */,
 				50F245132FAE1A9300DFCC8F /* RadioButtonSimple.swift */,
 			);
 			path = components;
@@ -302,7 +299,6 @@
 				5056A8322F9775E6009B89C3 /* View.swift in Sources */,
 				5056A8362F9778D1009B89C3 /* Color.swift in Sources */,
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
-				50F245162FAE1AB800DFCC8F /* RadioButton.swift in Sources */,
 				50F244FD2FAB4A8600DFCC8F /* FieldGrouppedList.swift in Sources */,
 				50F244FE2FAB4A8600DFCC8F /* FieldList.swift in Sources */,
 				50F244FF2FAB4A8600DFCC8F /* DatePickerCustom.swift in Sources */,
