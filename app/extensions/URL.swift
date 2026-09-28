@@ -7,7 +7,7 @@ import Foundation
 
 extension URL {
 
-    static public let SCHEME_FOR_PROCESS = "syntropyArchiver"
+    static let PREFIX_THIS_APP = "\(APP_ID)://"
 
     var pathName: String {
         var url = self

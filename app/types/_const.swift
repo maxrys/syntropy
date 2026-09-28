@@ -5,6 +5,7 @@
 
 import Foundation
 
+let APP_ID = "Syntropy"
 let WINDOW_MAIN_ID = "main"
 let WINDOW_MAIN_TITLE_LOCALIZED = NSLocalizedString("Syntropy Archiver", comment: "")
 let WINDOW_SETTINGS_ID = "Settings"
