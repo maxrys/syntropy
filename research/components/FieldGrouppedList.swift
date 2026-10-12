@@ -19,7 +19,7 @@ struct FieldGrouppedList<GroupID, ItemID>: View, @MainActor Equatable where Grou
     ]
 
     init(value: ItemID, list: [GroupID: GruppedListItem<ItemID>], onChange: @escaping (ItemID) -> Void) {
-        self.state = ValueState(value, onChange)
+        self.state = ValueState(value, onChangeBefore: onChange)
         self.list  = list
     }
 

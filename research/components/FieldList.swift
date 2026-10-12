@@ -19,7 +19,7 @@ struct FieldList<ItemID>: View, @MainActor Equatable where ItemID: Hashable & Eq
     ]
 
     init(value: ItemID, items: [ItemID: String], onChange: @escaping (ItemID) -> Void) {
-        self.state = ValueState(value, onChange)
+        self.state = ValueState(value, onChangeBefore: onChange)
         self.items = items
     }
 

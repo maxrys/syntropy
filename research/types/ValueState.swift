@@ -4,18 +4,29 @@
 /* ############################################################# */
 
 import Foundation
+import Combine
 
-final class ValueState<T>: ObservableObject {
+final class ValueState<T: Equatable>: ObservableObject {
 
     @Published public var value: T {
-        willSet { self.onChange(newValue) }
+        willSet { if (value != newValue) { self.onChangeBefore(newValue) } }
+        didSet  { if (value != oldValue) { self.onChangeAfter(value) } }
     }
 
-    private let onChange: (T) -> Void
+    private let onChangeBefore: (T) -> Void
+    private let onChangeAfter: (T) -> Void
 
-    init(_ value: T, _ onChange: @escaping (T) -> Void = { _ in }) {
-        self.value    = value
-        self.onChange = onChange
+    init(
+        _ value: T,
+        onChangeBefore: @escaping (T) -> Void = { _ in },
+        onChangeAfter: @escaping (T) -> Void = { _ in }
+    ) {
+        self.value = value
+        self.onChangeBefore = onChangeBefore
+        self.onChangeAfter = onChangeAfter
+    }
+
+    deinit {
     }
 
 }
