@@ -8,17 +8,15 @@ import SwiftUI
 extension Color {
 
     struct NSColorSet {
-        subscript(_ keyPath: KeyPath<NSColor.Type, NSColor>) -> Color {
-            Color(NSColor.self[
-                keyPath: keyPath
-            ])
+        subscript(_ color: NSColor) -> Color {
+            Color(color)
         }
     }
 
     static let NS = NSColorSet()
 
     static let label: Color = {
-        Self.NS[\.labelColor]
+        Self.NS[.labelColor]
     }()
 
 }

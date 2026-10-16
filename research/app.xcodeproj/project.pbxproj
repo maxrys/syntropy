@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5056A8302F9774ED009B89C3 /* ProgressSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A82F2F97741B009B89C3 /* ProgressSimple.swift */; };
 		5056A8322F9775E6009B89C3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A8312F9775E6009B89C3 /* View.swift */; };
-		5056A8362F9778D1009B89C3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056A8352F9778D1009B89C3 /* Color.swift */; };
 		50993B6C2D33C4C900195667 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50993B6B2D33C4C900195667 /* app.swift */; };
 		50D28FE62F83A072006A7304 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 50D28FE52F83A072006A7304 /* ZIPFoundation */; };
 		50D28FE92F83A2B3006A7304 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D28FE82F83A279006A7304 /* Logger.swift */; };
@@ -44,7 +43,6 @@
 /* Begin PBXFileReference section */
 		5056A82F2F97741B009B89C3 /* ProgressSimple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSimple.swift; sourceTree = "<group>"; };
 		5056A8312F9775E6009B89C3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		5056A8352F9778D1009B89C3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		50993B682D33C4C900195667 /* app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50993B6B2D33C4C900195667 /* app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app.swift; sourceTree = "<group>"; };
 		50993B742D33C4CD00195667 /* app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = app.entitlements; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 		50D28FE72F83A26F006A7304 /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				5056A8352F9778D1009B89C3 /* Color.swift */,
 				50D28FEC2F83B66E006A7304 /* Date.swift */,
 				50F244F82FAB49DC00DFCC8F /* DateTZ.swift */,
 				50D28FF22F8426C9006A7304 /* Double.swift */,
@@ -297,7 +294,6 @@
 				50D2903F2F86678F006A7304 /* Numeric.swift in Sources */,
 				50F245142FAE1A9300DFCC8F /* RadioButtonSimple.swift in Sources */,
 				5056A8322F9775E6009B89C3 /* View.swift in Sources */,
-				5056A8362F9778D1009B89C3 /* Color.swift in Sources */,
 				50D290022F84EF20006A7304 /* FileManager.swift in Sources */,
 				50F244FD2FAB4A8600DFCC8F /* FieldGrouppedList.swift in Sources */,
 				50F244FE2FAB4A8600DFCC8F /* FieldList.swift in Sources */,
